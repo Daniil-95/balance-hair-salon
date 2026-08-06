@@ -1,5 +1,4 @@
 import { SectionTitle } from "@/components/ui/section-title";
-import { motion } from "framer-motion";
 import styles from "./page.module.scss";
 
 const serviceItems = [
@@ -17,18 +16,13 @@ export default function HomePage() {
       <section className={styles.hero}>
         <div className="container">
           <div className={styles.heroContent}>
-            <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              className={styles.heroCopy}
-            >
+            <div className={styles.heroCopy}>
               <p className={styles.heroLabel}>Balance hair studio</p>
               <h1 className={styles.heroTitle}>Your style. Our care.</h1>
               <p className={styles.heroText}>
                 Premium luxury salon experience for modern clients seeking beautiful, personalized hair care.
               </p>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
@@ -41,15 +35,10 @@ export default function HomePage() {
         />
         <div className={styles.serviceGrid}>
           {serviceItems.map((item) => (
-            <motion.article
-              key={item.label}
-              className={styles.serviceCard}
-              whileHover={{ y: -6 }}
-              transition={{ duration: 0.3 }}
-            >
+            <article key={item.label} className={styles.serviceCard}>
               <div className={styles.serviceIcon}>✂️</div>
               <h3>{item.label}</h3>
-            </motion.article>
+            </article>
           ))}
         </div>
       </section>
