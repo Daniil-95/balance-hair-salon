@@ -1,0 +1,121 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  name      String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Hero {
+  id          String   @id @default(cuid())
+  headline    String
+  subheadline String
+  ctaLabel    String
+  ctaUrl      String
+  background  String?
+  image       String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model About {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  image       String?
+  highlights  String[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Service {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  icon        String
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Price {
+  id          String   @id @default(cuid())
+  category    String
+  item        String
+  price       String
+  description String?
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model GalleryImage {
+  id          String   @id @default(cuid())
+  title       String
+  category    String
+  filename    String
+  alt         String
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Settings {
+  id             String   @id @default(cuid())
+  salonName      String
+  address        String
+  phone          String
+  whatsapp       String
+  instagram      String
+  facebook       String
+  email          String
+  openHours      String
+  heroUrl        String
+  heroImage      String?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+model SocialLinks {
+  id          String   @id @default(cuid())
+  instagram   String?
+  facebook    String?
+  whatsapp    String?
+  phone       String?
+  email       String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model OpeningHours {
+  id        String   @id @default(cuid())
+  day       String
+  open      String
+  close     String
+  isClosed  Boolean  @default(false)
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model SEO {
+  id           String   @id @default(cuid())
+  title        String
+  description  String
+  keywords     String
+  canonicalUrl String
+  ogImage      String?
+  twitterCard  String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
