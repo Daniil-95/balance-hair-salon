@@ -1,0 +1,39 @@
+.card {
+  padding: 1.75rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+h3 {
+  margin: 0;
+}
+
+p {
+  margin: 0.5rem 0 0;
+  color: var(--color-muted);
+}
+
+.price {
+  font-weight: 700;
+  color: var(--color-white);
+}
+
+.badge {
+  display: inline-flex;
+  margin-top: 1rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  background: rgba(202, 162, 106, 0.14);
+  color: var(--color-gold);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}

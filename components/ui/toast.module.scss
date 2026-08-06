@@ -1,0 +1,24 @@
+.toast {
+  position: fixed;
+  right: 1.5rem;
+  bottom: 1.5rem;
+  min-width: 16rem;
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius-lg);
+  color: #fff;
+  background: rgba(12, 10, 8, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: var(--shadow-soft);
+}
+
+.success {
+  border-color: rgba(98, 186, 141, 0.3);
+}
+
+.error {
+  border-color: rgba(216, 105, 105, 0.3);
+}
+
+.info {
+  border-color: rgba(111, 136, 164, 0.3);
+}

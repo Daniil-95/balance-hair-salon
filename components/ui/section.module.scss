@@ -1,0 +1,22 @@
+.section {
+  padding: 4rem 0;
+}
+
+.header {
+  margin-bottom: 2rem;
+}
+
+.header h2 {
+  margin: 0;
+  font-size: 2.6rem;
+}
+
+.header p {
+  margin: 0.75rem 0 0;
+  color: var(--color-muted);
+}
+
+.body {
+  display: grid;
+  gap: 1.5rem;
+}

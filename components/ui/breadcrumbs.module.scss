@@ -1,0 +1,21 @@
+.breadcrumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  color: var(--color-muted);
+  font-size: 0.95rem;
+}
+
+.item {
+  display: inline-flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.separator {
+  color: rgba(255, 255, 255, 0.35);
+}
+
+a {
+  color: var(--color-text);
+}

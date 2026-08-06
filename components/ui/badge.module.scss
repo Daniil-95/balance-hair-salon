@@ -1,0 +1,26 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.35rem 0.9rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.badge-default {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--color-text);
+}
+
+.badge-success {
+  background: rgba(84, 173, 138, 0.18);
+  color: #d3f5e1;
+}
+
+.badge-outline {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: transparent;
+  color: var(--color-text);
+}

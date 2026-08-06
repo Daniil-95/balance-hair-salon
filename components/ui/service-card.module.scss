@@ -1,0 +1,26 @@
+.card {
+  display: grid;
+  gap: 1rem;
+  padding: 2rem;
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.icon {
+  width: 3rem;
+  height: 3rem;
+  display: grid;
+  place-items: center;
+  border-radius: 1rem;
+  background: rgba(202, 162, 106, 0.18);
+}
+
+h3 {
+  margin: 0;
+}
+
+p {
+  margin: 0;
+  color: var(--color-muted);
+}

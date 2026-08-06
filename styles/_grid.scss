@@ -1,0 +1,35 @@
+.container {
+  width: min(100%, calc(100% - 3rem));
+  max-width: $max-content-width;
+  margin: 0 auto;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+.col-span-6 {
+  grid-column: span 6 / span 6;
+}
+
+.col-span-4 {
+  grid-column: span 4 / span 4;
+}
+
+.col-span-3 {
+  grid-column: span 3 / span 3;
+}
+
+@media (max-width: $breakpoint-md) {
+  .row {
+    grid-template-columns: 1fr;
+  }
+
+  .col-span-6,
+  .col-span-4,
+  .col-span-3 {
+    grid-column: auto;
+  }
+}

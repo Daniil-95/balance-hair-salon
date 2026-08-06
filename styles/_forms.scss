@@ -1,0 +1,38 @@
+input,
+textarea,
+select {
+  width: 100%;
+  padding: 1rem 1.2rem;
+  border-radius: $radius-md;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+  color: $color-text;
+  @include transition(border-color, box-shadow);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: $color-gold;
+  box-shadow: 0 0 0 4px rgba(202, 162, 106, 0.12);
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: $color-muted;
+  font-size: 0.95rem;
+}
+
+.checkbox,
+.switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.checkbox input,
+.switch input {
+  accent-color: $color-gold;
+}

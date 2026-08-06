@@ -1,0 +1,36 @@
+.field {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.label {
+  color: var(--color-muted);
+  font-size: 0.95rem;
+}
+
+.select {
+  width: 100%;
+  min-height: 3.2rem;
+  padding: 1rem 1.2rem;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--color-text);
+  appearance: none;
+  transition: border-color var(--transition-base), box-shadow var(--transition-base);
+}
+
+.select:focus {
+  outline: none;
+  border-color: var(--color-gold);
+  box-shadow: 0 0 0 4px rgba(202, 162, 106, 0.12);
+}
+
+.invalid {
+  border-color: #d56969;
+}
+
+.error {
+  color: #f8b4b4;
+  font-size: 0.9rem;
+}

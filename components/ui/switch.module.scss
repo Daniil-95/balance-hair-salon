@@ -1,0 +1,42 @@
+.switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  color: var(--color-text);
+}
+
+.switch input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.track {
+  width: 3.2rem;
+  height: 1.7rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  position: relative;
+  transition: background-color var(--transition-base);
+}
+
+.track::after {
+  content: "";
+  position: absolute;
+  top: 0.18rem;
+  left: 0.18rem;
+  width: 1.3rem;
+  height: 1.3rem;
+  border-radius: 50%;
+  background: #fff;
+  transition: transform var(--transition-base);
+}
+
+.switch input:checked + .track {
+  background: var(--color-gold);
+}
+
+.switch input:checked + .track::after {
+  transform: translateX(1.5rem);
+}

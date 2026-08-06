@@ -1,0 +1,14 @@
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.small-caps {
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+}

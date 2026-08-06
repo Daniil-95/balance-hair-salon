@@ -1,0 +1,23 @@
+.card {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+}
+
+.meta {
+  padding: 1rem 1.25rem;
+}
+
+h3 {
+  margin: 0;
+  font-size: 1rem;
+}

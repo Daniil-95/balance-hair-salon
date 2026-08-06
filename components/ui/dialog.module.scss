@@ -1,0 +1,21 @@
+.dialog {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+}
+
+.title {
+  margin: 0 0 0.75rem;
+  font-size: 1.75rem;
+}
+
+.description {
+  margin: 0 0 1.5rem;
+  color: var(--color-muted);
+}
+
+.content {
+  display: grid;
+  gap: 1rem;
+}

@@ -1,0 +1,12 @@
+.fade-up {
+  transform: translateY(16px);
+  opacity: 0;
+  animation: fade-up 0.75s ease forwards;
+}
+
+@keyframes fade-up {
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

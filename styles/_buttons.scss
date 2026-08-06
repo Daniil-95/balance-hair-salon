@@ -9,7 +9,7 @@
   letter-spacing: 0.08em;
   text-transform: uppercase;
   cursor: pointer;
-  transition: transform var(--transition-base), box-shadow var(--transition-base), background-color var(--transition-base);
+  @include transition(background-color, transform, box-shadow);
 }
 
 .button-primary {
@@ -18,20 +18,10 @@
   box-shadow: 0 24px 35px rgba(202, 162, 106, 0.2);
 }
 
-.button-secondary {
-  background: rgba(255, 255, 255, 0.06);
-  color: var(--color-text);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-}
-
 .button-ghost {
   border: 1px solid rgba(255, 255, 255, 0.14);
-  color: var(--color-text);
+  color: $color-text;
   background: rgba(255, 255, 255, 0.04);
-}
-
-.fullWidth {
-  width: 100%;
 }
 
 .button:hover {

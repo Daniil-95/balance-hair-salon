@@ -1,14 +1,8 @@
 import Link from "next/link";
+import { NAV_ITEMS } from "@/lib/constants";
 import styles from "./header.module.scss";
 
-const navItems = [
-  { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
-  { label: "Services", href: "/services" },
-  { label: "Price List", href: "/price-list" },
-  { label: "Gallery", href: "/gallery" },
-  { label: "Contact", href: "/contact" }
-];
+const navItems = NAV_ITEMS;
 
 export function Header() {
   return (

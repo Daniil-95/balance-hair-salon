@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { cn } from "@/lib/utils";
 import styles from "./card.module.scss";
 
 interface CardProps {
@@ -7,5 +8,5 @@ interface CardProps {
 }
 
 export function Card({ children, className = "" }: CardProps) {
-  return <div className={`${styles.card} ${className}`.trim()}>{children}</div>;
+  return <div className={cn(styles.card, className)}>{children}</div>;
 }

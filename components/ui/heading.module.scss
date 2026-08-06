@@ -1,0 +1,17 @@
+.heading {
+  margin: 0;
+  line-height: 1.05;
+  color: var(--color-white);
+}
+
+h1.heading {
+  font-size: clamp(3rem, 5vw, 5rem);
+}
+
+h2.heading {
+  font-size: clamp(2.2rem, 4vw, 3.6rem);
+}
+
+h3.heading {
+  font-size: clamp(1.6rem, 2.5vw, 2.4rem);
+}

@@ -8,12 +8,18 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(cuid())
-  email     String   @unique
-  password  String
-  name      String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id           String   @id @default(cuid())
+  email        String   @unique
+  password     String
+  name         String?
+  role         Role     @default(USER)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+enum Role {
+  ADMIN
+  USER
 }
 
 model Hero {
@@ -44,71 +50,97 @@ model Service {
   description String
   icon        String
   order       Int      @default(0)
+  featured    Boolean  @default(false)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
 
-model Price {
-  id          String   @id @default(cuid())
-  category    String
-  item        String
+model PriceCategory {
+  id          String      @id @default(cuid())
+  name        String
+  description String?
+  items       PriceItem[]
+  order       Int         @default(0)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+}
+
+model PriceItem {
+  id          String        @id @default(cuid())
+  category    PriceCategory @relation(fields: [categoryId], references: [id])
+  categoryId  String
+  title       String
   price       String
   description String?
-  order       Int      @default(0)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  order       Int           @default(0)
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+}
+
+model GalleryCategory {
+  id          String         @id @default(cuid())
+  name        String
+  slug        String         @unique
+  images      GalleryImage[]
+  order       Int            @default(0)
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
 }
 
 model GalleryImage {
-  id          String   @id @default(cuid())
+  id          String          @id @default(cuid())
   title       String
-  category    String
-  filename    String
   alt         String
+  filename    String
+  category    GalleryCategory @relation(fields: [categoryId], references: [id])
+  categoryId  String
+  order       Int             @default(0)
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+}
+
+model Review {
+  id          String   @id @default(cuid())
+  author      String
+  rating      Int      @default(5)
+  message     String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model SocialLink {
+  id          String   @id @default(cuid())
+  platform    String
+  url         String
+  icon        String
   order       Int      @default(0)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
 
-model Settings {
-  id             String   @id @default(cuid())
-  salonName      String
-  address        String
-  phone          String
-  whatsapp       String
-  instagram      String
-  facebook       String
-  email          String
-  openHours      String
-  heroUrl        String
-  heroImage      String?
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
-}
-
-model SocialLinks {
+model Contact {
   id          String   @id @default(cuid())
-  instagram   String?
-  facebook    String?
-  whatsapp    String?
-  phone       String?
-  email       String?
+  address     String
+  phone       String
+  whatsapp    String
+  email       String
+  mapUrl      String?
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
 
-model OpeningHours {
-  id        String   @id @default(cuid())
-  day       String
-  open      String
-  close     String
-  isClosed  Boolean  @default(false)
-  order     Int      @default(0)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+model OpeningHour {
+  id          String   @id @default(cuid())
+  day         String
+  open        String
+  close       String
+  isClosed    Boolean  @default(false)
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
 
-model SEO {
+model Seo {
   id           String   @id @default(cuid())
   title        String
   description  String
@@ -116,6 +148,17 @@ model SEO {
   canonicalUrl String
   ogImage      String?
   twitterCard  String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model SiteSettings {
+  id           String   @id @default(cuid())
+  salonName    String
+  tagline      String?
+  heroCtaLabel String?
+  heroCtaUrl   String?
+  logo         String?
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 }
