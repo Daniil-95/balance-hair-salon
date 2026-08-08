@@ -1,0 +1,55 @@
+.gallery {
+  padding: 6rem 0;
+}
+
+.previewGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.2rem;
+  margin-top: 2rem;
+}
+
+.previewCard {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: var(--shadow-soft);
+}
+
+.previewImage {
+  min-height: 18rem;
+  background: linear-gradient(135deg, rgba(202, 162, 106, 0.16), rgba(12, 10, 8, 0.95));
+}
+
+.previewMeta {
+  padding: 1.25rem;
+  display: grid;
+  gap: 0.45rem;
+}
+
+.actions {
+  margin-top: 2rem;
+}
+
+.button {
+  display: inline-flex;
+  padding: 0.95rem 1.6rem;
+  border-radius: var(--radius-sm);
+  background: linear-gradient(135deg, rgba(202, 162, 106, 0.95), rgba(209, 182, 128, 0.95));
+  color: #111;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+@media (max-width: 1024px) {
+  .previewGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 680px) {
+  .previewGrid {
+    grid-template-columns: 1fr;
+  }
+}

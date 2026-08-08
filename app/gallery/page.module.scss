@@ -1,0 +1,66 @@
+.galleryPage {
+  padding: 6rem 0;
+}
+
+.hero {
+  margin-bottom: 3.5rem;
+  text-align: center;
+}
+
+.overline {
+  display: inline-flex;
+  padding: 0.55rem 1rem;
+  border-radius: var(--radius-sm);
+  background: rgba(202, 162, 106, 0.12);
+  color: var(--color-gold);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.8rem;
+}
+
+.heroTitle {
+  margin: 1.6rem 0 1rem;
+  font-size: clamp(2.75rem, 4vw, 4.5rem);
+}
+
+.heroCopy {
+  margin: 0 auto;
+  max-width: 40rem;
+  color: var(--color-muted);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+.card {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: var(--shadow-soft);
+}
+
+.media {
+  min-height: 20rem;
+  background: linear-gradient(135deg, rgba(202, 162, 106, 0.18), rgba(32, 28, 23, 0.95));
+}
+
+.card p {
+  margin: 1rem;
+  font-weight: 600;
+}
+
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 680px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

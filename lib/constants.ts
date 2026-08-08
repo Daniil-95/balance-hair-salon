@@ -6,10 +6,10 @@ export const SITE = {
 };
 
 export const NAV_ITEMS = [
-  { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
-  { label: "Services", href: "/services" },
-  { label: "Price List", href: "/price-list" },
-  { label: "Gallery", href: "/gallery" },
-  { label: "Contact", href: "/contact" }
+  { label: "Domů", href: "#home" },
+  { label: "O nás", href: "#about" },
+  { label: "Služby", href: "#services" },
+  { label: "Ceník", href: "#pricing" },
+  { label: "Galerie", href: "#gallery" },
+  { label: "Kontakt", href: "#contact" }
 ];

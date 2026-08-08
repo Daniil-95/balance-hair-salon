@@ -1,0 +1,63 @@
+.contact {
+  padding: 6rem 0 8rem;
+}
+
+.inner {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+.overline {
+  display: inline-flex;
+  padding: 0.55rem 1rem;
+  border-radius: var(--radius-sm);
+  background: rgba(202, 162, 106, 0.14);
+  color: var(--color-gold);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.8rem;
+}
+
+.sectionTitle {
+  margin: 0 0 1rem;
+}
+
+.card {
+  padding: 2rem;
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: var(--shadow-soft);
+}
+
+.cardTitle {
+  margin: 0 0 1rem;
+  color: var(--color-white);
+}
+
+.hours {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem;
+  display: grid;
+  gap: 0.85rem;
+  color: var(--color-muted);
+}
+
+.button {
+  display: inline-flex;
+  padding: 0.9rem 1.5rem;
+  border-radius: var(--radius-sm);
+  background: linear-gradient(135deg, rgba(202, 162, 106, 0.95), rgba(209, 182, 128, 0.95));
+  color: #111;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+@media (max-width: 900px) {
+  .inner {
+    grid-template-columns: 1fr;
+  }
+}

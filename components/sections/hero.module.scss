@@ -1,0 +1,119 @@
+.hero {
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.imageWrapper {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.backgroundImage {
+  object-fit: cover;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(8, 7, 5, 0.75), rgba(8, 7, 5, 0.35));
+  z-index: 1;
+}
+
+.inner {
+  position: relative;
+  z-index: 2;
+  width: min(100%, 100vw);
+  max-width: var(--max-content-width);
+  margin: 0 auto;
+  padding: 5rem 1.5rem;
+}
+
+.copy {
+  max-width: 36rem;
+  display: grid;
+  gap: 1.5rem;
+}
+
+.overline {
+  display: inline-flex;
+  padding: 0.65rem 1.1rem;
+  border-radius: var(--radius-sm);
+  background: rgba(202, 162, 106, 0.16);
+  color: var(--color-gold);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.8rem;
+}
+
+.title {
+  margin: 0;
+  font-size: clamp(4rem, 9vw, 7rem);
+  letter-spacing: 0.18em;
+  line-height: 0.92;
+  text-transform: uppercase;
+}
+
+.subtitle {
+  margin: 0;
+  color: var(--color-muted);
+  font-size: 1.15rem;
+  max-width: 32rem;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.primary,
+.secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 11rem;
+  padding: 0.95rem 1.4rem;
+  border-radius: var(--radius-sm);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: transform var(--transition-base), background var(--transition-base), color var(--transition-base);
+}
+
+.primary {
+  background: linear-gradient(135deg, rgba(202, 162, 106, 0.95), rgba(209, 182, 128, 0.95));
+  color: #111;
+}
+
+.secondary {
+  border: 1px solid rgba(202, 162, 106, 0.35);
+  color: var(--color-white);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.primary:hover,
+.secondary:hover {
+  transform: translateY(-2px);
+}
+
+@media (max-width: 900px) {
+  .inner {
+    padding: 4rem 1.25rem;
+  }
+}
+
+@media (max-width: 680px) {
+  .hero {
+    min-height: auto;
+    padding: 4rem 0;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+}
