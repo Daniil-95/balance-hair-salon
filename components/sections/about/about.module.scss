@@ -1,4 +1,4 @@
-.about {
+﻿.about {
   padding: 6rem 0;
 }
 
@@ -27,20 +27,28 @@
 
 .content h2 {
   margin: 0;
+  font-size: 3rem;
+  line-height: 1.1;
 }
 
 .content p {
+  margin: 0;
   line-height: 1.9;
 }
 
 .button {
+  min-height: 44px;
   display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
   padding: 0.95rem 1.5rem;
   border-radius: var(--radius-sm);
   background: linear-gradient(135deg, rgba(202, 162, 106, 0.95), rgba(209, 182, 128, 0.95));
   color: #111;
   font-weight: 700;
   text-transform: uppercase;
+  text-align: center;
 }
 
 .imageWrapper {
@@ -54,7 +62,6 @@
   height: 90%;
   border-radius: var(--radius-lg);
   background: rgba(202, 162, 106, 0.08);
-  filter: blur(20px);
 }
 
 .image {
@@ -73,8 +80,39 @@
   letter-spacing: 0.18em;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 768px) {
+  .about {
+    padding: 4.5rem 0;
+  }
+
   .grid {
     grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .content h2 {
+    font-size: 2.4rem;
+  }
+
+  .image {
+    min-height: 26rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .about {
+    padding: 3.5rem 0;
+  }
+
+  .content h2 {
+    font-size: 2rem;
+  }
+
+  .button {
+    width: 100%;
+  }
+
+  .image {
+    min-height: 20rem;
   }
 }

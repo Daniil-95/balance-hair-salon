@@ -1,4 +1,4 @@
-.contact {
+﻿.contact {
   padding: 6rem 0 8rem;
 }
 
@@ -22,6 +22,12 @@
 
 .sectionTitle {
   margin: 0 0 1rem;
+  font-size: 3rem;
+  line-height: 1.1;
+}
+
+.inner p {
+  line-height: 1.8;
 }
 
 .card {
@@ -47,17 +53,47 @@
 }
 
 .button {
+  min-height: 44px;
   display: inline-flex;
+  align-items: center;
+  justify-content: center;
   padding: 0.9rem 1.5rem;
   border-radius: var(--radius-sm);
   background: linear-gradient(135deg, rgba(202, 162, 106, 0.95), rgba(209, 182, 128, 0.95));
   color: #111;
   font-weight: 700;
   text-transform: uppercase;
+  text-align: center;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 768px) {
+  .contact {
+    padding: 4.5rem 0 5rem;
+  }
+
   .inner {
     grid-template-columns: 1fr;
+  }
+
+  .sectionTitle {
+    font-size: 2.4rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact {
+    padding: 3.5rem 0 4rem;
+  }
+
+  .sectionTitle {
+    font-size: 2rem;
+  }
+
+  .card {
+    padding: 1.25rem;
+  }
+
+  .button {
+    width: 100%;
   }
 }

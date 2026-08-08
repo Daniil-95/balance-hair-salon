@@ -1,4 +1,5 @@
-﻿import styles from "./footer.module.scss";
+﻿import Link from "next/link";
+import styles from "./footer.module.scss";
 
 export function Footer() {
   return (
@@ -11,8 +12,8 @@ export function Footer() {
           </div>
 
           <div className={styles.links}>
-            <a href="/privacy-policy">Ochrana osobních údajů</a>
-            <a href="/#contact">Kontakt</a>
+            <Link href="/privacy-policy">Ochrana osobních údajů</Link>
+            <Link href="/#contact">Kontakt</Link>
           </div>
         </div>
       </div>

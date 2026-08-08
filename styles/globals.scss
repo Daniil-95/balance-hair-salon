@@ -1,6 +1,32 @@
 ﻿@import "./variables";
 @import "./mixins";
+@import "./breakpoints";
+
+@import "./typography";
+@import "./buttons";
+@import "./forms";
+@import "./grid";
 @import "./helpers";
+@import "./animations";
+
+:root {
+  --color-bg: #{$color-bg};
+  --color-surface: #{$color-surface};
+  --color-surface-alt: #{$color-surface-alt};
+  --color-text: #{$color-text};
+  --color-muted: #{$color-muted};
+  --color-border: #{$color-border};
+  --color-gold: #{$color-gold};
+  --color-gold-soft: #{$color-gold-soft};
+  --color-white: #{$color-white};
+  --shadow-soft: #{$shadow-soft};
+  --radius-xl: #{$radius-xl};
+  --radius-lg: #{$radius-lg};
+  --radius-md: #{$radius-md};
+  --radius-sm: #{$radius-sm};
+  --transition-base: #{$transition-base};
+  --max-content-width: #{$max-content-width};
+}
 
 *,
 *::before,
@@ -72,8 +98,18 @@ main {
   width: min(100%, 100vw);
 }
 
+@media (max-width: 768px) {
+  .container {
+    width: min(100%, calc(100% - 2rem));
+  }
+}
+
 @media (max-width: 480px) {
   section {
     scroll-margin-top: 82px;
+  }
+
+  .container {
+    width: min(100%, calc(100% - 1.5rem));
   }
 }

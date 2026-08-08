@@ -1,4 +1,4 @@
-.pricing {
+﻿.pricing {
   padding: 6rem 0;
 }
 
@@ -42,18 +42,51 @@
   align-content: center;
 }
 
+.ctaLabel {
+  margin: 0;
+}
+
 .ctaButton {
+  min-height: 44px;
   display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
   padding: 0.95rem 1.5rem;
   border-radius: var(--radius-sm);
   background: linear-gradient(135deg, rgba(202, 162, 106, 0.95), rgba(209, 182, 128, 0.95));
   color: #111;
   font-weight: 700;
   text-transform: uppercase;
+  text-align: center;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 768px) {
+  .pricing {
+    padding: 4.5rem 0;
+  }
+
   .inner {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .pricing {
+    padding: 3.5rem 0;
+  }
+
+  .card,
+  .ctaBlock {
+    padding: 1.25rem;
+  }
+
+  .item {
+    display: grid;
+    gap: 0.35rem;
+  }
+
+  .ctaButton {
+    width: 100%;
   }
 }

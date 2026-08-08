@@ -1,4 +1,4 @@
-.galleryPage {
+﻿.galleryPage {
   padding: 6rem 0;
 }
 
@@ -20,13 +20,15 @@
 
 .heroTitle {
   margin: 1.6rem 0 1rem;
-  font-size: clamp(2.75rem, 4vw, 4.5rem);
+  font-size: 4rem;
+  line-height: 1.1;
 }
 
 .heroCopy {
   margin: 0 auto;
   max-width: 40rem;
   color: var(--color-muted);
+  line-height: 1.8;
 }
 
 .grid {
@@ -53,14 +55,38 @@
   font-weight: 600;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 768px) {
+  .galleryPage {
+    padding: 4.5rem 0;
+  }
+
+  .heroTitle {
+    font-size: 2.8rem;
+  }
+
   .grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
-@media (max-width: 680px) {
+@media (max-width: 480px) {
+  .galleryPage {
+    padding: 3.5rem 0;
+  }
+
+  .hero {
+    margin-bottom: 2rem;
+  }
+
+  .heroTitle {
+    font-size: 2.1rem;
+  }
+
   .grid {
     grid-template-columns: 1fr;
+  }
+
+  .media {
+    min-height: 14rem;
   }
 }
