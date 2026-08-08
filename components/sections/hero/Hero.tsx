@@ -1,5 +1,4 @@
 ﻿import Image from "next/image";
-import Link from "next/link";
 import styles from "./hero.module.scss";
 
 export function Hero() {
@@ -25,27 +24,26 @@ export function Hero() {
             <span className={styles.overline}>Kadeřnické studio</span>
             <h1 className={styles.title}>BALANCE</h1>
             <p className={styles.subtitle}>Váš styl. Naše péče.</p>
-            <p className={styles.lead}>
-              Moderní střihy, precizní barvení a klidná atmosféra v salonu, kde
-              je každý detail postavený na kvalitě a eleganci.
-            </p>
-            <div className={styles.actions}>
-              <Link href="/#contact" className={styles.primary}>
+            <div className={styles.actionsPrimary}>
+              <a href="https://tiarasro.snippet.myfox.cz/" target="_blank" rel="noreferrer" className={styles.primary}>
                 <svg className={styles.buttonIcon} aria-hidden="true" viewBox="0 0 24 24" fill="none">
                   <rect x="4" y="5" width="16" height="15" rx="2" stroke="currentColor" strokeWidth="1.7" />
                   <path d="M7 3.5V7M17 3.5V7M4 9H20" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" />
                   <path d="M8 12.5H11M13 12.5H16M8 16H11" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" />
                 </svg>
-                Objednat se online
-              </Link>
+                Objednat termín online
+              </a>
+            </div>
+
+            <div className={styles.actionsSecondary}>
               <a href="https://wa.me/420603561625" target="_blank" rel="noreferrer" className={styles.secondary}>
                 <svg className={styles.buttonIcon} aria-hidden="true" viewBox="0 0 24 24" fill="none">
-                  <path d="M20 11.6C20 15.7 16.4 19 12 19a8.9 8.9 0 0 1-4.25-1.07L4 19l1.18-3.4A7.82 7.82 0 0 1 3 11.6C3 7.5 6.6 4 12 4s8 3.5 8 7.6Z" stroke="currentColor" strokeWidth="1.7" strokeLinejoin="round" />
-                  <path d="M9.2 8.9c.2-.4.4-.5.7-.5h.7c.2 0 .4 0 .5.3l.8 1.9c.1.2.1.4 0 .6l-.4.5c-.1.2-.1.4 0 .6.3.6.8 1.2 1.3 1.7.5.5 1.1 1 1.7 1.3.2.1.4.1.6 0l.5-.4c.2-.1.4-.1.6 0l1.9.8c.3.1.3.3.3.5v.7c0 .3-.1.5-.5.7-.7.4-1.7.5-2.5.2-1.6-.5-3.6-1.8-5.1-3.3-1.5-1.5-2.8-3.5-3.3-5.1-.3-.8-.2-1.8.2-2.5Z" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" />
+                  <path d="M12 4.25a7.75 7.75 0 0 0-6.7 11.63L4.1 20l4.28-1.15A7.75 7.75 0 1 0 12 4.25Z" stroke="currentColor" strokeWidth="1.7" strokeLinejoin="round" />
+                  <path d="M9.2 9.2c.16-.36.33-.42.58-.42h.48c.17 0 .32.03.45.33l.65 1.62c.1.24.07.38 0 .49l-.29.41c-.09.13-.1.24-.03.37.32.56.77 1.1 1.3 1.55.53.46 1.12.85 1.74 1.1.13.05.25.03.36-.06l.48-.38c.13-.09.29-.11.49-.03l1.53.66c.32.14.34.29.34.46v.44c0 .26-.1.46-.43.62-.73.36-1.6.3-2.54-.05-1.24-.47-2.57-1.42-3.72-2.56-1.16-1.17-2.08-2.48-2.53-3.7-.33-.9-.38-1.8-.06-2.46Z" fill="currentColor" />
                 </svg>
                 WhatsApp
               </a>
-              <a href="https://instagram.com" target="_blank" rel="noreferrer" className={styles.secondary}>
+              <a href="https://www.instagram.com/balance.kadernictvi" target="_blank" rel="noreferrer" className={styles.secondary}>
                 <svg className={styles.buttonIcon} aria-hidden="true" viewBox="0 0 24 24" fill="none">
                   <rect x="4" y="4" width="16" height="16" rx="4" stroke="currentColor" strokeWidth="1.7" />
                   <circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="1.7" />
@@ -56,8 +54,8 @@ export function Hero() {
             </div>
             <div className={styles.metaRow}>
               <span>Čenkov 93</span>
-              <span>Otevřeno denně</span>
-              <span>Online rezervace</span>
+              <span>Po–Pá 9:00–19:00</span>
+              <span>Sobota dle objednání</span>
             </div>
           </div>
 

@@ -1,10 +1,17 @@
 ﻿.hero {
-  min-height: calc(100vh - 88px);
+  min-height: 100vh;
+  min-height: 100svh;
   position: relative;
   overflow: hidden;
   display: flex;
   align-items: center;
-  padding: 2rem 0 4rem;
+  padding: 1.5rem 0 2rem;
+}
+
+@supports (min-height: 100dvh) {
+  .hero {
+    min-height: 100dvh;
+  }
 }
 
 .imageWrapper {
@@ -21,8 +28,8 @@
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(180deg, rgba(8, 7, 5, 0.55), rgba(8, 7, 5, 0.8)),
-    radial-gradient(circle at 38% 28%, rgba(202, 162, 106, 0.2), transparent 24%);
+    linear-gradient(180deg, rgba(8, 7, 5, 0.62), rgba(8, 7, 5, 0.86)),
+    radial-gradient(circle at 50% 28%, rgba(202, 162, 106, 0.11), transparent 36%);
   z-index: 1;
 }
 
@@ -31,15 +38,15 @@
   inset: 0;
   background-image: linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
-  background-size: 24px 24px;
-  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.45), transparent 75%);
+  background-size: 28px 28px;
+  opacity: 0.45;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.36), transparent 78%);
   z-index: 1;
 }
 
 .inner {
   position: relative;
   z-index: 2;
-  min-height: calc(100vh - 88px - 6rem);
   display: grid;
   grid-template-columns: 1fr;
   align-items: center;
@@ -47,16 +54,18 @@
   width: min(100%, 100vw);
   max-width: var(--max-content-width);
   margin: 0 auto;
-  padding: 3rem 1.5rem;
+  padding: 2.5rem 1.5rem 0.75rem;
 }
 
 .copy {
   position: relative;
   justify-self: center;
-  width: min(100%, 58rem);
-  padding: 2rem 1.5rem 0;
+  width: min(100%, 40rem);
+  padding: 0.5rem 1.5rem 0;
+  margin-top: clamp(1.5rem, 6vh, 4rem);
+  margin-bottom: clamp(3.2rem, 9vh, 5.6rem);
   display: grid;
-  gap: 1rem;
+  gap: 0.8rem;
   text-align: center;
   justify-items: center;
 }
@@ -67,43 +76,41 @@
   justify-self: center;
   color: var(--color-gold-soft);
   text-transform: uppercase;
-  letter-spacing: 0.38em;
-  font-size: 0.72rem;
+  letter-spacing: 0.3em;
+  font-size: 0.73rem;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.55);
 }
 
 .title {
   margin: 0;
-  font-size: clamp(4rem, 9vw, 7rem);
-  letter-spacing: 0.08em;
-  line-height: 0.9;
+  font-size: clamp(3.5rem, 8vw, 6.5rem);
+  letter-spacing: 0.06em;
+  line-height: 0.92;
   text-transform: uppercase;
-  text-shadow: 0 3px 18px rgba(0, 0, 0, 0.7);
+  text-shadow: 0 6px 24px rgba(0, 0, 0, 0.62);
 }
 
 .subtitle {
   margin: 0;
   color: var(--color-gold);
-  letter-spacing: 0.28em;
+  letter-spacing: 0.2em;
   font-size: 0.95rem;
   text-transform: uppercase;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+  text-shadow: 0 3px 12px rgba(0, 0, 0, 0.58);
 }
 
-.lead {
-  margin: 0 auto;
-  max-width: 38rem;
-  color: var(--color-muted);
-  font-size: 1.05rem;
-  line-height: 1.85;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.55);
+.actionsPrimary {
+  display: flex;
+  margin-top: 1.2rem;
+  justify-content: center;
 }
 
-.actions {
+.actionsSecondary {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
-  margin-top: 1rem;
   justify-content: center;
+  gap: 0.7rem;
+  margin-top: 0.35rem;
 }
 
 .primary,
@@ -119,6 +126,7 @@
   letter-spacing: 0.08em;
   text-transform: uppercase;
   text-align: center;
+  gap: 0.55rem;
   transition: transform var(--transition-base), background var(--transition-base), color var(--transition-base);
 }
 
@@ -139,8 +147,10 @@
 
 .secondary {
   border: 1px solid rgba(202, 162, 106, 0.34);
-  color: var(--color-white);
+  color: rgba(239, 235, 230, 0.9);
   background: rgba(255, 255, 255, 0.02);
+  min-width: 9.2rem;
+  font-weight: 600;
 }
 
 .secondary .buttonIcon {
@@ -157,9 +167,9 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 1rem 1.5rem;
-  margin-top: 0.5rem;
+  margin-top: 0.9rem;
   color: var(--color-muted);
-  font-size: 0.88rem;
+  font-size: 0.84rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.55);
@@ -184,14 +194,17 @@
 .scrollHint {
   position: absolute;
   left: 50%;
-  bottom: 1rem;
+  bottom: max(0.05rem, env(safe-area-inset-bottom));
   width: 2rem;
   height: 2rem;
   transform: translateX(-50%);
   border: 1px solid rgba(202, 162, 106, 0.35);
   border-radius: 999px;
+  background: rgba(8, 7, 5, 0.2);
+  backdrop-filter: blur(2px);
   display: grid;
   place-items: center;
+  z-index: 3;
 }
 
 .scrollHint span {
@@ -204,40 +217,56 @@
 
 @media (max-width: 768px) {
   .hero {
-    min-height: auto;
-    padding: 1.5rem 0 3.5rem;
+    padding: 1.25rem 0 1.5rem;
   }
 
   .inner {
-    min-height: auto;
     grid-template-columns: 1fr;
-    padding: 4rem 1.25rem 2.5rem;
+    padding: 2.25rem 1.25rem 0.75rem;
   }
 
   .copy {
+    width: min(100%, 34rem);
     padding-top: 0;
+    margin-top: clamp(1rem, 4vh, 2rem);
+    margin-bottom: clamp(2.6rem, 7vh, 4rem);
   }
 
   .title {
-    font-size: 4.5rem;
+    font-size: 4.2rem;
   }
 }
 
 @media (max-width: 480px) {
   .hero {
-    min-height: auto;
-    padding: 4rem 0;
+    min-height: 100svh;
+    padding: 1rem 0 1.25rem;
+  }
+
+  @supports (min-height: 100dvh) {
+    .hero {
+      min-height: 100dvh;
+    }
   }
 
   .inner {
-    padding: 3rem 1rem 2rem;
+    padding: 1.75rem 1rem 0.75rem;
+  }
+
+  .copy {
+    margin-bottom: 2.8rem;
+  }
+
+  .scrollHint {
+    bottom: max(0.05rem, env(safe-area-inset-bottom));
   }
 
   .title {
     font-size: 3rem;
   }
 
-  .actions {
+  .actionsPrimary,
+  .actionsSecondary {
     flex-direction: column;
     width: 100%;
   }
@@ -245,6 +274,10 @@
   .primary,
   .secondary {
     width: 100%;
+  }
+
+  .texture {
+    display: none;
   }
 
   .metaRow {
