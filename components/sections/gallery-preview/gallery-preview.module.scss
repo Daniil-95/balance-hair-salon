@@ -20,7 +20,6 @@
   height: 100%;
   border-radius: 18px;
   overflow: hidden;
-  background: #121212;
   border: 1px solid rgba(198, 169, 107, 0.14);
   box-shadow: 0 20px 48px rgba(0, 0, 0, 0.24);
   transform: translateY(0);
@@ -50,17 +49,19 @@
   filter: saturate(1) contrast(1.04) brightness(0.96);
 }
 
-.previewMeta {
-  padding: 0.9rem 1rem 1rem;
-  display: grid;
-  gap: 0.2rem;
-  background: #121212;
+.gallery :global(.fancybox__container) {
+  z-index: 200;
 }
 
-.previewMeta strong {
-  color: #f2ead9;
-  font-size: 0.92rem;
-  line-height: 1.2;
+.gallery :global(.fancybox__backdrop) {
+  background: rgba(8, 7, 5, 0.92);
+}
+
+.gallery :global(.fancybox__caption) {
+  padding: 0.9rem 1rem 1.1rem;
+  color: #ece4d3;
+  font-size: 0.95rem;
+  line-height: 1.55;
 }
 
 .actions {

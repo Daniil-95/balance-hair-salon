@@ -76,6 +76,7 @@ export function GalleryPreview() {
                   className={styles.previewCard}
                   data-fancybox="gallery-preview"
                   data-caption={`${item.title} - ${item.description}`}
+                  aria-label={item.title}
                 >
                   <div className={styles.previewImage}>
                     <Image
@@ -86,9 +87,6 @@ export function GalleryPreview() {
                       className={styles.previewFill}
                       style={{ objectFit: "cover", objectPosition: item.position }}
                     />
-                  </div>
-                  <div className={styles.previewMeta}>
-                    <strong>{item.title}</strong>
                   </div>
                 </a>
               </SwiperSlide>
