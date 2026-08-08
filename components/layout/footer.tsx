@@ -1,14 +1,19 @@
 ﻿import Link from "next/link";
 import styles from "./footer.module.scss";
 
-export function Footer() {
+interface FooterProps {
+  brandName?: string;
+  note?: string;
+}
+
+export function Footer({ brandName = "Balance", note = "Kadeřnické studio pro moderní střih, barvu a péči o vlasy." }: FooterProps) {
   return (
     <footer className={styles.footer}>
       <div className="container">
         <div className={styles.columns}>
           <div>
-            <p className={styles.brand}>Balance</p>
-            <p className={styles.note}>Kadeřnické studio pro moderní střih, barvu a péči o vlasy.</p>
+            <p className={styles.brand}>{brandName}</p>
+            <p className={styles.note}>{note}</p>
           </div>
 
           <div className={styles.links}>

@@ -2,15 +2,30 @@ import type { CSSProperties } from "react";
 import { SectionTitle } from "@/components/ui/section-title";
 import styles from "./services.module.scss";
 
-const services = [
-  { key: "women", title: "Dámské střihy", note: "Střihy a styling na míru" },
-  { key: "men", title: "Pánské střihy", note: "Čistý a přesný tvar" },
-  { key: "kids", title: "Dětské střihy", note: "Citlivý přístup" },
-  { key: "color", title: "Barvení vlasů", note: "Od tónování po změnu odstínu" },
-  { key: "balayage", title: "Melír / balayage", note: "Jemné přechody a světlo" },
-  { key: "care", title: "Regenerační péče", note: "Obnova kvality vlasů" },
-  { key: "styling", title: "Styling", note: "Foukání a finální úprava" }
-];
+interface ServiceItem {
+  id: string;
+  title: string;
+  description: string;
+  icon: string;
+}
+
+interface ServicesProps {
+  services: ServiceItem[];
+}
+
+function normalizeIconKind(icon: string, title: string) {
+  const value = `${icon} ${title}`.toLowerCase();
+
+  if (value.includes("dam") || value.includes("women")) return "women";
+  if (value.includes("pan") || value.includes("men")) return "men";
+  if (value.includes("det") || value.includes("kid")) return "kids";
+  if (value.includes("barv") || value.includes("color")) return "color";
+  if (value.includes("mel") || value.includes("balay")) return "balayage";
+  if (value.includes("regen") || value.includes("care")) return "care";
+  if (value.includes("sty")) return "styling";
+
+  return "care";
+}
 
 function ServiceIcon({ kind }: { kind: string }) {
   switch (kind) {
@@ -77,7 +92,7 @@ function ServiceIcon({ kind }: { kind: string }) {
   }
 }
 
-export function Services() {
+export function Services({ services }: ServicesProps) {
   return (
     <section id="services" className={styles.services}>
       <div className="container">
@@ -88,12 +103,12 @@ export function Services() {
         />
         <div className={styles.grid}>
           {services.map((service, index) => (
-            <article key={service.title} className={styles.card} style={{ "--card-delay": `${index * 70}ms` } as CSSProperties}>
+            <article key={service.id} className={styles.card} style={{ "--card-delay": `${index * 70}ms` } as CSSProperties}>
               <span className={styles.icon}>
-                <ServiceIcon kind={service.key} />
+                <ServiceIcon kind={normalizeIconKind(service.icon, service.title)} />
               </span>
               <h3>{service.title}</h3>
-              <p>{service.note}</p>
+              <p>{service.description}</p>
             </article>
           ))}
         </div>

@@ -1,9 +1,11 @@
 import Link from "next/link";
 import { SiteShell } from "@/components/layout/site-shell";
-import { publicPriceColumns } from "@/lib/public-pricing";
+import { getPublicPricing } from "@/lib/public-content";
 import styles from "./pricing-page.module.scss";
 
-export default function PricingPage() {
+export default async function PricingPage() {
+  const categories = await getPublicPricing();
+
   return (
     <SiteShell>
       <section className={styles.pricingPage}>
@@ -15,7 +17,7 @@ export default function PricingPage() {
           </header>
 
           <div className={styles.grid}>
-            {publicPriceColumns.map((category) => (
+            {categories.map((category) => (
               <article key={category.title} className={styles.card}>
                 <h2>{category.title}</h2>
                 <ul>

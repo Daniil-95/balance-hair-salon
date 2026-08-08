@@ -1,7 +1,16 @@
 ﻿import Image from "next/image";
 import styles from "./hero.module.scss";
 
-export function Hero() {
+interface HeroProps {
+  salonName: string;
+  tagline: string;
+  ctaLabel: string;
+  ctaUrl: string;
+  contactAddress: string;
+  contactPhone: string;
+}
+
+export function Hero({ salonName, tagline, ctaLabel, ctaUrl, contactAddress, contactPhone }: HeroProps) {
   return (
     <section id="home" className={styles.hero}>
       <div className={styles.imageWrapper} aria-hidden="true">
@@ -22,16 +31,16 @@ export function Hero() {
         <div className={styles.inner}>
           <div className={styles.copy}>
             <span className={styles.overline}>Kadeřnické studio</span>
-            <h1 className={styles.title}>BALANCE</h1>
-            <p className={styles.subtitle}>Váš styl. Naše péče.</p>
+            <h1 className={styles.title}>{salonName}</h1>
+            <p className={styles.subtitle}>{tagline}</p>
             <div className={styles.actionsPrimary}>
-              <a href="https://tiarasro.snippet.myfox.cz/" target="_blank" rel="noreferrer" className={styles.primary}>
+              <a href={ctaUrl} target="_blank" rel="noreferrer" className={styles.primary}>
                 <svg className={styles.buttonIcon} aria-hidden="true" viewBox="0 0 24 24" fill="none">
                   <rect x="4" y="5" width="16" height="15" rx="2" stroke="currentColor" strokeWidth="1.7" />
                   <path d="M7 3.5V7M17 3.5V7M4 9H20" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" />
                   <path d="M8 12.5H11M13 12.5H16M8 16H11" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" />
                 </svg>
-                Objednat termín online
+                {ctaLabel}
               </a>
             </div>
 
@@ -53,9 +62,9 @@ export function Hero() {
               </a>
             </div>
             <div className={styles.metaRow}>
-              <span>Čenkov 93</span>
+              <span>{contactAddress}</span>
               <span>Po–Pá 9:00–19:00</span>
-              <span>Sobota dle objednání</span>
+              <span>{contactPhone}</span>
             </div>
           </div>
 

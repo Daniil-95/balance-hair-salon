@@ -1,8 +1,21 @@
 import Link from "next/link";
-import { publicPriceColumns } from "@/lib/public-pricing";
 import styles from "./pricing.module.scss";
 
-export function Pricing() {
+interface PricingItem {
+  label: string;
+  value: string;
+}
+
+interface PricingCategory {
+  title: string;
+  items: PricingItem[];
+}
+
+interface PricingProps {
+  categories: PricingCategory[];
+}
+
+export function Pricing({ categories }: PricingProps) {
   return (
     <section id="pricing" className={styles.pricing}>
       <div className="container">
@@ -10,7 +23,7 @@ export function Pricing() {
           <div className={styles.preview}>
             <p className={styles.previewLabel}>Přehled služeb</p>
             <div className={styles.serviceGrid}>
-              {publicPriceColumns.map((column) => (
+              {categories.map((column) => (
                 <article key={column.title} className={styles.serviceCard}>
                   <h3>{column.title}</h3>
                   <ul>

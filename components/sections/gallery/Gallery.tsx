@@ -3,12 +3,23 @@
 import Image from "next/image";
 import { useEffect, useRef } from "react";
 import { Fancybox } from "@fancyapps/ui";
-import { publicGalleryItems } from "@/lib/public-gallery";
 import styles from "./gallery.module.scss";
 
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
 
-export function Gallery() {
+interface GalleryItem {
+  title: string;
+  description: string;
+  position: string;
+  src: string;
+  alt: string;
+}
+
+interface GalleryProps {
+  items: GalleryItem[];
+}
+
+export function Gallery({ items }: GalleryProps) {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -39,7 +50,7 @@ export function Gallery() {
           <p className={styles.heroCopy}>Prohlédněte si kompletní ukázku stylingů, interiéru a práce našeho týmu.</p>
         </section>
         <div className={styles.grid}>
-          {publicGalleryItems.map((image, index) => (
+          {items.map((image, index) => (
             <a
               key={`${image.title}-${index}`}
               href={image.src}

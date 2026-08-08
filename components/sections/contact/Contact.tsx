@@ -1,6 +1,37 @@
 import styles from "./contact.module.scss";
 
-export function Contact() {
+interface ContactValue {
+  address: string;
+  phone: string;
+  whatsapp: string;
+  mapUrl?: string | null;
+}
+
+interface OpeningHourValue {
+  day: string;
+  open: string;
+  close: string;
+  isClosed: boolean;
+}
+
+interface ContactProps {
+  contact: ContactValue | null;
+  openingHours: OpeningHourValue[];
+}
+
+function normalizePhone(phone?: string) {
+  if (!phone) return "";
+  return phone.replace(/\s+/g, "");
+}
+
+export function Contact({ contact, openingHours }: ContactProps) {
+  const address = contact?.address || "Cenkov 93, 262 23 Cenkov";
+  const phone = contact?.phone || "+420 603 561 625";
+  const whatsapp = contact?.whatsapp || "+420603561625";
+  const whatsappHref = whatsapp.startsWith("http") ? whatsapp : `https://wa.me/${whatsapp.replace(/\D+/g, "")}`;
+  const phoneHref = `tel:${normalizePhone(phone)}`;
+  const mapSrc = contact?.mapUrl || "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2576.347765002316!2d13.989133612351198!3d49.77952477135285!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470b08f1d29a68f1%3A0x221e79fc2817ef0e!2zxIxlbmtvdiA5MywgMjYyIDIzIMSMZW5rb3Y!5e0!3m2!1sru!2scz!4v1786218679639!5m2!1sru!2scz";
+
   return (
     <section id="contact" className={styles.contact}>
       <div className="container">
@@ -18,7 +49,7 @@ export function Contact() {
                     <circle cx="12" cy="10.5" r="1.8" stroke="currentColor" strokeWidth="1.7" />
                   </svg>
                 </span>
-                <span className={styles.itemContent}>Cenkov 93, 262 23 Cenkov</span>
+                <span className={styles.itemContent}>{address}</span>
               </li>
               <li>
                 <span className={styles.itemIcon} aria-hidden="true">
@@ -26,7 +57,7 @@ export function Contact() {
                     <path d="M7.8 5.8h2.4l1.2 3.1-1.5 1.7a14 14 0 0 0 3.5 3.5l1.7-1.5 3.1 1.2v2.4c0 .7-.6 1.3-1.3 1.3A12.6 12.6 0 0 1 6.5 7.1c0-.7.6-1.3 1.3-1.3Z" stroke="currentColor" strokeWidth="1.7" strokeLinejoin="round" />
                   </svg>
                 </span>
-                <a className={styles.itemContent} href="tel:+420603561625">+420 603 561 625</a>
+                <a className={styles.itemContent} href={phoneHref}>{phone}</a>
               </li>
               <li>
                 <span className={styles.itemIcon} aria-hidden="true">
@@ -47,7 +78,7 @@ export function Contact() {
                     <path d="M9.6 10.2c.1 1.8 1.6 3.2 3.4 3.4M13.7 14c-.5.2-1.1.2-1.7.2" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" />
                   </svg>
                 </span>
-                <a className={styles.itemContent} href="https://wa.me/420603561625" target="_blank" rel="noreferrer">
+                <a className={styles.itemContent} href={whatsappHref} target="_blank" rel="noreferrer">
                   Napsat na WhatsApp
                 </a>
               </li>
@@ -58,11 +89,11 @@ export function Contact() {
             <article className={styles.mapCard}>
               <div className={styles.mapHeader}>
                 <p className={styles.cardTitle}>Kde nás najdete</p>
-                <strong className={styles.mapAddress}>Cenkov 93, 262 23 Cenkov</strong>
+                <strong className={styles.mapAddress}>{address}</strong>
               </div>
               <div className={styles.mapFrame}>
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2576.347765002316!2d13.989133612351198!3d49.77952477135285!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470b08f1d29a68f1%3A0x221e79fc2817ef0e!2zxIxlbmtvdiA5MywgMjYyIDIzIMSMZW5rb3Y!5e0!3m2!1sru!2scz!4v1786218679639!5m2!1sru!2scz"
+                  src={mapSrc}
                   width="600"
                   height="450"
                   style={{ border: 0 }}
@@ -80,13 +111,12 @@ export function Contact() {
                 <span className={styles.status}>Otevřeno dle termínů</span>
               </div>
               <ul className={styles.hours}>
-                <li><span>Pondělí</span><strong>9:00 – 18:00</strong></li>
-                <li><span>Úterý</span><strong>9:00 – 18:00</strong></li>
-                <li><span>Středa</span><strong>9:00 – 18:00</strong></li>
-                <li><span>Čtvrtek</span><strong>9:00 – 18:00</strong></li>
-                <li><span>Pátek</span><strong>9:00 – 19:00</strong></li>
-                <li><span>Sobota</span><strong>dle objednání</strong></li>
-                <li><span>Neděle</span><strong>zavřeno</strong></li>
+                {openingHours.map((hour) => (
+                  <li key={hour.day}>
+                    <span>{hour.day}</span>
+                    <strong>{hour.isClosed ? "zavřeno" : hour.close ? `${hour.open} – ${hour.close}` : hour.open}</strong>
+                  </li>
+                ))}
               </ul>
             </article>
           </div>

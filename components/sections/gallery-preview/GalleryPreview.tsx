@@ -7,13 +7,24 @@ import { Fancybox } from "@fancyapps/ui";
 import { Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { SectionTitle } from "@/components/ui/section-title";
-import { publicGalleryItems } from "@/lib/public-gallery";
 import styles from "./gallery-preview.module.scss";
 
 import "swiper/css";
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
 
-export function GalleryPreview() {
+interface GalleryPreviewItem {
+  title: string;
+  description: string;
+  position: string;
+  src: string;
+  alt: string;
+}
+
+interface GalleryPreviewProps {
+  items: GalleryPreviewItem[];
+}
+
+export function GalleryPreview({ items }: GalleryPreviewProps) {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -69,7 +80,7 @@ export function GalleryPreview() {
               }
             }}
           >
-            {publicGalleryItems.map((item) => (
+            {items.map((item) => (
               <SwiperSlide key={item.title} className={styles.slide}>
                 <a
                   href={item.src}
