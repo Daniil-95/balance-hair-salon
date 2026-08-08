@@ -8,7 +8,8 @@ export function Header() {
     <header className={styles.header}>
       <div className={styles.inner}>
         <a href="#home" className={styles.brand}>
-          Balance
+          <span className={styles.brandName}>Balance</span>
+          <span className={styles.brandSub}>Kadeřnické studio</span>
         </a>
 
         <nav className={styles.nav} aria-label="Hlavní navigace">
@@ -20,6 +21,7 @@ export function Header() {
         </nav>
 
         <a href="#contact" className={styles.cta}>
+          <span className={styles.ctaIcon}>⌂</span>
           Objednat se online
         </a>
       </div>

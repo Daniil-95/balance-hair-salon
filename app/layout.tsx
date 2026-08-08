@@ -1,8 +1,14 @@
 ﻿import type { Metadata } from "next";
 import "../styles/globals.scss";
 import { Inter } from "next/font/google";
+import { Cormorant_Garamond } from "next/font/google";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const cormorant = Cormorant_Garamond({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-display"
+});
 
 export const metadata: Metadata = {
   title: "Balance Hair Salon | Kadeřnické studio",
@@ -28,7 +34,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="cs" className={inter.variable}>
+    <html lang="cs" className={`${inter.variable} ${cormorant.variable}`}>
       <body>{children}</body>
     </html>
   );

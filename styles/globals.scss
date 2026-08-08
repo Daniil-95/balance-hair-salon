@@ -10,6 +10,7 @@
 @import "./animations";
 
 :root {
+  --font-body: var(--font-inter);
   --color-bg: #{$color-bg};
   --color-surface: #{$color-surface};
   --color-surface-alt: #{$color-surface-alt};
@@ -39,6 +40,17 @@ html {
   overflow-x: hidden;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-display), "Times New Roman", serif;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
 section {
   scroll-margin-top: 100px;
 }
@@ -47,7 +59,11 @@ body {
   margin: 0;
   min-height: 100vh;
   overflow-x: hidden;
-  background: radial-gradient(circle at top, rgba(202, 162, 106, 0.08), transparent 28%), #080705;
+  font-family: var(--font-body), Arial, sans-serif;
+  background:
+    radial-gradient(circle at 20% 0%, rgba(202, 162, 106, 0.16), transparent 22%),
+    radial-gradient(circle at 80% 12%, rgba(255, 255, 255, 0.03), transparent 26%),
+    linear-gradient(180deg, #090806 0%, #080705 30%, #070605 100%);
   color: $color-text;
 }
 
@@ -96,6 +112,12 @@ body::-webkit-scrollbar-thumb {
 
 main {
   width: min(100%, 100vw);
+}
+
+.container {
+  width: min(100%, calc(100% - 3rem));
+  max-width: var(--max-content-width);
+  margin-inline: auto;
 }
 
 @media (max-width: 768px) {

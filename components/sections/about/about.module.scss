@@ -5,7 +5,7 @@
 .grid {
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
-  gap: 3rem;
+  gap: 3.5rem;
   align-items: center;
 }
 
@@ -27,7 +27,7 @@
 
 .content h2 {
   margin: 0;
-  font-size: 3rem;
+  font-size: clamp(2.4rem, 4vw, 4rem);
   line-height: 1.1;
 }
 
@@ -53,23 +53,36 @@
 
 .imageWrapper {
   position: relative;
+  min-height: 36rem;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 1rem;
 }
 
 .imageAccent {
   position: absolute;
-  inset: 1.5rem 0 0 auto;
-  width: 90%;
-  height: 90%;
+  inset: 2rem 0 0 1.5rem;
   border-radius: var(--radius-lg);
   background: rgba(202, 162, 106, 0.08);
 }
 
-.image {
+.imageMain,
+.imageCutaway {
   position: relative;
   min-height: 34rem;
   border-radius: var(--radius-lg);
   overflow: hidden;
-  background: linear-gradient(180deg, rgba(12, 10, 8, 0.9), rgba(19, 16, 12, 0.85)), url('/about-preview.jpg') center/cover no-repeat;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(202, 162, 106, 0.12);
+  box-shadow: var(--shadow-soft);
+}
+
+.imageCutaway {
+  margin-top: 5rem;
+}
+
+.imageFill {
+  object-fit: cover;
 }
 
 .imageLabel {
@@ -78,6 +91,7 @@
   left: 1.25rem;
   color: var(--color-white);
   letter-spacing: 0.18em;
+  z-index: 2;
 }
 
 @media (max-width: 768px) {
@@ -94,8 +108,19 @@
     font-size: 2.4rem;
   }
 
-  .image {
+  .imageWrapper {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+
+  .imageMain,
+  .imageCutaway {
     min-height: 26rem;
+  }
+
+  .imageCutaway {
+    margin-top: 0;
+    display: none;
   }
 }
 
@@ -112,7 +137,7 @@
     width: 100%;
   }
 
-  .image {
+  .imageMain {
     min-height: 20rem;
   }
 }

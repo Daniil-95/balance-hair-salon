@@ -9,41 +9,88 @@
   align-items: start;
 }
 
-.card {
-  padding: 2.5rem;
+.sheet {
+  padding: 2rem;
   border-radius: var(--radius-lg);
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: linear-gradient(180deg, rgba(245, 235, 216, 0.96), rgba(231, 218, 197, 0.92));
+  color: #1b1713;
   box-shadow: var(--shadow-soft);
 }
 
-.list {
-  list-style: none;
-  margin: 2rem 0 0;
-  padding: 0;
-  display: grid;
-  gap: 1rem;
+.sheetHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+  margin-bottom: 1.2rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
 }
 
-.item {
+.sheetHeader span {
+  font-family: var(--font-display), serif;
+  font-size: 2.2rem;
+  line-height: 0.95;
+}
+
+.sheetHeader strong {
+  font-size: 0.78rem;
+  color: rgba(27, 23, 19, 0.7);
+}
+
+.sheetGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+.sheetColumn {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.sheetColumn h3 {
+  margin: 0;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
+
+.sheetColumn ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.65rem;
+}
+
+.sheetColumn li {
   display: flex;
   justify-content: space-between;
   gap: 1rem;
-  padding: 1rem 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(27, 23, 19, 0.12);
+  font-size: 0.92rem;
+}
+
+.sheetColumn strong {
+  white-space: nowrap;
 }
 
 .ctaBlock {
   padding: 2rem;
   border-radius: var(--radius-lg);
-  background: rgba(202, 162, 106, 0.08);
+  background: linear-gradient(180deg, rgba(17, 15, 12, 0.94), rgba(12, 11, 9, 0.98));
+  border: 1px solid rgba(202, 162, 106, 0.12);
+  box-shadow: var(--shadow-soft);
   display: grid;
   gap: 1.5rem;
-  align-content: center;
 }
 
-.ctaLabel {
-  margin: 0;
+.ctaSectionTitle {
+  margin-bottom: 1rem;
+  align-items: flex-start;
+  text-align: left;
 }
 
 .ctaButton {
@@ -69,6 +116,10 @@
   .inner {
     grid-template-columns: 1fr;
   }
+
+  .sheetGrid {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 480px) {
@@ -76,14 +127,9 @@
     padding: 3.5rem 0;
   }
 
-  .card,
+  .sheet,
   .ctaBlock {
     padding: 1.25rem;
-  }
-
-  .item {
-    display: grid;
-    gap: 0.35rem;
   }
 
   .ctaButton {

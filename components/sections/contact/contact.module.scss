@@ -4,9 +4,14 @@
 
 .inner {
   display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
+  grid-template-columns: 0.9fr 1.1fr;
   gap: 2rem;
   align-items: start;
+}
+
+.copy {
+  display: grid;
+  gap: 1rem;
 }
 
 .overline {
@@ -22,7 +27,7 @@
 
 .sectionTitle {
   margin: 0 0 1rem;
-  font-size: 3rem;
+  font-size: clamp(2.3rem, 4vw, 3.4rem);
   line-height: 1.1;
 }
 
@@ -30,17 +35,45 @@
   line-height: 1.8;
 }
 
+.contactLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+}
+
+.contactLinks a {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.9rem 1.2rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(202, 162, 106, 0.24);
+  color: var(--color-white);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.stack {
+  display: grid;
+  grid-template-columns: 0.75fr 1.1fr 0.75fr;
+  gap: 1rem;
+  align-items: stretch;
+}
+
 .card {
   padding: 2rem;
   border-radius: var(--radius-lg);
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: linear-gradient(180deg, rgba(19, 17, 14, 0.94), rgba(11, 10, 8, 0.98));
+  border: 1px solid rgba(202, 162, 106, 0.12);
   box-shadow: var(--shadow-soft);
 }
 
 .cardTitle {
   margin: 0 0 1rem;
-  color: var(--color-white);
+  color: var(--color-gold);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.78rem;
 }
 
 .hours {
@@ -50,6 +83,64 @@
   display: grid;
   gap: 0.85rem;
   color: var(--color-muted);
+}
+
+.hours li {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.hours span,
+.hours strong {
+  white-space: nowrap;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.85rem;
+  color: var(--color-muted);
+}
+
+.mapCard {
+  position: relative;
+  min-height: 100%;
+  padding: 1.5rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(202, 162, 106, 0.12);
+  background:
+    radial-gradient(circle at center, rgba(255, 255, 255, 0.08), transparent 56%),
+    linear-gradient(135deg, rgba(244, 240, 232, 0.92), rgba(214, 210, 203, 0.9));
+  color: #1f1b16;
+  overflow: hidden;
+}
+
+.mapPin {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  padding: 0.45rem 0.8rem;
+  border-radius: 999px;
+  background: rgba(12, 10, 8, 0.88);
+  color: #fff;
+  font-size: 0.8rem;
+}
+
+.mapGrid {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  opacity: 0.5;
+}
+
+.mapGrid span {
+  border-right: 1px solid rgba(31, 27, 22, 0.1);
+  border-bottom: 1px solid rgba(31, 27, 22, 0.1);
 }
 
 .button {
@@ -75,6 +166,10 @@
     grid-template-columns: 1fr;
   }
 
+  .stack {
+    grid-template-columns: 1fr;
+  }
+
   .sectionTitle {
     font-size: 2.4rem;
   }
@@ -91,6 +186,10 @@
 
   .card {
     padding: 1.25rem;
+  }
+
+  .mapCard {
+    min-height: 14rem;
   }
 
   .button {

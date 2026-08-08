@@ -2,12 +2,30 @@ import Link from "next/link";
 import { SectionTitle } from "@/components/ui/section-title";
 import styles from "./pricing.module.scss";
 
-const pricingItems = [
-  { label: "Dámské střihy", value: "620 Kč" },
-  { label: "Pánské střihy", value: "450 Kč" },
-  { label: "Barvení vlasů", value: "od 1 150 Kč" },
-  { label: "Melír / balayage", value: "od 1 650 Kč" },
-  { label: "Styling", value: "od 450 Kč" }
+const priceColumns = [
+  {
+    title: "Dámské střihy",
+    items: [
+      { label: "Střih", value: "620 Kč" },
+      { label: "Střih + foukaná", value: "760 Kč" },
+      { label: "Foukaná", value: "450 Kč" }
+    ]
+  },
+  {
+    title: "Barvení",
+    items: [
+      { label: "Barva odrosty", value: "990 Kč" },
+      { label: "Kompletní barvení", value: "1 350 Kč" },
+      { label: "Tónování", value: "850 Kč" }
+    ]
+  },
+  {
+    title: "Pánské střihy",
+    items: [
+      { label: "Střih", value: "450 Kč" },
+      { label: "Střih + úprava vousů", value: "600 Kč" }
+    ]
+  }
 ];
 
 export function Pricing() {
@@ -15,23 +33,34 @@ export function Pricing() {
     <section id="pricing" className={styles.pricing}>
       <div className="container">
         <div className={styles.inner}>
-          <div className={styles.card}>
-            <SectionTitle
-              label="Ceník"
-              title="Vybrané ceny pro rychlou orientaci"
-              description="Nabízíme transparentní ceny pro základní střihy, barvení a styling. Pro kompletní ceník nás kontaktujte."
-            />
-            <ul className={styles.list}>
-              {pricingItems.map((item) => (
-                <li key={item.label} className={styles.item}>
-                  <span>{item.label}</span>
-                  <strong>{item.value}</strong>
-                </li>
+          <div className={styles.sheet}>
+            <div className={styles.sheetHeader}>
+              <span>BALANCE</span>
+              <strong>Kadeřnické studio</strong>
+            </div>
+            <div className={styles.sheetGrid}>
+              {priceColumns.map((column) => (
+                <div key={column.title} className={styles.sheetColumn}>
+                  <h3>{column.title}</h3>
+                  <ul>
+                    {column.items.map((item) => (
+                      <li key={item.label}>
+                        <span>{item.label}</span>
+                        <strong>{item.value}</strong>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               ))}
-            </ul>
+            </div>
           </div>
           <div className={styles.ctaBlock}>
-            <p className={styles.ctaLabel}>Kompletní ceník najdete v naší nabídce.</p>
+            <SectionTitle
+              label="Ceník"
+              title="Kompletní ceník si můžete zobrazit ve větším náhledu."
+              description="Pro přesnou cenu doporučujeme rezervaci termínu nebo rychlý kontakt přes telefon či WhatsApp."
+              className={styles.ctaSectionTitle}
+            />
             <Link href="/#contact" className={styles.ctaButton}>
               Zobrazit celý ceník
             </Link>

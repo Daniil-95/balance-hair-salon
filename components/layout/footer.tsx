@@ -12,8 +12,8 @@ export function Footer() {
           </div>
 
           <div className={styles.links}>
+            <span>© 2024 Balance kadeřnické studio. Všechna práva vyhrazena.</span>
             <Link href="/privacy-policy">Ochrana osobních údajů</Link>
-            <Link href="/#contact">Kontakt</Link>
           </div>
         </div>
       </div>
