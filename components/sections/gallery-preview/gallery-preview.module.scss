@@ -2,53 +2,94 @@
   padding: 6rem 0;
 }
 
-.previewGrid {
-  display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 1.2rem;
-  margin-top: 2rem;
+.carousel {
+  margin-top: 1.7rem;
+  overflow: hidden;
+}
+
+.carousel :global(.swiper) {
+  overflow: visible;
+}
+
+.slide {
+  height: auto;
 }
 
 .previewCard {
-  border-radius: var(--radius-lg);
+  display: block;
+  height: 100%;
+  border-radius: 18px;
   overflow: hidden;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: var(--shadow-soft);
+  background: #121212;
+  border: 1px solid rgba(198, 169, 107, 0.14);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.24);
+  transform: translateY(0);
+  transition: transform var(--transition-base), border-color var(--transition-base), box-shadow var(--transition-base);
+}
+
+.previewCard:hover {
+  transform: translateY(-4px);
+  border-color: rgba(198, 169, 107, 0.28);
+  box-shadow: 0 28px 64px rgba(0, 0, 0, 0.3);
 }
 
 .previewImage {
   position: relative;
-  min-height: 18rem;
-  background: linear-gradient(135deg, rgba(202, 162, 106, 0.16), rgba(12, 10, 8, 0.95));
+  min-height: 18.5rem;
+  background: #0d0d0d;
 }
 
 .previewFill {
   object-fit: cover;
+  transition: transform 800ms ease, filter 500ms ease;
+  filter: saturate(0.88) contrast(1.02) brightness(0.9);
+}
+
+.previewCard:hover .previewFill {
+  transform: scale(1.04);
+  filter: saturate(1) contrast(1.04) brightness(0.96);
 }
 
 .previewMeta {
-  padding: 1.25rem;
+  padding: 0.9rem 1rem 1rem;
   display: grid;
-  gap: 0.45rem;
+  gap: 0.2rem;
+  background: #121212;
+}
+
+.previewMeta strong {
+  color: #f2ead9;
+  font-size: 0.92rem;
+  line-height: 1.2;
 }
 
 .actions {
   margin-top: 2rem;
+  display: flex;
+  justify-content: center;
 }
 
 .button {
-  min-height: 44px;
+  min-height: 48px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   padding: 0.95rem 1.6rem;
-  border-radius: var(--radius-sm);
-  background: linear-gradient(135deg, rgba(202, 162, 106, 0.95), rgba(209, 182, 128, 0.95));
+  border-radius: 16px;
+  border: 1px solid #c6a96b;
+  background: #c6a96b;
   color: #111;
   font-weight: 700;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   text-align: center;
+  transition: background var(--transition-base), color var(--transition-base), transform var(--transition-base);
+}
+
+.button:hover {
+  background: transparent;
+  color: #c6a96b;
+  transform: translateY(-1px);
 }
 
 @media (max-width: 768px) {
@@ -56,18 +97,18 @@
     padding: 4.5rem 0;
   }
 
-  .previewGrid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .carousel {
+    margin-top: 1.6rem;
+  }
+
+  .previewImage {
+    min-height: 16rem;
   }
 }
 
 @media (max-width: 480px) {
   .gallery {
     padding: 3.5rem 0;
-  }
-
-  .previewGrid {
-    grid-template-columns: 1fr;
   }
 
   .previewImage {

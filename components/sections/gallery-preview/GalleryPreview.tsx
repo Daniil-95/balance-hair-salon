@@ -1,44 +1,99 @@
-﻿import Link from "next/link";
+﻿"use client";
+
+import Link from "next/link";
 import Image from "next/image";
+import { useEffect, useRef } from "react";
+import { Fancybox } from "@fancyapps/ui";
+import { Autoplay } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
 import { SectionTitle } from "@/components/ui/section-title";
+import { publicGalleryItems } from "@/lib/public-gallery";
 import styles from "./gallery-preview.module.scss";
 
-const galleryItems = [
-  { title: "Recepce", label: "Balance", position: "left center" },
-  { title: "Přípravna", label: "Interiér", position: "center center" },
-  { title: "Logo stěna", label: "Balance", position: "center left" },
-  { title: "Zrcadla", label: "Studio", position: "right center" },
-  { title: "Detail", label: "Atmosféra", position: "center right" }
-];
+import "swiper/css";
+import "@fancyapps/ui/dist/fancybox/fancybox.css";
 
 export function GalleryPreview() {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const container = containerRef.current;
+
+    if (!container) {
+      return;
+    }
+
+    Fancybox.bind(container, '[data-fancybox="gallery-preview"]', {
+      Carousel: {
+        infinite: true
+      }
+    });
+
+    return () => {
+      Fancybox.unbind(container);
+      Fancybox.close();
+    };
+  }, []);
+
   return (
-    <section id="gallery" className={styles.gallery}>
+    <section id="gallery" className={styles.gallery} ref={containerRef}>
       <div className="container">
         <SectionTitle
           label="Galerie"
           title="Galerie, která zachycuje atmosféru salonu Balance."
-          description="Prohlédněte si ukázky interiéru, detailů a celkové nálady salonu."
         />
-        <div className={styles.previewGrid}>
-          {galleryItems.map((item) => (
-            <article key={item.title} className={styles.previewCard}>
-              <div className={styles.previewImage}>
-                <Image
-                  src="/images/image.png"
-                  alt={item.title}
-                  fill
-                  sizes="(max-width: 768px) 50vw, 20vw"
-                  className={styles.previewFill}
-                  style={{ objectFit: "cover", objectPosition: item.position }}
-                />
-              </div>
-              <div className={styles.previewMeta}>
-                <strong>{item.title}</strong>
-                <span>{item.label}</span>
-              </div>
-            </article>
-          ))}
+        <div className={styles.carousel}>
+          <Swiper
+            modules={[Autoplay]}
+            loop
+            speed={900}
+            spaceBetween={16}
+            slidesPerView={1.12}
+            autoplay={{
+              delay: 2600,
+              disableOnInteraction: false,
+              pauseOnMouseEnter: true
+            }}
+            breakpoints={{
+              640: {
+                slidesPerView: 2.15,
+                spaceBetween: 18
+              },
+              960: {
+                slidesPerView: 3.15,
+                spaceBetween: 20
+              },
+              1280: {
+                slidesPerView: 4.1,
+                spaceBetween: 22
+              }
+            }}
+          >
+            {publicGalleryItems.map((item) => (
+              <SwiperSlide key={item.title} className={styles.slide}>
+                <a
+                  href={item.src}
+                  className={styles.previewCard}
+                  data-fancybox="gallery-preview"
+                  data-caption={`${item.title} - ${item.description}`}
+                >
+                  <div className={styles.previewImage}>
+                    <Image
+                      src={item.src}
+                      alt={item.alt}
+                      fill
+                      sizes="(max-width: 639px) 88vw, (max-width: 959px) 46vw, (max-width: 1279px) 30vw, 23vw"
+                      className={styles.previewFill}
+                      style={{ objectFit: "cover", objectPosition: item.position }}
+                    />
+                  </div>
+                  <div className={styles.previewMeta}>
+                    <strong>{item.title}</strong>
+                  </div>
+                </a>
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </div>
         <div className={styles.actions}>
           <Link href="/gallery" className={styles.button}>
