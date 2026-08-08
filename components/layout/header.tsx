@@ -1,11 +1,27 @@
-﻿import { NAV_ITEMS } from "@/lib/constants";
+﻿"use client";
+
+import { useEffect, useState } from "react";
+import { NAV_ITEMS } from "@/lib/constants";
 import styles from "./header.module.scss";
 
 const navItems = NAV_ITEMS;
 
 export function Header() {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const updateVisibility = () => {
+      setIsVisible(window.scrollY > 60);
+    };
+
+    updateVisibility();
+    window.addEventListener("scroll", updateVisibility, { passive: true });
+
+    return () => window.removeEventListener("scroll", updateVisibility);
+  }, []);
+
   return (
-    <header className={styles.header}>
+    <header className={`${styles.header} ${isVisible ? styles.headerVisible : styles.headerHidden}`}>
       <div className={styles.inner}>
         <a href="#home" className={styles.brand}>
           <span className={styles.brandName}>Balance</span>
@@ -20,8 +36,12 @@ export function Header() {
           ))}
         </nav>
 
-        <a href="#contact" className={styles.cta}>
-          <span className={styles.ctaIcon}>⌂</span>
+        <a href="https://tiarasro.snippet.myfox.cz/" target="_blank" rel="noreferrer" className={styles.cta}>
+          <svg className={styles.ctaIcon} aria-hidden="true" viewBox="0 0 24 24" fill="none">
+            <rect x="4" y="5" width="16" height="15" rx="2" stroke="currentColor" strokeWidth="1.7" />
+            <path d="M7 3.5V7M17 3.5V7M4 9H20" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" />
+            <path d="M8 12.5H11M13 12.5H16M8 16H11" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" />
+          </svg>
           Objednat se online
         </a>
       </div>
