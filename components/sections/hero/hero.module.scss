@@ -41,45 +41,24 @@
   z-index: 2;
   min-height: calc(100vh - 88px - 6rem);
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: 1fr;
   align-items: center;
-  gap: 2rem;
+  justify-items: center;
   width: min(100%, 100vw);
   max-width: var(--max-content-width);
   margin: 0 auto;
   padding: 3rem 1.5rem;
 }
 
-.leftBrand {
-  position: absolute;
-  left: 1.5rem;
-  top: 2rem;
-  display: grid;
-  gap: 0.35rem;
-  text-transform: uppercase;
-  color: var(--color-gold);
-  pointer-events: none;
-}
-
-.leftBrandName {
-  font-family: var(--font-display), serif;
-  font-size: clamp(3rem, 6vw, 5rem);
-  line-height: 0.9;
-}
-
-.leftBrandSub {
-  font-size: 0.9rem;
-  letter-spacing: 0.42em;
-}
-
 .copy {
   position: relative;
   justify-self: center;
-  width: min(100%, 52rem);
+  width: min(100%, 58rem);
   padding: 2rem 1.5rem 0;
   display: grid;
   gap: 1rem;
   text-align: center;
+  justify-items: center;
 }
 
 .overline {
@@ -98,6 +77,7 @@
   letter-spacing: 0.08em;
   line-height: 0.9;
   text-transform: uppercase;
+  text-shadow: 0 3px 18px rgba(0, 0, 0, 0.7);
 }
 
 .subtitle {
@@ -106,6 +86,7 @@
   letter-spacing: 0.28em;
   font-size: 0.95rem;
   text-transform: uppercase;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
 }
 
 .lead {
@@ -114,6 +95,7 @@
   color: var(--color-muted);
   font-size: 1.05rem;
   line-height: 1.85;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.55);
 }
 
 .actions {
@@ -121,6 +103,7 @@
   flex-wrap: wrap;
   gap: 1rem;
   margin-top: 1rem;
+  justify-content: center;
 }
 
 .primary,
@@ -139,8 +122,18 @@
   transition: transform var(--transition-base), background var(--transition-base), color var(--transition-base);
 }
 
+.buttonIcon {
+  width: 1rem;
+  height: 1rem;
+  flex: 0 0 auto;
+}
+
 .primary {
   background: linear-gradient(135deg, rgba(202, 162, 106, 0.95), rgba(209, 182, 128, 0.95));
+  color: #111;
+}
+
+.primary .buttonIcon {
   color: #111;
 }
 
@@ -148,6 +141,10 @@
   border: 1px solid rgba(202, 162, 106, 0.34);
   color: var(--color-white);
   background: rgba(255, 255, 255, 0.02);
+}
+
+.secondary .buttonIcon {
+  color: var(--color-gold);
 }
 
 .primary:hover,
@@ -165,6 +162,7 @@
   font-size: 0.88rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.55);
 }
 
 .metaRow span {
@@ -181,70 +179,6 @@
   border-radius: 999px;
   background: rgba(202, 162, 106, 0.65);
   transform: translateY(-50%);
-}
-
-.infoCard {
-  align-self: center;
-  justify-self: end;
-  width: min(100%, 21rem);
-  margin-top: 4rem;
-  padding: 1.3rem 1.35rem;
-  border-radius: var(--radius-lg);
-  background: linear-gradient(180deg, rgba(18, 16, 13, 0.9), rgba(11, 10, 8, 0.92));
-  border: 1px solid rgba(202, 162, 106, 0.14);
-  box-shadow: var(--shadow-soft);
-}
-
-.infoHeader {
-  display: grid;
-  gap: 0.45rem;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-}
-
-.infoEyebrow {
-  color: var(--color-gold-soft);
-  text-transform: uppercase;
-  letter-spacing: 0.28em;
-  font-size: 0.68rem;
-}
-
-.infoHeader strong {
-  font-size: 1.1rem;
-  line-height: 1.35;
-}
-
-.infoBody {
-  display: grid;
-  gap: 1rem;
-  padding-top: 1rem;
-}
-
-.infoBody p {
-  margin: 0;
-  color: var(--color-muted);
-  line-height: 1.75;
-}
-
-.infoList {
-  display: grid;
-  gap: 0.5rem;
-}
-
-.infoList span {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.55rem;
-  color: var(--color-white);
-  font-size: 0.9rem;
-}
-
-.infoList span::before {
-  content: "";
-  width: 0.45rem;
-  height: 0.45rem;
-  border-radius: 999px;
-  background: rgba(202, 162, 106, 0.85);
 }
 
 .scrollHint {
@@ -280,19 +214,8 @@
     padding: 4rem 1.25rem 2.5rem;
   }
 
-  .leftBrand {
-    position: static;
-    justify-self: center;
-    text-align: center;
-  }
-
   .copy {
     padding-top: 0;
-  }
-
-  .infoCard {
-    justify-self: center;
-    margin-top: 0.5rem;
   }
 
   .title {
@@ -316,6 +239,7 @@
 
   .actions {
     flex-direction: column;
+    width: 100%;
   }
 
   .primary,
