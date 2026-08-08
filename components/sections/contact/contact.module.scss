@@ -1,60 +1,164 @@
 ﻿.contact {
+  background: #0b0b0b;
   padding: 6rem 0 8rem;
-}
-
-.header {
-  display: grid;
-  justify-items: center;
-  gap: 0.85rem;
-  margin-bottom: 2rem;
 }
 
 .overline {
   display: inline-flex;
-  color: var(--color-gold);
+  color: #c6a96b;
   text-transform: uppercase;
-  letter-spacing: 0.22em;
-  font-size: 0.72rem;
+  letter-spacing: 0.24em;
+  font-size: 0.7rem;
   font-weight: 600;
 }
 
 .sectionTitle {
   margin: 0;
-  max-width: 14ch;
-  text-align: center;
-  font-size: clamp(2.1rem, 3.5vw, 3rem);
-  line-height: 1.06;
+  max-width: 11ch;
+  font-size: clamp(2.2rem, 3.7vw, 3.25rem);
+  line-height: 1.03;
 }
 
-.grid {
+.lead {
+  margin: 0;
+  max-width: 34ch;
+  color: #b9b1a2;
+  line-height: 1.65;
+}
+
+.topGrid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1rem;
-  align-items: stretch;
+  grid-template-columns: minmax(320px, 0.82fr) minmax(0, 1.18fr);
+  gap: 1.2rem;
+  align-items: start;
 }
 
-.card,
+.rightColumn {
+  display: grid;
+  gap: 1rem;
+}
+
+.contactCard,
 .mapCard {
   display: grid;
-  gap: 1rem;
-  min-height: 100%;
-  padding: 1.7rem;
+  gap: 1.15rem;
+  padding: 1.9rem;
   border-radius: 20px;
-  border: 1px solid rgba(202, 162, 106, 0.14);
+  border: 1px solid rgba(198, 169, 107, 0.12);
   background: #121212;
-  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.18);
 }
 
-.card {
+.contactCard {
+  min-height: 100%;
   align-content: start;
 }
 
 .cardTitle {
   margin: 0;
-  color: var(--color-gold);
+  color: #c6a96b;
   text-transform: uppercase;
   letter-spacing: 0.18em;
   font-size: 0.78rem;
+}
+
+.contactList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.9rem;
+}
+
+.contactList li {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.itemIcon {
+  width: 2.65rem;
+  height: 2.65rem;
+  flex: 0 0 2.65rem;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  color: #c6a96b;
+  background: rgba(198, 169, 107, 0.08);
+}
+
+.itemIcon svg {
+  width: 1.15rem;
+  height: 1.15rem;
+}
+
+.itemContent {
+  color: #ece4d3;
+  line-height: 1.45;
+}
+
+.itemContent:hover {
+  color: #c6a96b;
+}
+
+.mapCard {
+  gap: 1rem;
+}
+
+.mapHeader {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.mapAddress {
+  color: #ece4d3;
+  font-size: 1.15rem;
+  line-height: 1.3;
+}
+
+.mapFrame {
+  overflow: hidden;
+  min-height: 28rem;
+  border-radius: 18px;
+  border: 1px solid rgba(198, 169, 107, 0.08);
+  background: #0d0d0d;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.02);
+}
+
+.mapFrame iframe {
+  width: 100%;
+  height: 100%;
+  min-height: 28rem;
+  display: block;
+}
+
+.hoursCard {
+  padding: 1.6rem 1.9rem;
+  border-radius: 20px;
+  border: 1px solid rgba(198, 169, 107, 0.12);
+  background: #121212;
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.18);
+}
+
+.hoursHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  padding: 0.45rem 0.8rem;
+  border-radius: 999px;
+  background: rgba(198, 169, 107, 0.08);
+  color: #c6a96b;
+  font-size: 0.76rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .hours {
@@ -63,91 +167,27 @@
   margin: 0;
   display: grid;
   gap: 0.85rem;
-  color: var(--color-muted);
 }
 
 .hours li {
   display: flex;
   justify-content: space-between;
+  align-items: baseline;
   gap: 1rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
-.hours span,
+.hours span {
+  color: #b9b1a2;
+  font-size: 0.92rem;
+}
+
 .hours strong {
-  white-space: nowrap;
-}
-
-.list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: grid;
-  gap: 1rem;
-  color: var(--color-muted);
-}
-
-.list li {
-  display: grid;
-  gap: 0.35rem;
-}
-
-.list span {
-  font-size: 0.72rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: rgba(202, 162, 106, 0.72);
-}
-
-.list strong,
-.list a {
-  color: var(--color-text);
-  line-height: 1.45;
-}
-
-.list a:hover {
-  color: var(--color-gold);
-}
-
-.mapCard {
-  position: relative;
-  background:
-    radial-gradient(circle at center, rgba(255, 255, 255, 0.05), transparent 58%),
-    linear-gradient(180deg, rgba(20, 18, 15, 0.98), rgba(12, 11, 9, 0.98));
-  color: #1f1b16;
-  overflow: hidden;
-}
-
-.mapAddress {
-  position: relative;
-  z-index: 1;
-  color: var(--color-text);
-  font-size: 1.2rem;
+  color: #ece4d3;
+  font-size: 1rem;
   line-height: 1.3;
-}
-
-.mapText {
-  position: relative;
-  z-index: 1;
-  margin: 0;
-  color: var(--color-muted);
-  line-height: 1.7;
-}
-
-.mapFrame {
-  position: relative;
-  z-index: 1;
-  overflow: hidden;
-  min-height: 16rem;
-  border-radius: 16px;
-  border: 1px solid rgba(202, 162, 106, 0.12);
-  background: #0d0d0d;
-}
-
-.mapFrame iframe {
-  width: 100%;
-  height: 100%;
-  min-height: 16rem;
-  display: block;
+  white-space: nowrap;
 }
 
 @media (max-width: 768px) {
@@ -155,12 +195,13 @@
     padding: 4.5rem 0 5rem;
   }
 
-  .header {
-    margin-bottom: 1.6rem;
+  .topGrid {
+    grid-template-columns: 1fr;
   }
 
-  .grid {
-    grid-template-columns: 1fr;
+  .mapFrame,
+  .mapFrame iframe {
+    min-height: 22rem;
   }
 }
 
@@ -173,17 +214,28 @@
     font-size: 2rem;
   }
 
-  .card,
+  .contactCard,
   .mapCard {
     padding: 1.25rem;
   }
 
-  .mapCard {
-    min-height: 14rem;
+  .hoursCard {
+    padding: 1.25rem;
+  }
+
+  .hoursHeader {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hours li {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.2rem;
   }
 
   .mapFrame,
   .mapFrame iframe {
-    min-height: 14rem;
+    min-height: 18rem;
   }
 }
