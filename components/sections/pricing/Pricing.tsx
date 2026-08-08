@@ -1,70 +1,39 @@
 import Link from "next/link";
-import { SectionTitle } from "@/components/ui/section-title";
+import { publicPriceColumns } from "@/lib/public-pricing";
 import styles from "./pricing.module.scss";
-
-const priceColumns = [
-  {
-    title: "Dámské střihy",
-    items: [
-      { label: "Střih", value: "620 Kč" },
-      { label: "Střih + foukaná", value: "760 Kč" },
-      { label: "Foukaná", value: "450 Kč" }
-    ]
-  },
-  {
-    title: "Barvení",
-    items: [
-      { label: "Barva odrosty", value: "990 Kč" },
-      { label: "Kompletní barvení", value: "1 350 Kč" },
-      { label: "Tónování", value: "850 Kč" }
-    ]
-  },
-  {
-    title: "Pánské střihy",
-    items: [
-      { label: "Střih", value: "450 Kč" },
-      { label: "Střih + úprava vousů", value: "600 Kč" }
-    ]
-  }
-];
 
 export function Pricing() {
   return (
     <section id="pricing" className={styles.pricing}>
       <div className="container">
         <div className={styles.inner}>
-          <div className={styles.sheet}>
-            <div className={styles.sheetHeader}>
-              <span>BALANCE</span>
-              <strong>Kadeřnické studio</strong>
-            </div>
-            <div className={styles.sheetGrid}>
-              {priceColumns.map((column) => (
-                <div key={column.title} className={styles.sheetColumn}>
+          <div className={styles.preview}>
+            <p className={styles.previewLabel}>Přehled služeb</p>
+            <div className={styles.serviceGrid}>
+              {publicPriceColumns.map((column) => (
+                <article key={column.title} className={styles.serviceCard}>
                   <h3>{column.title}</h3>
                   <ul>
                     {column.items.map((item) => (
                       <li key={item.label}>
-                        <span>{item.label}</span>
+                        <span className={styles.itemLabel}>{item.label}</span>
+                        <span className={styles.itemRule} aria-hidden="true" />
                         <strong>{item.value}</strong>
                       </li>
                     ))}
                   </ul>
-                </div>
+                </article>
               ))}
             </div>
           </div>
-          <div className={styles.ctaBlock}>
-            <SectionTitle
-              label="Ceník"
-              title="Kompletní ceník si můžete zobrazit ve větším náhledu."
-              description="Pro přesnou cenu doporučujeme rezervaci termínu nebo rychlý kontakt přes telefon či WhatsApp."
-              className={styles.ctaSectionTitle}
-            />
-            <Link href="/#contact" className={styles.ctaButton}>
+          <aside className={styles.ctaBlock}>
+            <p className={styles.ctaLabel}>Ceník</p>
+            <h2 className={styles.ctaTitle}>Kompletní ceník si můžete zobrazit ve větším náhledu.</h2>
+            <p className={styles.ctaText}>Pro přesnou cenu doporučujeme rezervaci termínu nebo rychlý kontakt přes telefon či WhatsApp.</p>
+            <Link href="/pricing" className={styles.ctaButton}>
               Zobrazit celý ceník
             </Link>
-          </div>
+          </aside>
         </div>
       </div>
     </section>

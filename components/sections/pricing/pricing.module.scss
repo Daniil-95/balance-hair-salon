@@ -1,111 +1,146 @@
 ﻿.pricing {
+  background: #0b0b0b;
   padding: 6rem 0;
 }
 
 .inner {
   display: grid;
-  grid-template-columns: 1.35fr 0.85fr;
-  gap: 2rem;
+  grid-template-columns: minmax(0, 1.45fr) minmax(300px, 0.9fr);
+  gap: 1.5rem;
   align-items: start;
 }
 
-.sheet {
-  padding: 2rem;
-  border-radius: var(--radius-lg);
-  background: linear-gradient(180deg, rgba(245, 235, 216, 0.96), rgba(231, 218, 197, 0.92));
-  color: #1b1713;
-  box-shadow: var(--shadow-soft);
+.preview {
+  padding: 1.5rem;
+  border-radius: 20px;
+  border: 1px solid rgba(198, 169, 107, 0.22);
+  background: #101010;
 }
 
-.sheetHeader {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.15rem;
-  margin-bottom: 1.2rem;
-  letter-spacing: 0.28em;
+.previewLabel {
+  margin: 0 0 1rem;
+  color: var(--color-gold);
+  font-size: 0.7rem;
+  letter-spacing: 0.24em;
   text-transform: uppercase;
+  font-weight: 600;
 }
 
-.sheetHeader span {
-  font-family: var(--font-display), serif;
-  font-size: 2.2rem;
-  line-height: 0.95;
-}
-
-.sheetHeader strong {
-  font-size: 0.78rem;
-  color: rgba(27, 23, 19, 0.7);
-}
-
-.sheetGrid {
+.serviceGrid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1.25rem;
+  gap: 0.9rem;
 }
 
-.sheetColumn {
+.serviceCard {
+  padding: 1rem;
+  border-radius: 16px;
+  border: 1px solid rgba(198, 169, 107, 0.14);
+  background: #141414;
   display: grid;
-  gap: 0.8rem;
+  gap: 0.75rem;
 }
 
-.sheetColumn h3 {
+.serviceCard h3 {
   margin: 0;
-  font-size: 1rem;
+  color: #ece4d3;
+  font-size: 0.86rem;
+  line-height: 1.25;
   text-transform: uppercase;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.08em;
 }
 
-.sheetColumn ul {
+.serviceCard ul {
   list-style: none;
   margin: 0;
   padding: 0;
   display: grid;
-  gap: 0.65rem;
+  gap: 0.5rem;
 }
 
-.sheetColumn li {
+.serviceCard li {
   display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 1px solid rgba(27, 23, 19, 0.12);
-  font-size: 0.92rem;
+  align-items: baseline;
+  gap: 0.5rem;
+  font-size: 0.86rem;
+  color: #d5cebf;
 }
 
-.sheetColumn strong {
+.itemLabel {
+  flex: 0 1 auto;
+}
+
+.itemRule {
+  flex: 1 1 auto;
+  border-bottom: 1px dashed rgba(198, 169, 107, 0.22);
+  transform: translateY(-0.2rem);
+}
+
+.serviceCard strong {
+  flex: 0 0 auto;
   white-space: nowrap;
+  color: #f0e4c8;
+  font-weight: 600;
 }
 
 .ctaBlock {
-  padding: 2rem;
-  border-radius: var(--radius-lg);
-  background: linear-gradient(180deg, rgba(17, 15, 12, 0.94), rgba(12, 11, 9, 0.98));
-  border: 1px solid rgba(202, 162, 106, 0.12);
-  box-shadow: var(--shadow-soft);
+  padding: 2.1rem 1.9rem;
+  border-radius: 20px;
+  border: 1px solid rgba(198, 169, 107, 0.26);
+  background: #121212;
   display: grid;
-  gap: 1.5rem;
+  gap: 1.2rem;
 }
 
-.ctaSectionTitle {
-  margin-bottom: 1rem;
-  align-items: flex-start;
-  text-align: left;
+.ctaLabel {
+  margin: 0;
+  color: var(--color-gold);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+.ctaTitle {
+  margin: 0;
+  max-width: 20ch;
+  font-family: var(--font-display), serif;
+  font-size: clamp(1.7rem, 2.4vw, 2.2rem);
+  line-height: 1.1;
+  color: #f2ead9;
+}
+
+.ctaText {
+  margin: 0;
+  max-width: 34ch;
+  color: #b9b1a2;
+  line-height: 1.55;
+  font-size: 0.96rem;
 }
 
 .ctaButton {
-  min-height: 44px;
+  margin-top: 0.25rem;
+  min-height: 48px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: fit-content;
-  padding: 0.95rem 1.5rem;
-  border-radius: var(--radius-sm);
-  background: linear-gradient(135deg, rgba(202, 162, 106, 0.95), rgba(209, 182, 128, 0.95));
+  width: 100%;
+  padding: 1rem 1.35rem;
+  border-radius: 16px;
+  border: 1px solid #c6a96b;
+  background: #c6a96b;
   color: #111;
   font-weight: 700;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   text-align: center;
+  transition: background var(--transition-base), color var(--transition-base), transform var(--transition-base);
+}
+
+.ctaButton:hover {
+  background: transparent;
+  color: #c6a96b;
+  transform: translateY(-1px);
 }
 
 @media (max-width: 768px) {
@@ -115,10 +150,19 @@
 
   .inner {
     grid-template-columns: 1fr;
+    gap: 1rem;
   }
 
-  .sheetGrid {
-    grid-template-columns: 1fr;
+  .serviceGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .ctaBlock {
+    padding: 1.6rem;
+  }
+
+  .ctaTitle {
+    max-width: none;
   }
 }
 
@@ -127,9 +171,13 @@
     padding: 3.5rem 0;
   }
 
-  .sheet,
+  .preview,
   .ctaBlock {
     padding: 1.25rem;
+  }
+
+  .serviceGrid {
+    grid-template-columns: 1fr;
   }
 
   .ctaButton {
