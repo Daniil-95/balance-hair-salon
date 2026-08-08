@@ -1,0 +1,67 @@
+.loginPage {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(180deg, #111318 0%, #1e2430 100%);
+  padding: 2rem;
+}
+
+.loginCard {
+  width: min(460px, 100%);
+  background: #ffffff;
+  border-radius: 1.5rem;
+  padding: 2.25rem;
+  box-shadow: 0 24px 75px rgba(5, 12, 28, 0.18);
+}
+
+.loginCard h1 {
+  margin: 0 0 0.75rem;
+  font-size: 2rem;
+  letter-spacing: -0.03em;
+}
+
+.loginCard p {
+  margin: 0 0 1.75rem;
+  color: #4b5563;
+}
+
+.loginForm {
+  display: grid;
+  gap: 1rem;
+}
+
+.loginForm label {
+  display: grid;
+  gap: 0.5rem;
+  font-weight: 700;
+  color: #111318;
+}
+
+.loginForm input {
+  width: 100%;
+  border-radius: 0.9rem;
+  border: 1px solid #d2d6dc;
+  padding: 0.95rem 1rem;
+  font: inherit;
+  color: #111318;
+}
+
+.loginForm button {
+  border: none;
+  border-radius: 999px;
+  background: #111318;
+  color: #ffffff;
+  font-weight: 700;
+  padding: 0.95rem 1rem;
+  cursor: pointer;
+}
+
+.loginForm button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.errorText {
+  color: #b91c1c;
+  margin: 0;
+}

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import styles from "./about.module.scss";
 
 export function About() {
@@ -18,9 +19,9 @@ export function About() {
               sebevědomí. Rádi vytvoříme střih, barvu a styling, který bude
               přesně odpovídat vašemu stylu.
             </p>
-            <a href="/#contact" className={styles.button}>
+            <Link href="/#contact" className={styles.button}>
               Více o nás
-            </a>
+            </Link>
           </div>
           <div className={styles.imageWrapper}>
             <div className={styles.imageAccent} />

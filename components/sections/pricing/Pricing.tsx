@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { SectionTitle } from "@/components/ui/section-title";
 import styles from "./pricing.module.scss";
 
@@ -31,9 +32,9 @@ export function Pricing() {
           </div>
           <div className={styles.ctaBlock}>
             <p className={styles.ctaLabel}>Kompletní ceník najdete v naší nabídce.</p>
-            <a href="/#contact" className={styles.ctaButton}>
+            <Link href="/#contact" className={styles.ctaButton}>
               Zobrazit celý ceník
-            </a>
+            </Link>
           </div>
         </div>
       </div>

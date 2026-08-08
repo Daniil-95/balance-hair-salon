@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import styles from "./hero.module.scss";
 
 export function Hero() {
@@ -22,9 +23,9 @@ export function Hero() {
             <h1 className={styles.title}>BALANCE</h1>
             <p className={styles.subtitle}>Váš styl. Naše péče.</p>
             <div className={styles.actions}>
-              <a href="/#contact" className={styles.primary}>
+              <Link href="/#contact" className={styles.primary}>
                 Objednat se online
-              </a>
+              </Link>
               <a href="https://wa.me/420603561625" target="_blank" rel="noreferrer" className={styles.secondary}>
                 WhatsApp
               </a>

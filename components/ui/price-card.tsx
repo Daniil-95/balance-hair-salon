@@ -1,4 +1,3 @@
-import type { ReactNode } from "react";
 import styles from "./price-card.module.scss";
 
 interface PriceCardProps {

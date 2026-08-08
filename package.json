@@ -17,8 +17,10 @@
     "@prisma/client": "5.11.0",
     "@types/node": "20.17.0",
     "axios": "1.7.9",
+    "bcryptjs": "2.4.3",
     "framer-motion": "12.23.12",
     "js-cookie": "3.0.5",
+    "jsonwebtoken": "9.0.2",
     "next": "15.3.3",
     "react": "19.1.0",
     "react-dom": "19.1.0",
@@ -27,6 +29,7 @@
     "zod": "3.24.2"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
     "@types/react": "19.1.0",
     "@types/react-dom": "19.1.0",
     "@typescript-eslint/eslint-plugin": "7.10.0",
@@ -36,8 +39,8 @@
     "eslint-config-prettier": "9.1.0",
     "eslint-plugin-react": "7.33.2",
     "eslint-plugin-react-hooks": "4.6.0",
-    "prisma": "5.11.0",
     "prettier": "3.6.2",
+    "prisma": "5.11.0",
     "sass": "1.85.0",
     "typescript": "5.8.2"
   }
