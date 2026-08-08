@@ -1,4 +1,4 @@
-.footer {
+﻿.footer {
   padding: 3rem 0 2rem;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
@@ -22,6 +22,7 @@
   margin: 0.75rem 0 0;
   color: var(--color-muted);
   max-width: 26rem;
+  line-height: 1.6;
 }
 
 .links {
@@ -31,6 +32,9 @@
 }
 
 .links a {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
   color: var(--color-muted);
   font-size: 0.95rem;
 }
@@ -39,5 +43,14 @@
   .columns {
     flex-direction: column;
     align-items: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  .links {
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
   }
 }

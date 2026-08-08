@@ -1,4 +1,4 @@
-import styles from "./footer.module.scss";
+﻿import styles from "./footer.module.scss";
 
 export function Footer() {
   return (
@@ -7,12 +7,12 @@ export function Footer() {
         <div className={styles.columns}>
           <div>
             <p className={styles.brand}>Balance</p>
-            <p className={styles.note}>Luxury hair studio for modern clients.</p>
+            <p className={styles.note}>Kadeřnické studio pro moderní střih, barvu a péči o vlasy.</p>
           </div>
 
           <div className={styles.links}>
-            <a href="/privacy-policy">Privacy Policy</a>
-            <a href="/contact">Contact</a>
+            <a href="/privacy-policy">Ochrana osobních údajů</a>
+            <a href="/#contact">Kontakt</a>
           </div>
         </div>
       </div>

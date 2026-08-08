@@ -1,4 +1,5 @@
-import { AdminShell } from "@/components/admin/AdminShell";
+﻿import { AdminShell } from "@/components/admin/AdminShell";
+import { ConfirmForm } from "@/components/admin/ConfirmForm";
 import { getServices } from "@/lib/services";
 import * as actions from "./actions";
 import styles from "@/components/admin/admin-shell.module.scss";
@@ -11,79 +12,92 @@ export default async function AdminServicesPage() {
   return (
     <AdminShell>
       <section className={styles.panel}>
-        <h1 className={styles.panelHeading}>Manage Services</h1>
-        <p>Update salon services, featured visibility, and order.</p>
+        <h1 className={styles.panelHeading}>Služby</h1>
+        <p className={styles.panelIntro}>Upravte nabídku služeb, pořadí zobrazení a označení hlavních služeb.</p>
 
         <div className={styles.card}>
-          <h2 className={styles.cardTitle}>Create Service</h2>
-          <form action={actions.createServiceAction} method="post">
+          <h2 className={styles.cardTitle}>Vytvořit službu</h2>
+          <form action={actions.createServiceAction} method="post" className={styles.form}>
             <div className={styles.formGroup}>
-              <label className={styles.label}>Title</label>
+              <label className={styles.label}>Název</label>
               <input name="title" className={styles.input} required />
             </div>
             <div className={styles.formGroup}>
-              <label className={styles.label}>Description</label>
+              <label className={styles.label}>Popis</label>
               <textarea name="description" className={styles.textarea} required />
             </div>
             <div className={styles.formGroup}>
-              <label className={styles.label}>Icon</label>
+              <label className={styles.label}>Ikona</label>
               <input name="icon" className={styles.input} required />
             </div>
             <div className={styles.formGroup}>
-              <label className={styles.label}>Order</label>
+              <label className={styles.label}>Pořadí</label>
               <input name="order" className={styles.input} type="number" defaultValue={0} />
             </div>
-            <button type="submit" className={styles.button}>
-              Create Service
-            </button>
+            <div className={styles.buttonRow}>
+              <button type="submit" className={styles.button}>
+                Vytvořit službu
+              </button>
+            </div>
           </form>
         </div>
 
         <div className={styles.previewGrid}>
+          {services.length === 0 ? (
+            <div className={styles.card}>
+              <p className={styles.cardMeta}>Zatím nejsou vytvořené žádné služby.</p>
+            </div>
+          ) : null}
+
           {services.map((service) => (
             <div key={service.id} className={styles.card}>
-              <div className={styles.cardTitle}>{service.title}</div>
+              <h2 className={styles.cardTitle}>{service.title}</h2>
               <div className={styles.cardMeta}>
-                Order: {service.order} · Featured: {service.featured ? "Yes" : "No"}
+                Pořadí: {service.order} · Hlavní služba: {service.featured ? "Ano" : "Ne"}
               </div>
-              <form action={actions.updateServiceAction} method="post">
+              <form action={actions.updateServiceAction} method="post" className={styles.form}>
                 <input type="hidden" name="id" value={service.id} />
                 <div className={styles.formGroup}>
-                  <label className={styles.label}>Title</label>
+                  <label className={styles.label}>Název</label>
                   <input name="title" className={styles.input} defaultValue={service.title} required />
                 </div>
                 <div className={styles.formGroup}>
-                  <label className={styles.label}>Description</label>
+                  <label className={styles.label}>Popis</label>
                   <textarea name="description" className={styles.textarea} defaultValue={service.description} required />
                 </div>
                 <div className={styles.formGroup}>
-                  <label className={styles.label}>Icon</label>
+                  <label className={styles.label}>Ikona</label>
                   <input name="icon" className={styles.input} defaultValue={service.icon} required />
                 </div>
                 <div className={styles.formGroup}>
-                  <label className={styles.label}>Order</label>
+                  <label className={styles.label}>Pořadí</label>
                   <input name="order" className={styles.input} type="number" defaultValue={service.order} />
                 </div>
-                <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap" }}>
+                <div className={styles.buttonRow}>
                   <button type="submit" className={styles.button}>
-                    Save
+                    Uložit
                   </button>
                 </div>
               </form>
-              <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap", marginTop: "1rem" }}>
-                <form action={actions.toggleServiceFeaturedAction} method="post">
+              <div className={styles.buttonRow}>
+                <form action={actions.toggleServiceFeaturedAction} method="post" className={styles.inlineForm}>
                   <input type="hidden" name="id" value={service.id} />
                   <input type="hidden" name="featured" value={service.featured ? "false" : "true"} />
                   <button type="submit" className={styles.buttonSecondary}>
-                    {service.featured ? "Unfeature" : "Feature"}
+                    {service.featured ? "Odebrat z hlavních" : "Označit jako hlavní"}
                   </button>
                 </form>
-                <form action={actions.deleteServiceAction} method="post">
+                <ConfirmForm
+                  action={actions.deleteServiceAction}
+                  method="post"
+                  className={styles.inlineForm}
+                  message="Opravdu chcete smazat tuto službu?"
+                >
                   <input type="hidden" name="id" value={service.id} />
-                  <button type="submit" className={styles.buttonSecondary}>
-                    Delete
+                  <button type="submit" className={styles.buttonDanger}>
+                    Smazat
                   </button>
-                </form>
+                </ConfirmForm>
               </div>
             </div>
           ))}

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
@@ -28,18 +28,18 @@ export default function AdminLoginPage() {
     }
 
     const result = await response.json();
-    setError(result?.message ?? "Invalid credentials.");
+    setError(result?.message ?? "Neplatné přihlašovací údaje.");
     setIsSubmitting(false);
   }
 
   return (
     <div className={styles.loginPage}>
       <div className={styles.loginCard}>
-        <h1>Salon Admin Login</h1>
-        <p>Sign in to manage services, gallery items, and site settings.</p>
+        <h1>Přihlášení do administrace</h1>
+        <p>Přihlaste se pro úpravu služeb, galerie, ceníku a nastavení webu.</p>
         <form onSubmit={handleSubmit} className={styles.loginForm}>
           <label>
-            Email
+            E-mail
             <input
               type="email"
               value={email}
@@ -49,7 +49,7 @@ export default function AdminLoginPage() {
             />
           </label>
           <label>
-            Password
+            Heslo
             <input
               type="password"
               value={password}
@@ -60,7 +60,7 @@ export default function AdminLoginPage() {
           </label>
           {error ? <p className={styles.errorText}>{error}</p> : null}
           <button type="submit" disabled={isSubmitting}>
-            {isSubmitting ? "Signing in..." : "Sign in"}
+            {isSubmitting ? "Přihlašování..." : "Přihlásit se"}
           </button>
         </form>
       </div>

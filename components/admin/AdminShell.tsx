@@ -1,39 +1,58 @@
+﻿"use client";
+
 import type { ReactNode } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import styles from "./admin-shell.module.scss";
 
 interface AdminShellProps {
   children: ReactNode;
 }
 
+const navItems = [
+  { href: "/admin", label: "Přehled", icon: "⌂" },
+  { href: "/admin/services", label: "Služby", icon: "✂" },
+  { href: "/admin/gallery", label: "Galerie", icon: "□" },
+  { href: "/admin/pricing", label: "Ceník", icon: "Kč" },
+  { href: "/admin/contact", label: "Kontakt", icon: "@" },
+  { href: "/admin/settings", label: "Nastavení", icon: "⚙" }
+];
+
+function isActive(pathname: string, href: string) {
+  return href === "/admin" ? pathname === href : pathname.startsWith(href);
+}
+
 export function AdminShell({ children }: AdminShellProps) {
+  const pathname = usePathname();
+
   return (
     <div className={styles.adminShell}>
-      <aside className={styles.nav}>
-        <div className={styles.brand}>Salon admin</div>
+      <aside className={styles.nav} aria-label="Administrace">
+        <div className={styles.navHeader}>
+          <div>
+            <div className={styles.brand}>Balance</div>
+            <div className={styles.brandSub}>Administrace salonu</div>
+          </div>
+        </div>
+
         <nav className={styles.navList}>
-          <Link href="/admin" className={styles.navLink}>
-            Dashboard
-          </Link>
-          <Link href="/admin/services" className={styles.navLink}>
-            Services
-          </Link>
-          <Link href="/admin/gallery" className={styles.navLink}>
-            Gallery
-          </Link>
-          <Link href="/admin/pricing" className={styles.navLink}>
-            Pricing
-          </Link>
-          <Link href="/admin/contact" className={styles.navLink}>
-            Contact
-          </Link>
-          <Link href="/admin/settings" className={styles.navLink}>
-            Settings
-          </Link>
+          {navItems.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className={`${styles.navLink} ${isActive(pathname, item.href) ? styles.navLinkActive : ""}`.trim()}
+            >
+              <span className={styles.navIcon} aria-hidden="true">
+                {item.icon}
+              </span>
+              <span>{item.label}</span>
+            </Link>
+          ))}
         </nav>
+
         <form action="/api/admin/logout" method="post" className={styles.logoutForm}>
           <button type="submit" className={styles.logoutButton}>
-            Sign out
+            Odhlásit se
           </button>
         </form>
       </aside>

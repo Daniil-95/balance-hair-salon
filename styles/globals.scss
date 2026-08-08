@@ -1,4 +1,4 @@
-@import "./variables";
+﻿@import "./variables";
 @import "./mixins";
 @import "./helpers";
 
@@ -10,6 +10,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 section {
@@ -19,6 +20,7 @@ section {
 body {
   margin: 0;
   min-height: 100vh;
+  overflow-x: hidden;
   background: radial-gradient(circle at top, rgba(202, 162, 106, 0.08), transparent 28%), #080705;
   color: $color-text;
 }
@@ -39,53 +41,8 @@ a {
 
 button,
 input,
-textarea {
-  font: inherit;
-}
-
-button {
-  border: none;
-  background: none;
-}
-
-::selection {
-  background: rgba(202, 162, 106, 0.25);
-}
-
-body::-webkit-scrollbar {
-  width: 12px;
-}
-
-body::-webkit-scrollbar-track {
-  background: #0c0a08;
-}
-
-body::-webkit-scrollbar-thumb {
-  background: rgba(202, 162, 106, 0.35);
-  border-radius: 999px;
-}
-
-main {
-  width: min(100%, 100vw);
-}
-
-img,
-svg,
 textarea,
-input,
-button {
-  display: block;
-  max-width: 100%;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-button,
-input,
-textarea {
+select {
   font: inherit;
 }
 
@@ -113,4 +70,10 @@ body::-webkit-scrollbar-thumb {
 
 main {
   width: min(100%, 100vw);
+}
+
+@media (max-width: 480px) {
+  section {
+    scroll-margin-top: 82px;
+  }
 }

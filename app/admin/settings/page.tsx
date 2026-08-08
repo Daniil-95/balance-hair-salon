@@ -1,4 +1,4 @@
-import Image from "next/image";
+﻿import Image from "next/image";
 import { AdminShell } from "@/components/admin/AdminShell";
 import { getSettings } from "@/lib/settings";
 import * as actions from "./actions";
@@ -12,41 +12,50 @@ export default async function AdminSettingsPage() {
   return (
     <AdminShell>
       <section className={styles.panel}>
-        <h1 className={styles.panelHeading}>Site Settings</h1>
-        <p>Update the salon name, tagline, hero CTA, and logo.</p>
+        <h1 className={styles.panelHeading}>Nastavení webu</h1>
+        <p className={styles.panelIntro}>Upravte název salonu, krátký slogan, hlavní tlačítko a logo.</p>
 
         <div className={styles.card}>
-          <form action={actions.saveSettingsAction} method="post" encType="multipart/form-data">
+          <form action={actions.saveSettingsAction} method="post" encType="multipart/form-data" className={styles.form}>
             <div className={styles.formGroup}>
-              <label className={styles.label}>Salon Name</label>
+              <label className={styles.label}>Název salonu</label>
               <input name="salonName" className={styles.input} defaultValue={settings?.salonName ?? ""} required />
             </div>
             <div className={styles.formGroup}>
-              <label className={styles.label}>Tagline</label>
+              <label className={styles.label}>Slogan</label>
               <input name="tagline" className={styles.input} defaultValue={settings?.tagline ?? ""} />
             </div>
             <div className={styles.formGroup}>
-              <label className={styles.label}>Hero CTA Label</label>
+              <label className={styles.label}>Text hlavního tlačítka</label>
               <input name="heroCtaLabel" className={styles.input} defaultValue={settings?.heroCtaLabel ?? ""} />
             </div>
             <div className={styles.formGroup}>
-              <label className={styles.label}>Hero CTA URL</label>
+              <label className={styles.label}>Odkaz hlavního tlačítka</label>
               <input name="heroCtaUrl" className={styles.input} defaultValue={settings?.heroCtaUrl ?? ""} />
             </div>
             <div className={styles.formGroup}>
               <label className={styles.label}>Logo</label>
               <input name="logo" type="file" className={styles.input} accept="image/*" />
             </div>
-            <button type="submit" className={styles.button}>
-              Save Settings
-            </button>
+            <div className={styles.buttonRow}>
+              <button type="submit" className={styles.button}>
+                Uložit nastavení
+              </button>
+            </div>
           </form>
         </div>
 
         {settings?.logo ? (
           <div className={styles.card}>
-            <div className={styles.cardTitle}>Current Logo</div>
-            <Image src={`/uploads/${settings.logo}`} alt="Logo" width={220} height={120} unoptimized style={{ maxWidth: "220px", width: "100%", height: "auto", marginTop: "1rem" }} />
+            <h2 className={styles.cardTitle}>Aktuální logo</h2>
+            <Image
+              src={`/uploads/${settings.logo}`}
+              alt="Logo salonu"
+              width={220}
+              height={120}
+              unoptimized
+              className={styles.mediaPreview}
+            />
           </div>
         ) : null}
       </section>

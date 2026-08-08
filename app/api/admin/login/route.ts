@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+﻿import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
 import { prisma } from "@/lib/prisma";
 import { signToken } from "@/lib/auth";
@@ -10,17 +10,17 @@ export async function POST(request: Request) {
   const { email, password } = body as { email: string; password: string };
 
   if (!email || !password) {
-    return NextResponse.json({ message: "Missing email or password." }, { status: 400 });
+    return NextResponse.json({ message: "Vyplňte e-mail a heslo." }, { status: 400 });
   }
 
   const user = await prisma.user.findUnique({ where: { email } });
   if (!user) {
-    return NextResponse.json({ message: "Invalid credentials." }, { status: 401 });
+    return NextResponse.json({ message: "Neplatné přihlašovací údaje." }, { status: 401 });
   }
 
   const isValid = await bcrypt.compare(password, user.password);
   if (!isValid) {
-    return NextResponse.json({ message: "Invalid credentials." }, { status: 401 });
+    return NextResponse.json({ message: "Neplatné přihlašovací údaje." }, { status: 401 });
   }
 
   const token = signToken({ userId: user.id, role: user.role, email: user.email });

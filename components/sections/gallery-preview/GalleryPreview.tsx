@@ -1,9 +1,9 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import { SectionTitle } from "@/components/ui/section-title";
 import styles from "./gallery-preview.module.scss";
 
 const galleryItems = Array.from({ length: 4 }, (_, index) => ({
-  title: `Salon preview ${index + 1}`,
+  title: `Ukázka salonu ${index + 1}`,
   label: `Stylová fotografie ${index + 1}`
 }));
 

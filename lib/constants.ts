@@ -1,8 +1,8 @@
-export const SITE = {
+﻿export const SITE = {
   name: "Balance Hair Salon",
-  description: "Premium hair salon experience with luxury styling, color, and treatment services.",
+  description: "Kadeřnické studio se střihem, barvením, stylingem a profesionální péčí o vlasy.",
   url: "https://balance-hair-salon.example.com",
-  locale: "en_US"
+  locale: "cs_CZ"
 };
 
 export const NAV_ITEMS = [

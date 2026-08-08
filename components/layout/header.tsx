@@ -1,4 +1,4 @@
-import { NAV_ITEMS } from "@/lib/constants";
+﻿import { NAV_ITEMS } from "@/lib/constants";
 import styles from "./header.module.scss";
 
 const navItems = NAV_ITEMS;
@@ -11,7 +11,7 @@ export function Header() {
           Balance
         </a>
 
-        <nav className={styles.nav} aria-label="Primary navigation">
+        <nav className={styles.nav} aria-label="Hlavní navigace">
           {navItems.map((item) => (
             <a key={item.href} href={item.href} className={styles.link}>
               {item.label}

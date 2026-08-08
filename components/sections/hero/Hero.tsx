@@ -1,4 +1,4 @@
-import Image from "next/image";
+﻿import Image from "next/image";
 import Link from "next/link";
 import styles from "./hero.module.scss";
 
@@ -8,7 +8,7 @@ export function Hero() {
       <div className={styles.imageWrapper}>
         <Image
           src="/images/image.png"
-          alt="Salon interior"
+          alt="Interiér kadeřnického salonu"
           fill
           priority
           className={styles.backgroundImage}
