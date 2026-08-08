@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 import styles from "./about.module.scss";
 
 export function About() {
@@ -20,12 +19,8 @@ export function About() {
               sebevědomí. Rádi vytvoříme střih, barvu i styling, který bude
               přesně odpovídat vašemu stylu.
             </p>
-            <Link href="/#contact" className={styles.button}>
-              Více o nás
-            </Link>
           </div>
           <div className={styles.imageWrapper}>
-            <div className={styles.imageAccent} />
             <div className={styles.imageMain}>
               <Image
                 src="/images/image.png"
@@ -35,7 +30,6 @@ export function About() {
                 className={styles.imageFill}
                 style={{ objectFit: "cover", objectPosition: "center left" }}
               />
-              <span className={styles.imageLabel}>Balance</span>
             </div>
             <div className={styles.imageCutaway}>
               <Image
