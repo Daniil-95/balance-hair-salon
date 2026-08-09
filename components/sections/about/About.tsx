@@ -5,9 +5,9 @@ interface AboutProps {
   overline: string;
   title: string;
   paragraphs: string[];
-  imageMainSrc: string;
+  imageMainSrc: string | null;
   imageMainAlt: string;
-  imageCutawaySrc: string;
+  imageCutawaySrc: string | null;
   imageCutawayAlt: string;
 }
 
@@ -34,24 +34,28 @@ export function About({
           </div>
           <div className={styles.imageWrapper}>
             <div className={styles.imageMain}>
-              <Image
-                src={imageMainSrc}
-                alt={imageMainAlt}
-                fill
-                sizes="(max-width: 768px) 100vw, 50vw"
-                className={styles.imageFill}
-                style={{ objectFit: "cover", objectPosition: "center left" }}
-              />
+              {imageMainSrc ? (
+                <Image
+                  src={imageMainSrc}
+                  alt={imageMainAlt}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className={styles.imageFill}
+                  style={{ objectFit: "cover", objectPosition: "center left" }}
+                />
+              ) : null}
             </div>
             <div className={styles.imageCutaway}>
-              <Image
-                src={imageCutawaySrc}
-                alt={imageCutawayAlt}
-                fill
-                sizes="(max-width: 768px) 100vw, 50vw"
-                className={styles.imageFill}
-                style={{ objectFit: "cover", objectPosition: "right center" }}
-              />
+              {imageCutawaySrc ? (
+                <Image
+                  src={imageCutawaySrc}
+                  alt={imageCutawayAlt}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className={styles.imageFill}
+                  style={{ objectFit: "cover", objectPosition: "right center" }}
+                />
+              ) : null}
             </div>
           </div>
         </div>

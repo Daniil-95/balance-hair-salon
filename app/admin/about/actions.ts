@@ -4,7 +4,7 @@ import { revalidatePath } from "next/cache";
 import fs from "fs";
 import path from "path";
 import { requireAdminSession } from "@/lib/auth";
-import { upsertAbout } from "@/lib/about";
+import { getAboutMeta, upsertAbout } from "@/lib/about";
 
 const uploadsDir = path.join(process.cwd(), "public", "uploads");
 
@@ -31,26 +31,42 @@ function revalidateAboutViews() {
 export async function saveAboutAction(formData: FormData) {
   await requireAdminSession();
 
+  const overline = formData.get("overline")?.toString() ?? "";
   const title = formData.get("title")?.toString() ?? "";
-  const description = formData.get("description")?.toString() ?? "";
-  const highlights = formData.get("highlights")?.toString() || null;
-  const imageFile = formData.get("image") as File | null;
+  const firstParagraph = formData.get("firstParagraph")?.toString() ?? "";
+  const secondParagraph = formData.get("secondParagraph")?.toString() ?? "";
+  const imageMainAlt = formData.get("imageMainAlt")?.toString() ?? "";
+  const imageCutawayAlt = formData.get("imageCutawayAlt")?.toString() ?? "";
+  const imagePrimaryFile = formData.get("imagePrimary") as File | null;
+  const imageSecondaryFile = formData.get("imageSecondary") as File | null;
 
-  if (!title || !description) {
+  if (!title || !firstParagraph) {
     return;
   }
 
+  const existingMeta = await getAboutMeta();
   let image = null;
+  let secondaryImage = existingMeta.secondaryImage || null;
 
-  if (imageFile && imageFile.size > 0) {
-    image = await saveUpload(imageFile);
+  if (imagePrimaryFile && imagePrimaryFile.size > 0) {
+    image = await saveUpload(imagePrimaryFile);
+  }
+
+  if (imageSecondaryFile && imageSecondaryFile.size > 0) {
+    secondaryImage = await saveUpload(imageSecondaryFile);
   }
 
   await upsertAbout({
-    title,
-    description,
-    highlights,
     image,
+    title,
+    description: firstParagraph,
+    meta: {
+      overline,
+      secondParagraph,
+      imageMainAlt,
+      imageCutawayAlt,
+      secondaryImage: secondaryImage || undefined,
+    },
   });
 
   revalidateAboutViews();

@@ -44,7 +44,7 @@ export default async function AdminHeroPage() {
             </div>
             <div className={styles.formGroup}>
               <label className={styles.label}>Odkaz WhatsApp (volitelné)</label>
-              <input name="whatsappUrl" className={styles.input} defaultValue={heroView.whatsappUrl} />
+              <input name="whatsappUrl" className={styles.input} defaultValue={heroView.whatsappUrl ?? ""} />
             </div>
             <div className={styles.formGroup}>
               <label className={styles.label}>Text tlačítka Instagram</label>
@@ -52,7 +52,7 @@ export default async function AdminHeroPage() {
             </div>
             <div className={styles.formGroup}>
               <label className={styles.label}>Odkaz Instagram</label>
-              <input name="instagramUrl" className={styles.input} defaultValue={heroView.instagramUrl} required />
+              <input name="instagramUrl" className={styles.input} defaultValue={heroView.instagramUrl ?? ""} />
             </div>
             <div className={styles.formGroup}>
               <label className={styles.label}>Text prostředního štítku (otevírací doba)</label>

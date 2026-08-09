@@ -22,12 +22,12 @@ export default async function HomePage() {
 
   return (
     <SiteShell
-      headerBrandName={settingsData?.salonName || "Balance"}
-      headerBrandSub={settingsData?.tagline || "Kadeřnické studio"}
-      headerCtaLabel={settingsData?.heroCtaLabel || "Objednat se online"}
-      headerCtaUrl={settingsData?.heroCtaUrl || "https://tiarasro.snippet.myfox.cz/"}
-      footerBrandName={settingsData?.salonName || "Balance"}
-      footerNote={settingsData?.tagline || "Kadeřnické studio pro moderní střih, barvu a péči o vlasy."}
+      headerBrandName={settingsData?.salonName}
+      headerBrandSub={settingsData?.tagline ?? undefined}
+      headerCtaLabel={settingsData?.heroCtaLabel ?? undefined}
+      headerCtaUrl={settingsData?.heroCtaUrl ?? undefined}
+      footerBrandName={settingsData?.salonName}
+      footerNote={settingsData?.tagline ?? undefined}
     >
       <Hero
         salonName={heroData.headline}
@@ -43,8 +43,8 @@ export default async function HomePage() {
         whatsappUrl={heroData.whatsappUrl}
         openingHoursLabel={heroData.openingHoursLabel}
         contactWhatsapp={contactData.contact?.whatsapp ?? null}
-        contactAddress={contactData.contact?.address || "Čenkov 93"}
-        contactPhone={contactData.contact?.phone || "+420 603 561 625"}
+        contactAddress={contactData.contact?.address ?? ""}
+        contactPhone={contactData.contact?.phone ?? ""}
       />
       <About
         overline={aboutData.overline}
@@ -58,7 +58,7 @@ export default async function HomePage() {
       <Services services={servicesData} />
       <Pricing categories={pricingData} />
       <GalleryPreview items={galleryData} />
-      <Contact contact={contactData.contact} openingHours={contactData.openingHours} />
+      <Contact contact={contactData.contact} openingHours={contactData.openingHours} instagramUrl={heroData.instagramUrl} />
     </SiteShell>
   );
 }
