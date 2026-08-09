@@ -12,7 +12,7 @@ export default async function AdminSeoPage() {
     <AdminShell>
       <section className={styles.panel}>
         <h1 className={styles.panelHeading}>SEO nastaveni</h1>
-        <p className={styles.panelIntro}>Spravujte title, description, canonical URL, Open Graph a Twitter metadata.</p>
+        <p className={styles.panelIntro}>Spravujte title, description, keywords a canonical URL.</p>
 
         <div className={styles.card}>
           <form action={actions.saveSeoAction} className={styles.form}>
@@ -37,16 +37,31 @@ export default async function AdminSeoPage() {
             </div>
 
             <div className={styles.formGroup}>
-              <label className={styles.label}>Open Graph image URL (optional)</label>
+              <label className={styles.label}>OG Title</label>
+              <input name="ogTitle" className={styles.input} defaultValue={seo?.ogTitle ?? ""} />
+            </div>
+
+            <div className={styles.formGroup}>
+              <label className={styles.label}>OG Description</label>
+              <textarea name="ogDescription" className={styles.textarea} defaultValue={seo?.ogDescription ?? ""} />
+            </div>
+
+            <div className={styles.formGroup}>
+              <label className={styles.label}>OG Image (URL)</label>
               <input name="ogImage" className={styles.input} type="url" defaultValue={seo?.ogImage ?? ""} placeholder="https://example.com/og-image.jpg" />
             </div>
 
             <div className={styles.formGroup}>
-              <label className={styles.label}>Twitter card</label>
-              <select name="twitterCard" className={styles.select} defaultValue={seo?.twitterCard ?? "summary_large_image"}>
-                <option value="summary_large_image">summary_large_image</option>
-                <option value="summary">summary</option>
+              <label className={styles.label}>Indexing</label>
+              <select name="robots" className={styles.input} defaultValue={seo?.robots ?? "index"}>
+                <option value="index">Index</option>
+                <option value="noindex">Noindex</option>
               </select>
+            </div>
+
+            <div className={styles.formGroup}>
+              <label className={styles.label}>Author</label>
+              <input name="author" className={styles.input} defaultValue={seo?.author ?? ""} />
             </div>
 
             <div className={styles.buttonRow}>

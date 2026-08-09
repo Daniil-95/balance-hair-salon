@@ -74,7 +74,6 @@ export default async function AdminGalleryPage() {
                 </button>
                 <ConfirmForm
                   action={actions.deleteGalleryImageAction}
-                  method="post"
                   className={styles.inlineForm}
                   message="Opravdu chcete smazat tuto fotografii?"
                 >

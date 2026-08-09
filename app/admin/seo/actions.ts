@@ -11,8 +11,11 @@ export async function saveSeoAction(formData: FormData) {
   const description = formData.get("description")?.toString().trim() ?? "";
   const keywords = formData.get("keywords")?.toString().trim() ?? "";
   const canonicalUrl = formData.get("canonicalUrl")?.toString().trim() ?? "";
-  const ogImage = formData.get("ogImage")?.toString().trim() || null;
-  const twitterCard = formData.get("twitterCard")?.toString().trim() || null;
+  const ogTitle = formData.get("ogTitle")?.toString().trim() ?? "";
+  const ogDescription = formData.get("ogDescription")?.toString().trim() ?? "";
+  const ogImage = formData.get("ogImage")?.toString().trim() ?? "";
+  const robots = formData.get("robots")?.toString().trim() ?? "index";
+  const author = formData.get("author")?.toString().trim() ?? "";
 
   if (!title || !description || !keywords || !canonicalUrl) {
     return;
@@ -23,12 +26,17 @@ export async function saveSeoAction(formData: FormData) {
     description,
     keywords,
     canonicalUrl,
-    ogImage,
-    twitterCard,
+    ogTitle: ogTitle || null,
+    ogDescription: ogDescription || null,
+    ogImage: ogImage || null,
+    robots,
+    author: author || null,
   });
 
   revalidatePath("/admin/seo");
   revalidatePath("/");
   revalidatePath("/gallery");
   revalidatePath("/pricing");
+  revalidatePath("/robots.txt");
+  revalidatePath("/sitemap.xml");
 }

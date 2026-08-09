@@ -78,7 +78,6 @@ export default async function AdminServicesPage() {
                 </button>
                 <ConfirmForm
                   action={actions.deleteServiceAction}
-                  method="post"
                   className={styles.inlineForm}
                   message="Opravdu chcete smazat tuto službu?"
                 >

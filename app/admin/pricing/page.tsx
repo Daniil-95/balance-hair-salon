@@ -63,7 +63,6 @@ export default async function AdminPricingPage() {
                 </button>
                 <ConfirmForm
                   action={actions.deletePriceCategoryAction}
-                  method="post"
                   className={styles.inlineForm}
                   message="Opravdu chcete smazat tuto kategorii? Smažou se i její položky."
                 >
@@ -73,7 +72,6 @@ export default async function AdminPricingPage() {
                   </button>
                 </ConfirmForm>
               </div>
-
               <div className={styles.subBlock}>
                 <h3 className={styles.cardTitle}>Přidat položku</h3>
                 <form action={actions.createPriceItemAction} className={styles.form}>

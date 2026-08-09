@@ -1,0 +1,6 @@
+-- AlterTable
+ALTER TABLE "Seo" ADD COLUMN "author" TEXT;
+ALTER TABLE "Seo" ADD COLUMN "ogDescription" TEXT;
+ALTER TABLE "Seo" ADD COLUMN "ogTitle" TEXT;
+ALTER TABLE "Seo" ADD COLUMN "robots" TEXT DEFAULT 'index';
+ALTER TABLE "Seo" ADD COLUMN "viewport" TEXT;
