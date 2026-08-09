@@ -509,6 +509,68 @@
   font-weight: 700;
 }
 
+.contactCompactForm {
+  gap: 1rem;
+}
+
+.contactTopGrid {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.contactMapField {
+  grid-column: 1 / -1;
+}
+
+.contactHoursHeader {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.contactHoursGrid {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.contactDayCard {
+  margin-top: 0;
+  padding: 0.85rem;
+  display: grid;
+  gap: 0.6rem;
+}
+
+.contactDayHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.contactDayHeader .cardTitle {
+  font-size: 1rem;
+}
+
+.contactHoursFields {
+  display: grid;
+  gap: 0.6rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.contactDayCard .formGroup {
+  gap: 0.3rem;
+}
+
+.contactDayCard .label {
+  font-size: 0.85rem;
+}
+
+.contactDayCard .input {
+  min-height: 38px;
+  padding: 0.55rem 0.65rem;
+}
+
 .form {
   display: grid;
   gap: 1rem;
@@ -712,6 +774,15 @@
   .pricingInlineFieldsThree {
     grid-template-columns: 1fr;
   }
+
+  .contactTopGrid,
+  .contactHoursGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .contactHoursFields {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 480px) {
@@ -739,6 +810,10 @@
   .pricingEditorActions,
   .pricingRowActions {
     width: 100%;
+  }
+
+  .contactHoursFields {
+    grid-template-columns: 1fr;
   }
 
   .content {
