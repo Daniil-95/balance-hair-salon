@@ -44,6 +44,9 @@ export async function saveHeroAction(formData: FormData) {
   const instagramLabel = formData.get("instagramLabel")?.toString() ?? "";
   const instagramUrl = formData.get("instagramUrl")?.toString() ?? "";
   const openingHoursLabel = formData.get("openingHoursLabel")?.toString() ?? "";
+  const metaRowLeftLabel = formData.get("metaRowLeftLabel")?.toString() ?? "";
+  const metaRowCenterLabel = formData.get("metaRowCenterLabel")?.toString() ?? "";
+  const metaRowRightLabel = formData.get("metaRowRightLabel")?.toString() ?? "";
   const imageFile = formData.get("image") as File | null;
 
   if (!headline || !subheadline || !ctaLabel || !ctaUrl || !overline || !imageAlt || !whatsappLabel || !instagramLabel || !openingHoursLabel) {
@@ -70,6 +73,9 @@ export async function saveHeroAction(formData: FormData) {
       instagramLabel,
       instagramUrl,
       openingHoursLabel,
+      metaRowLeftLabel,
+      metaRowCenterLabel,
+      metaRowRightLabel,
     },
   });
 

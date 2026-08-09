@@ -14,6 +14,9 @@ interface HeroProps {
   whatsappLabel: string;
   whatsappUrl?: string | null;
   openingHoursLabel: string;
+  metaRowLeftLabel?: string;
+  metaRowCenterLabel?: string;
+  metaRowRightLabel?: string;
   contactWhatsapp?: string | null;
   contactAddress: string;
   contactPhone: string;
@@ -59,12 +62,18 @@ export function Hero({
   whatsappLabel,
   whatsappUrl,
   openingHoursLabel,
+  metaRowLeftLabel,
+  metaRowCenterLabel,
+  metaRowRightLabel,
   contactWhatsapp,
   contactAddress,
   contactPhone
 }: HeroProps) {
   const whatsappHref = normalizeWhatsappHref(whatsappUrl || contactWhatsapp);
   const instagramHref = normalizeExternalHref(instagramUrl);
+  const leftMeta = (metaRowLeftLabel || "").trim() || contactAddress;
+  const centerMeta = (metaRowCenterLabel || "").trim() || openingHoursLabel;
+  const rightMeta = (metaRowRightLabel || "").trim() || contactPhone;
 
   return (
     <section id="home" className={styles.hero}>
@@ -131,9 +140,9 @@ export function Hero({
               </a>
             </div>
             <div className={styles.metaRow}>
-              <span>{contactAddress}</span>
-              <span>{openingHoursLabel}</span>
-              <span>{contactPhone}</span>
+              <span>{leftMeta}</span>
+              <span>{centerMeta}</span>
+              <span>{rightMeta}</span>
             </div>
           </div>
 

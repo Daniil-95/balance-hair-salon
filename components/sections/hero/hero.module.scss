@@ -194,7 +194,7 @@
 .scrollHint {
   position: absolute;
   left: 50%;
-  bottom: max(0.05rem, env(safe-area-inset-bottom));
+  bottom: max(-1rem, calc(env(safe-area-inset-bottom) - 1rem));
   width: 2rem;
   height: 2rem;
   transform: translateX(-50%);
@@ -258,7 +258,7 @@
   }
 
   .scrollHint {
-    bottom: max(0.05rem, env(safe-area-inset-bottom));
+    bottom: max(-0.6rem, calc(env(safe-area-inset-bottom) - 0.6rem));
   }
 
   .title {

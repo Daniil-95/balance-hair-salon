@@ -79,7 +79,10 @@ export async function getPublicHero() {
     whatsappLabel: heroMeta.whatsappLabel || "",
     whatsappUrl: heroMeta.whatsappUrl || null,
     instagramLabel: heroMeta.instagramLabel || "",
-    openingHoursLabel: heroMeta.openingHoursLabel || ""
+    openingHoursLabel: heroMeta.openingHoursLabel || "",
+    metaRowLeftLabel: heroMeta.metaRowLeftLabel || "",
+    metaRowCenterLabel: heroMeta.metaRowCenterLabel || heroMeta.openingHoursLabel || "",
+    metaRowRightLabel: heroMeta.metaRowRightLabel || "",
   };
 }
 

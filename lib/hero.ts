@@ -8,6 +8,9 @@ export interface HeroMeta {
   whatsappLabel?: string;
   whatsappUrl?: string;
   openingHoursLabel?: string;
+  metaRowLeftLabel?: string;
+  metaRowCenterLabel?: string;
+  metaRowRightLabel?: string;
 }
 
 interface HeroBackgroundPayload {

@@ -42,6 +42,9 @@ export default async function HomePage() {
         whatsappLabel={heroData.whatsappLabel}
         whatsappUrl={heroData.whatsappUrl}
         openingHoursLabel={heroData.openingHoursLabel}
+        metaRowLeftLabel={heroData.metaRowLeftLabel}
+        metaRowCenterLabel={heroData.metaRowCenterLabel}
+        metaRowRightLabel={heroData.metaRowRightLabel}
         contactWhatsapp={contactData.contact?.whatsapp ?? null}
         contactAddress={contactData.contact?.address ?? ""}
         contactPhone={contactData.contact?.phone ?? ""}
