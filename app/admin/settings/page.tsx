@@ -52,26 +52,7 @@ export default async function AdminSettingsPage() {
             </div>
 
             <div className={`${styles.subBlock} ${styles.settingsGroup}`}>
-              <h2 className={styles.cardTitle}>Patička webu</h2>
-              <div className={styles.settingsSectionBlocks}>
-                <div className={styles.settingsSectionBlock}>
-                  <h3 className={styles.settingsSectionBlockTitle}>Texty v patičce</h3>
-                  <div className={styles.settingsGrid}>
-                    <div className={styles.formGroup}>
-                      <label className={styles.label}>Název v patičce</label>
-                      <input name="salonName" className={styles.input} defaultValue={settings?.salonName ?? ""} required />
-                    </div>
-                    <div className={styles.formGroup}>
-                      <label className={styles.label}>Slogan v patičce</label>
-                      <input name="tagline" className={styles.input} defaultValue={settings?.tagline ?? ""} />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className={`${styles.subBlock} ${styles.settingsGroup}`}>
-              <h2 className={styles.cardTitle}>Homepage sekce</h2>
+              <h2 className={styles.cardTitle}>Sekce hlavní stránky</h2>
               <div className={styles.settingsSectionBlocks}>
                 <div className={styles.settingsSectionBlock}>
                   <h3 className={styles.settingsSectionBlockTitle}>Služby</h3>
@@ -106,6 +87,25 @@ export default async function AdminSettingsPage() {
                   <div className={styles.formGroup}>
                     <label className={styles.label}>Podtitulek sekce</label>
                     <textarea name="contactSectionSub" className={styles.textarea} defaultValue={settings?.contactSectionSub ?? ""} />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className={`${styles.subBlock} ${styles.settingsGroup}`}>
+              <h2 className={styles.cardTitle}>Patička webu</h2>
+              <div className={styles.settingsSectionBlocks}>
+                <div className={styles.settingsSectionBlock}>
+                  <h3 className={styles.settingsSectionBlockTitle}>Texty v patičce</h3>
+                  <div className={styles.settingsGrid}>
+                    <div className={styles.formGroup}>
+                      <label className={styles.label}>Název v patičce</label>
+                      <input name="salonName" className={styles.input} defaultValue={settings?.salonName ?? ""} required />
+                    </div>
+                    <div className={styles.formGroup}>
+                      <label className={styles.label}>Slogan v patičce</label>
+                      <input name="tagline" className={styles.input} defaultValue={settings?.tagline ?? ""} />
+                    </div>
                   </div>
                 </div>
               </div>
