@@ -31,7 +31,10 @@
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  padding: 0.25rem 0.25rem 0.75rem;
+  padding: 0.65rem 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.65rem;
+  background: rgba(255, 255, 255, 0.03);
 }
 
 .brand {
@@ -49,6 +52,10 @@
 .navList {
   display: grid;
   gap: 0.35rem;
+  padding: 0.45rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 0.7rem;
+  background: rgba(255, 255, 255, 0.02);
 }
 
 .navLink {
@@ -83,7 +90,9 @@
 }
 
 .logoutForm {
-  margin-top: auto;
+  margin-top: 0.35rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 .logoutButton,
@@ -268,6 +277,74 @@
 }
 
 .galleryAdminActions .buttonDanger {
+  width: 100%;
+}
+
+.servicesWorkspace {
+  display: grid;
+  gap: 1rem;
+}
+
+.servicesCreateCard,
+.servicesItemCard {
+  gap: 0.85rem;
+  padding: 1rem;
+}
+
+.servicesCompactForm {
+  gap: 0.75rem;
+}
+
+.servicesInlineFields {
+  display: grid;
+  gap: 0.6rem;
+  grid-template-columns: 2fr 1fr 1fr;
+}
+
+.servicesWideField {
+  grid-column: 1 / -1;
+}
+
+.servicesCompactForm .formGroup {
+  gap: 0.3rem;
+}
+
+.servicesCompactForm .label {
+  font-size: 0.88rem;
+}
+
+.servicesCompactForm .input,
+.servicesCompactForm .textarea {
+  min-height: 38px;
+  padding: 0.55rem 0.65rem;
+}
+
+.servicesCompactForm .textarea {
+  min-height: 78px;
+}
+
+.servicesEditorGrid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.servicesActions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+
+.servicesActions .button,
+.servicesActions .buttonDanger {
+  min-height: 38px;
+  padding: 0.55rem 0.7rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.servicesActions .inlineForm,
+.servicesActions .buttonDanger {
   width: 100%;
 }
 
@@ -638,6 +715,67 @@
   object-fit: cover;
 }
 
+.settingsCompactForm {
+  gap: 0.75rem;
+}
+
+.settingsGroup {
+  margin-top: 0;
+  padding: 0.9rem;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.settingsGrid {
+  display: grid;
+  gap: 0.7rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.settingsWideField {
+  grid-column: 1 / -1;
+}
+
+.settingsCompactForm .formGroup {
+  gap: 0.3rem;
+}
+
+.settingsCompactForm .label {
+  font-size: 0.88rem;
+}
+
+.settingsCompactForm .input,
+.settingsCompactForm .textarea {
+  min-height: 38px;
+  padding: 0.55rem 0.65rem;
+}
+
+.settingsCompactForm .textarea {
+  min-height: 84px;
+}
+
+.settingsSectionBlocks {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.settingsSectionBlock {
+  border: 1px solid #d1d5db;
+  border-radius: 0.65rem;
+  background: #ffffff;
+  padding: 0.75rem;
+  display: grid;
+  gap: 0.6rem;
+}
+
+.settingsSectionBlockTitle {
+  margin: 0;
+  color: #111827;
+  font-size: 0.95rem;
+  line-height: 1.2;
+  font-weight: 800;
+}
+
 .form {
   display: grid;
   gap: 1rem;
@@ -868,6 +1006,10 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .servicesEditorGrid {
+    grid-template-columns: 1fr;
+  }
+
   .pricingAdminGrid {
     grid-template-columns: 1fr;
   }
@@ -881,7 +1023,8 @@
   }
 
   .pricingInlineFields,
-  .pricingInlineFieldsThree {
+  .pricingInlineFieldsThree,
+  .servicesInlineFields {
     grid-template-columns: 1fr;
   }
 
@@ -895,7 +1038,8 @@
   }
 
   .heroTopGrid,
-  .heroSocialGrid {
+  .heroSocialGrid,
+  .settingsGrid {
     grid-template-columns: 1fr;
   }
 
@@ -926,6 +1070,10 @@
   }
 
   .pricingAdminActions {
+    grid-template-columns: 1fr;
+  }
+
+  .servicesActions {
     grid-template-columns: 1fr;
   }
 
