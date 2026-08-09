@@ -14,7 +14,7 @@ const navItems = [
   { href: "/admin/hero", label: "Hero", icon: "★" },
   { href: "/admin/about", label: "O nás", icon: "◐" },
   { href: "/admin/services", label: "Služby", icon: "✂" },
-  { href: "/admin/gallery", label: "Galerie", icon: "□" },
+  { href: "/admin/gallery", label: "Galerie", icon: "▦" },
   { href: "/admin/pricing", label: "Ceník", icon: "Kč" },
   { href: "/admin/contact", label: "Kontakt", icon: "@" },
   { href: "/admin/settings", label: "Nastavení", icon: "⚙" }

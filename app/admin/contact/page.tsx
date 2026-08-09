@@ -49,18 +49,20 @@ export default async function AdminContactPage() {
             </div>
 
             {hours.map((hour, index) => (
-              <div key={`${hour.day}-${index}`} className={styles.subBlock}>
+              <div key={`${hour.day}-${index}`} className={`${styles.subBlock} ${styles.hoursDayBlock}`}>
                 <h2 className={styles.cardTitle}>{hour.day}</h2>
                 <input type="hidden" name={`hours[${index}][day]`} value={hour.day} />
-                <div className={styles.formGroup}>
-                  <label className={styles.label}>Otevřeno od</label>
-                  <input name={`hours[${index}][open]`} className={styles.input} defaultValue={hour.open} />
+                <div className={styles.hoursTimeGrid}>
+                  <div className={styles.formGroup}>
+                    <label className={styles.label}>Otevřeno od</label>
+                    <input name={`hours[${index}][open]`} className={styles.input} defaultValue={hour.open} />
+                  </div>
+                  <div className={styles.formGroup}>
+                    <label className={styles.label}>Otevřeno do</label>
+                    <input name={`hours[${index}][close]`} className={styles.input} defaultValue={hour.close} />
+                  </div>
                 </div>
-                <div className={styles.formGroup}>
-                  <label className={styles.label}>Otevřeno do</label>
-                  <input name={`hours[${index}][close]`} className={styles.input} defaultValue={hour.close} />
-                </div>
-                <label className={styles.checkLabel}>
+                <label className={`${styles.checkLabel} ${styles.hoursClosedRow}`}>
                   <input
                     type="checkbox"
                     name={`hours[${index}][isClosed]`}

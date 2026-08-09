@@ -15,42 +15,44 @@ export async function upsertContactAndHours(data: {
   mapUrl?: string | null;
   hours: Array<{ day: string; open: string; close: string; isClosed: boolean; order: number }>;
 }) {
-  const existing = await prisma.contact.findFirst();
+  await prisma.$transaction(async (tx) => {
+    const existing = await tx.contact.findFirst();
 
-  if (existing) {
-    await prisma.contact.update({
-      where: { id: existing.id },
-      data: {
-        address: data.address,
-        phone: data.phone,
-        whatsapp: data.whatsapp,
-        email: data.email,
-        mapUrl: data.mapUrl,
-      },
-    });
-  } else {
-    await prisma.contact.create({
-      data: {
-        address: data.address,
-        phone: data.phone,
-        whatsapp: data.whatsapp,
-        email: data.email,
-        mapUrl: data.mapUrl,
-      },
-    });
-  }
+    if (existing) {
+      await tx.contact.update({
+        where: { id: existing.id },
+        data: {
+          address: data.address,
+          phone: data.phone,
+          whatsapp: data.whatsapp,
+          email: data.email,
+          mapUrl: data.mapUrl,
+        },
+      });
+    } else {
+      await tx.contact.create({
+        data: {
+          address: data.address,
+          phone: data.phone,
+          whatsapp: data.whatsapp,
+          email: data.email,
+          mapUrl: data.mapUrl,
+        },
+      });
+    }
 
-  await prisma.openingHour.deleteMany({});
+    await tx.openingHour.deleteMany({});
 
-  if (data.hours.length > 0) {
-    await prisma.openingHour.createMany({
-      data: data.hours.map((hour) => ({
-        day: hour.day,
-        open: hour.open,
-        close: hour.close,
-        isClosed: hour.isClosed,
-        order: hour.order,
-      })),
-    });
-  }
+    for (const hour of data.hours) {
+      await tx.openingHour.create({
+        data: {
+          day: hour.day,
+          open: hour.open,
+          close: hour.close,
+          isClosed: hour.isClosed,
+          order: hour.order,
+        },
+      });
+    }
+  });
 }
