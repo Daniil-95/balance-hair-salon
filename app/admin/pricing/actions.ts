@@ -11,7 +11,7 @@ function revalidatePricingViews() {
 }
 
 export async function createPriceCategoryAction(formData: FormData) {
-  requireAdminSession();
+  await requireAdminSession();
   const name = formData.get("name")?.toString() ?? "";
   const description = formData.get("description")?.toString() || undefined;
   const order = Number(formData.get("order") ?? 0);
@@ -25,7 +25,7 @@ export async function createPriceCategoryAction(formData: FormData) {
 }
 
 export async function updatePriceCategoryAction(formData: FormData) {
-  requireAdminSession();
+  await requireAdminSession();
   const id = formData.get("id")?.toString();
   const name = formData.get("name")?.toString() ?? "";
   const description = formData.get("description")?.toString() || undefined;
@@ -40,7 +40,7 @@ export async function updatePriceCategoryAction(formData: FormData) {
 }
 
 export async function deletePriceCategoryAction(formData: FormData) {
-  requireAdminSession();
+  await requireAdminSession();
   const id = formData.get("id")?.toString();
   if (!id) {
     return;
@@ -51,7 +51,7 @@ export async function deletePriceCategoryAction(formData: FormData) {
 }
 
 export async function createPriceItemAction(formData: FormData) {
-  requireAdminSession();
+  await requireAdminSession();
   const categoryId = formData.get("categoryId")?.toString() ?? "";
   const title = formData.get("title")?.toString() ?? "";
   const price = formData.get("price")?.toString() ?? "";
@@ -67,7 +67,7 @@ export async function createPriceItemAction(formData: FormData) {
 }
 
 export async function updatePriceItemAction(formData: FormData) {
-  requireAdminSession();
+  await requireAdminSession();
   const id = formData.get("id")?.toString();
   const title = formData.get("title")?.toString() ?? "";
   const price = formData.get("price")?.toString() ?? "";
@@ -83,7 +83,7 @@ export async function updatePriceItemAction(formData: FormData) {
 }
 
 export async function deletePriceItemAction(formData: FormData) {
-  requireAdminSession();
+  await requireAdminSession();
   const id = formData.get("id")?.toString();
   if (!id) {
     return;

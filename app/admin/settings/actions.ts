@@ -24,7 +24,7 @@ async function saveUpload(file: File) {
 }
 
 export async function saveSettingsAction(formData: FormData) {
-  requireAdminSession();
+  await requireAdminSession();
   const salonName = formData.get("salonName")?.toString() ?? "";
   const tagline = formData.get("tagline")?.toString() || null;
   const heroCtaLabel = formData.get("heroCtaLabel")?.toString() || null;

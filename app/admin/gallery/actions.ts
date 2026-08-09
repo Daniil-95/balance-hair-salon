@@ -30,7 +30,7 @@ function revalidateGalleryViews() {
 }
 
 export async function createGalleryCategoryAction(formData: FormData) {
-  requireAdminSession();
+  await requireAdminSession();
   const name = formData.get("name")?.toString() ?? "";
   if (!name) {
     return;
@@ -41,7 +41,7 @@ export async function createGalleryCategoryAction(formData: FormData) {
 }
 
 export async function updateGalleryCategoryAction(formData: FormData) {
-  requireAdminSession();
+  await requireAdminSession();
   const id = formData.get("id")?.toString();
   const name = formData.get("name")?.toString() ?? "";
   const order = Number(formData.get("order") ?? 0);
@@ -55,7 +55,7 @@ export async function updateGalleryCategoryAction(formData: FormData) {
 }
 
 export async function deleteGalleryCategoryAction(formData: FormData) {
-  requireAdminSession();
+  await requireAdminSession();
   const id = formData.get("id")?.toString();
   if (!id) {
     return;
@@ -66,7 +66,7 @@ export async function deleteGalleryCategoryAction(formData: FormData) {
 }
 
 export async function uploadGalleryImageAction(formData: FormData) {
-  requireAdminSession();
+  await requireAdminSession();
   const title = formData.get("title")?.toString() ?? "";
   const alt = formData.get("alt")?.toString() ?? "";
   const categoryId = formData.get("categoryId")?.toString() ?? "";
@@ -83,7 +83,7 @@ export async function uploadGalleryImageAction(formData: FormData) {
 }
 
 export async function updateGalleryImageAction(formData: FormData) {
-  requireAdminSession();
+  await requireAdminSession();
   const id = formData.get("id")?.toString();
   const title = formData.get("title")?.toString() ?? "";
   const alt = formData.get("alt")?.toString() ?? "";
@@ -99,7 +99,7 @@ export async function updateGalleryImageAction(formData: FormData) {
 }
 
 export async function deleteGalleryImageAction(formData: FormData) {
-  requireAdminSession();
+  await requireAdminSession();
   const id = formData.get("id")?.toString();
   if (!id) {
     return;

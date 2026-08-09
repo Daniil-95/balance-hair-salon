@@ -31,7 +31,7 @@ function revalidateHeroViews() {
 }
 
 export async function saveHeroAction(formData: FormData) {
-  requireAdminSession();
+  await requireAdminSession();
 
   const headline = formData.get("headline")?.toString() ?? "";
   const subheadline = formData.get("subheadline")?.toString() ?? "";

@@ -5,7 +5,7 @@ import { requireAdminSession } from "@/lib/auth";
 import { createService, deleteService, toggleServiceFeatured, updateService } from "@/lib/services";
 
 export async function createServiceAction(formData: FormData) {
-  requireAdminSession();
+  await requireAdminSession();
   const title = formData.get("title")?.toString() ?? "";
   const description = formData.get("description")?.toString() ?? "";
   const icon = formData.get("icon")?.toString() ?? "";
@@ -21,7 +21,7 @@ export async function createServiceAction(formData: FormData) {
 }
 
 export async function updateServiceAction(formData: FormData) {
-  requireAdminSession();
+  await requireAdminSession();
   const id = formData.get("id")?.toString();
   const title = formData.get("title")?.toString() ?? "";
   const description = formData.get("description")?.toString() ?? "";
@@ -38,7 +38,7 @@ export async function updateServiceAction(formData: FormData) {
 }
 
 export async function deleteServiceAction(formData: FormData) {
-  requireAdminSession();
+  await requireAdminSession();
   const id = formData.get("id")?.toString();
   if (!id) {
     return;
@@ -50,7 +50,7 @@ export async function deleteServiceAction(formData: FormData) {
 }
 
 export async function toggleServiceFeaturedAction(formData: FormData) {
-  requireAdminSession();
+  await requireAdminSession();
   const id = formData.get("id")?.toString();
   const featured = formData.get("featured")?.toString() === "true";
   if (!id) {

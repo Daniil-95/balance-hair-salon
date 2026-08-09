@@ -29,7 +29,7 @@ function revalidateAboutViews() {
 }
 
 export async function saveAboutAction(formData: FormData) {
-  requireAdminSession();
+  await requireAdminSession();
 
   const title = formData.get("title")?.toString() ?? "";
   const description = formData.get("description")?.toString() ?? "";

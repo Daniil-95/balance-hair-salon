@@ -24,13 +24,14 @@ export function isAdminPayload(payload: Record<string, unknown> | null | undefin
   return payload?.role === "ADMIN";
 }
 
-export function getAuthToken() {
-  const token = cookies().get(TOKEN_NAME)?.value;
+export async function getAuthToken() {
+  const cookieStore = await cookies();
+  const token = cookieStore.get(TOKEN_NAME)?.value;
   return token ?? null;
 }
 
-export function getSessionPayload() {
-  const token = getAuthToken();
+export async function getSessionPayload() {
+  const token = await getAuthToken();
   if (!token) {
     return null;
   }
@@ -42,8 +43,8 @@ export function getSessionPayload() {
   }
 }
 
-export function requireAdminSession() {
-  const payload = getSessionPayload();
+export async function requireAdminSession() {
+  const payload = await getSessionPayload();
   if (!isAdminPayload(payload)) {
     throw new Error("Unauthorized");
   }

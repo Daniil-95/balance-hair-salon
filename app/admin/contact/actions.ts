@@ -9,7 +9,7 @@ function parseBoolean(value: string | string[] | null) {
 }
 
 export async function saveContactAction(formData: FormData) {
-  requireAdminSession();
+  await requireAdminSession();
   const address = formData.get("address")?.toString() ?? "";
   const phone = formData.get("phone")?.toString() ?? "";
   const whatsapp = formData.get("whatsapp")?.toString() ?? "";
