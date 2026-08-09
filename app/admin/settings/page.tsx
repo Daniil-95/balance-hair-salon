@@ -16,7 +16,7 @@ export default async function AdminSettingsPage() {
         <p className={styles.panelIntro}>Upravte název salonu, krátký slogan, hlavní tlačítko a logo.</p>
 
         <div className={styles.card}>
-          <form action={actions.saveSettingsAction} method="post" encType="multipart/form-data" className={styles.form}>
+          <form action={actions.saveSettingsAction} className={styles.form}>
             <div className={styles.formGroup}>
               <label className={styles.label}>Název salonu</label>
               <input name="salonName" className={styles.input} defaultValue={settings?.salonName ?? ""} required />

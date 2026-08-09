@@ -16,7 +16,7 @@ export default async function AdminAboutPage() {
         <p className={styles.panelIntro}>Upravte titulek, texty a obrázek sekce O nás na hlavní stránce.</p>
 
         <div className={styles.card}>
-          <form action={actions.saveAboutAction} method="post" encType="multipart/form-data" className={styles.form}>
+          <form action={actions.saveAboutAction} className={styles.form}>
             <div className={styles.formGroup}>
               <label className={styles.label}>Titulek</label>
               <input name="title" className={styles.input} defaultValue={about?.title ?? ""} required />

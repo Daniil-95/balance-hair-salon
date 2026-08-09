@@ -37,10 +37,16 @@ export async function saveHeroAction(formData: FormData) {
   const subheadline = formData.get("subheadline")?.toString() ?? "";
   const ctaLabel = formData.get("ctaLabel")?.toString() ?? "";
   const ctaUrl = formData.get("ctaUrl")?.toString() ?? "";
-  const background = formData.get("background")?.toString() || null;
+  const overline = formData.get("overline")?.toString() ?? "";
+  const imageAlt = formData.get("imageAlt")?.toString() ?? "";
+  const whatsappLabel = formData.get("whatsappLabel")?.toString() ?? "";
+  const whatsappUrl = formData.get("whatsappUrl")?.toString() ?? "";
+  const instagramLabel = formData.get("instagramLabel")?.toString() ?? "";
+  const instagramUrl = formData.get("instagramUrl")?.toString() ?? "";
+  const openingHoursLabel = formData.get("openingHoursLabel")?.toString() ?? "";
   const imageFile = formData.get("image") as File | null;
 
-  if (!headline || !subheadline || !ctaLabel || !ctaUrl) {
+  if (!headline || !subheadline || !ctaLabel || !ctaUrl || !overline || !imageAlt || !whatsappLabel || !instagramLabel || !openingHoursLabel) {
     return;
   }
 
@@ -55,8 +61,16 @@ export async function saveHeroAction(formData: FormData) {
     subheadline,
     ctaLabel,
     ctaUrl,
-    background,
     image,
+    meta: {
+      overline,
+      imageAlt,
+      whatsappLabel,
+      whatsappUrl,
+      instagramLabel,
+      instagramUrl,
+      openingHoursLabel,
+    },
   });
 
   revalidateHeroViews();

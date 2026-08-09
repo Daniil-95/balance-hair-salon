@@ -18,7 +18,7 @@ export default async function AdminGalleryPage() {
 
         <div className={styles.card}>
           <h2 className={styles.cardTitle}>Vytvořit kategorii</h2>
-          <form action={actions.createGalleryCategoryAction} method="post" className={styles.form}>
+          <form action={actions.createGalleryCategoryAction} className={styles.form}>
             <div className={styles.formGroup}>
               <label className={styles.label}>Název kategorie</label>
               <input name="name" className={styles.input} required />
@@ -41,7 +41,7 @@ export default async function AdminGalleryPage() {
           {categories.map((category) => (
             <div key={category.id} className={styles.card}>
               <h2 className={styles.cardTitle}>{category.name}</h2>
-              <form action={actions.updateGalleryCategoryAction} method="post" className={styles.form}>
+              <form action={actions.updateGalleryCategoryAction} className={styles.form}>
                 <input type="hidden" name="id" value={category.id} />
                 <div className={styles.formGroup}>
                   <label className={styles.label}>Název</label>
@@ -74,7 +74,7 @@ export default async function AdminGalleryPage() {
 
         <div className={styles.card}>
           <h2 className={styles.cardTitle}>Nahrát fotografii</h2>
-          <form action={actions.uploadGalleryImageAction} method="post" encType="multipart/form-data" className={styles.form}>
+          <form action={actions.uploadGalleryImageAction} className={styles.form}>
             <div className={styles.formGroup}>
               <label className={styles.label}>Název</label>
               <input name="title" className={styles.input} required />
@@ -129,7 +129,7 @@ export default async function AdminGalleryPage() {
                 unoptimized
                 className={styles.mediaPreview}
               />
-              <form action={actions.updateGalleryImageAction} method="post" className={styles.form}>
+              <form action={actions.updateGalleryImageAction} className={styles.form}>
                 <input type="hidden" name="id" value={image.id} />
                 <div className={styles.formGroup}>
                   <label className={styles.label}>Název</label>

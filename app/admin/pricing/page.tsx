@@ -17,7 +17,7 @@ export default async function AdminPricingPage() {
 
         <div className={styles.card}>
           <h2 className={styles.cardTitle}>Vytvořit kategorii ceníku</h2>
-          <form action={actions.createPriceCategoryAction} method="post" className={styles.form}>
+          <form action={actions.createPriceCategoryAction} className={styles.form}>
             <div className={styles.formGroup}>
               <label className={styles.label}>Název</label>
               <input name="name" className={styles.input} required />
@@ -50,7 +50,7 @@ export default async function AdminPricingPage() {
               <h2 className={styles.cardTitle}>{category.name}</h2>
               {category.description ? <p className={styles.cardMeta}>{category.description}</p> : null}
 
-              <form action={actions.updatePriceCategoryAction} method="post" className={styles.form}>
+              <form action={actions.updatePriceCategoryAction} className={styles.form}>
                 <input type="hidden" name="id" value={category.id} />
                 <div className={styles.formGroup}>
                   <label className={styles.label}>Název</label>
@@ -85,7 +85,7 @@ export default async function AdminPricingPage() {
 
               <div className={styles.subBlock}>
                 <h3 className={styles.cardTitle}>Přidat položku</h3>
-                <form action={actions.createPriceItemAction} method="post" className={styles.form}>
+                <form action={actions.createPriceItemAction} className={styles.form}>
                   <input type="hidden" name="categoryId" value={category.id} />
                   <div className={styles.formGroup}>
                     <label className={styles.label}>Název</label>
@@ -118,7 +118,7 @@ export default async function AdminPricingPage() {
                   <h3 className={styles.cardTitle}>{item.title}</h3>
                   <div className={styles.cardMeta}>{item.price}</div>
                   {item.description ? <p className={styles.cardMeta}>{item.description}</p> : null}
-                  <form action={actions.updatePriceItemAction} method="post" className={styles.form}>
+                  <form action={actions.updatePriceItemAction} className={styles.form}>
                     <input type="hidden" name="id" value={item.id} />
                     <div className={styles.formGroup}>
                       <label className={styles.label}>Název</label>

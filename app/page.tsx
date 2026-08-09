@@ -40,6 +40,7 @@ export default async function HomePage() {
         instagramUrl={heroData.instagramUrl}
         instagramLabel={heroData.instagramLabel}
         whatsappLabel={heroData.whatsappLabel}
+        whatsappUrl={heroData.whatsappUrl}
         openingHoursLabel={heroData.openingHoursLabel}
         contactWhatsapp={contactData.contact?.whatsapp ?? null}
         contactAddress={contactData.contact?.address || "Čenkov 93"}

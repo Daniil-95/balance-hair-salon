@@ -26,7 +26,7 @@ export default async function AdminContactPage() {
         <p className={styles.panelIntro}>Upravte kontaktní údaje salonu a běžnou otevírací dobu pro zákazníky.</p>
 
         <div className={styles.card}>
-          <form action={actions.saveContactAction} method="post" className={styles.form}>
+          <form action={actions.saveContactAction} className={styles.form}>
             <div className={styles.formGroup}>
               <label className={styles.label}>Adresa</label>
               <input name="address" className={styles.input} defaultValue={contact?.address ?? ""} required />

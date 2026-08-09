@@ -17,7 +17,7 @@ export default async function AdminServicesPage() {
 
         <div className={styles.card}>
           <h2 className={styles.cardTitle}>Vytvořit službu</h2>
-          <form action={actions.createServiceAction} method="post" className={styles.form}>
+          <form action={actions.createServiceAction} className={styles.form}>
             <div className={styles.formGroup}>
               <label className={styles.label}>Název</label>
               <input name="title" className={styles.input} required />
@@ -55,7 +55,7 @@ export default async function AdminServicesPage() {
               <div className={styles.cardMeta}>
                 Pořadí: {service.order} · Hlavní služba: {service.featured ? "Ano" : "Ne"}
               </div>
-              <form action={actions.updateServiceAction} method="post" className={styles.form}>
+              <form action={actions.updateServiceAction} className={styles.form}>
                 <input type="hidden" name="id" value={service.id} />
                 <div className={styles.formGroup}>
                   <label className={styles.label}>Název</label>
@@ -80,7 +80,7 @@ export default async function AdminServicesPage() {
                 </div>
               </form>
               <div className={styles.buttonRow}>
-                <form action={actions.toggleServiceFeaturedAction} method="post" className={styles.inlineForm}>
+                <form action={actions.toggleServiceFeaturedAction} className={styles.inlineForm}>
                   <input type="hidden" name="id" value={service.id} />
                   <input type="hidden" name="featured" value={service.featured ? "false" : "true"} />
                   <button type="submit" className={styles.buttonSecondary}>

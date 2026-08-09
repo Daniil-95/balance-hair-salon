@@ -1,7 +1,7 @@
 import { getAbout } from "@/lib/about";
 import { getContactAndHours } from "@/lib/contact";
 import { getGalleryImages } from "@/lib/gallery";
-import { getHero } from "@/lib/hero";
+import { getHero, getHeroMeta } from "@/lib/hero";
 import { getPriceCategories } from "@/lib/prices";
 import { getServices } from "@/lib/services";
 import { getSettings } from "@/lib/settings";
@@ -38,6 +38,7 @@ export const fallbackHero = {
   overline: "Kadeřnické studio",
   instagramUrl: "https://www.instagram.com/balance.kadernictvi",
   whatsappLabel: "WhatsApp",
+  whatsappUrl: "",
   instagramLabel: "Instagram",
   openingHoursLabel: "Po–Pá 9:00–19:00"
 };
@@ -121,7 +122,7 @@ export async function getPublicSettings() {
 }
 
 export async function getPublicHero() {
-  const [hero, settings] = await Promise.all([getHero(), getSettings()]);
+  const [hero, settings, heroMeta] = await Promise.all([getHero(), getSettings(), getHeroMeta()]);
 
   return {
     headline: hero?.headline || settings?.salonName || fallbackHero.headline,
@@ -129,12 +130,13 @@ export async function getPublicHero() {
     ctaLabel: hero?.ctaLabel || settings?.heroCtaLabel || fallbackHero.ctaLabel,
     ctaUrl: hero?.ctaUrl || settings?.heroCtaUrl || fallbackHero.ctaUrl,
     imageSrc: normalizeUploadedImage(hero?.image) || fallbackHero.imageSrc,
-    imageAlt: fallbackHero.imageAlt,
-    overline: fallbackHero.overline,
-    instagramUrl: fallbackHero.instagramUrl,
-    whatsappLabel: fallbackHero.whatsappLabel,
-    instagramLabel: fallbackHero.instagramLabel,
-    openingHoursLabel: fallbackHero.openingHoursLabel
+    imageAlt: heroMeta.imageAlt || fallbackHero.imageAlt,
+    overline: heroMeta.overline || fallbackHero.overline,
+    instagramUrl: heroMeta.instagramUrl || fallbackHero.instagramUrl,
+    whatsappLabel: heroMeta.whatsappLabel || fallbackHero.whatsappLabel,
+    whatsappUrl: heroMeta.whatsappUrl || fallbackHero.whatsappUrl,
+    instagramLabel: heroMeta.instagramLabel || fallbackHero.instagramLabel,
+    openingHoursLabel: heroMeta.openingHoursLabel || fallbackHero.openingHoursLabel
   };
 }
 

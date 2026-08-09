@@ -12,6 +12,7 @@ interface HeroProps {
   instagramUrl: string;
   instagramLabel: string;
   whatsappLabel: string;
+  whatsappUrl?: string;
   openingHoursLabel: string;
   contactWhatsapp?: string | null;
   contactAddress: string;
@@ -29,14 +30,16 @@ export function Hero({
   instagramUrl,
   instagramLabel,
   whatsappLabel,
+  whatsappUrl,
   openingHoursLabel,
   contactWhatsapp,
   contactAddress,
   contactPhone
 }: HeroProps) {
-  const whatsappHref = contactWhatsapp?.startsWith("http")
-    ? contactWhatsapp
-    : `https://wa.me/${(contactWhatsapp || "+420603561625").replace(/\D+/g, "")}`;
+  const whatsappSource = whatsappUrl || contactWhatsapp || "+420603561625";
+  const whatsappHref = whatsappSource.startsWith("http")
+    ? whatsappSource
+    : `https://wa.me/${whatsappSource.replace(/\D+/g, "")}`;
 
   return (
     <section id="home" className={styles.hero}>
