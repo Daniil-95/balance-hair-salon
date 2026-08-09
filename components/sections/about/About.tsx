@@ -1,30 +1,42 @@
 import Image from "next/image";
 import styles from "./about.module.scss";
 
-export function About() {
+interface AboutProps {
+  overline: string;
+  title: string;
+  paragraphs: string[];
+  imageMainSrc: string;
+  imageMainAlt: string;
+  imageCutawaySrc: string;
+  imageCutawayAlt: string;
+}
+
+export function About({
+  overline,
+  title,
+  paragraphs,
+  imageMainSrc,
+  imageMainAlt,
+  imageCutawaySrc,
+  imageCutawayAlt
+}: AboutProps) {
+  const [firstParagraph = "", secondParagraph = ""] = paragraphs;
+
   return (
     <section id="about" className={styles.about}>
       <div className="container">
         <div className={styles.grid}>
           <div className={styles.content}>
-            <span className={styles.overline}>O nás</span>
-            <h2>Vítejte v Balance kadeřnickém studiu.</h2>
-            <p>
-              Spojujeme profesionální péči, moderní techniky a kvalitní produkty,
-              abychom zvýraznili vaši přirozenou krásu. Ke každému klientovi
-              přistupujeme individuálně a s maximální péčí.
-            </p>
-            <p>
-              Naše práce je založená na detailu, náladě a výsledném pocitu
-              sebevědomí. Rádi vytvoříme střih, barvu i styling, který bude
-              přesně odpovídat vašemu stylu.
-            </p>
+            <span className={styles.overline}>{overline}</span>
+            <h2>{title}</h2>
+            <p>{firstParagraph}</p>
+            <p>{secondParagraph}</p>
           </div>
           <div className={styles.imageWrapper}>
             <div className={styles.imageMain}>
               <Image
-                src="/images/image.png"
-                alt="Interiér kadeřnického studia Balance"
+                src={imageMainSrc}
+                alt={imageMainAlt}
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
                 className={styles.imageFill}
@@ -33,8 +45,8 @@ export function About() {
             </div>
             <div className={styles.imageCutaway}>
               <Image
-                src="/images/image.png"
-                alt="Detail salonu Balance"
+                src={imageCutawaySrc}
+                alt={imageCutawayAlt}
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
                 className={styles.imageFill}

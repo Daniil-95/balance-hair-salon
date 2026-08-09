@@ -11,6 +11,8 @@ interface AdminShellProps {
 
 const navItems = [
   { href: "/admin", label: "Přehled", icon: "⌂" },
+  { href: "/admin/hero", label: "Hero", icon: "★" },
+  { href: "/admin/about", label: "O nás", icon: "◐" },
   { href: "/admin/services", label: "Služby", icon: "✂" },
   { href: "/admin/gallery", label: "Galerie", icon: "□" },
   { href: "/admin/pricing", label: "Ceník", icon: "Kč" },
