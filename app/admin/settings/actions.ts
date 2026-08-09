@@ -11,12 +11,29 @@ export async function saveSettingsAction(formData: FormData) {
   const tagline = formData.get("tagline")?.toString() || null;
   const heroCtaLabel = formData.get("heroCtaLabel")?.toString() || null;
   const heroCtaUrl = formData.get("heroCtaUrl")?.toString() || null;
+  const servicesSectionTitle = formData.get("servicesSectionTitle")?.toString() || null;
+  const servicesSectionSub = formData.get("servicesSectionSub")?.toString() || null;
+  const pricingSectionTitle = formData.get("pricingSectionTitle")?.toString() || null;
+  const pricingSectionSub = formData.get("pricingSectionSub")?.toString() || null;
+  const contactSectionTitle = formData.get("contactSectionTitle")?.toString() || null;
+  const contactSectionSub = formData.get("contactSectionSub")?.toString() || null;
 
   if (!salonName) {
     return;
   }
 
-  await upsertSettings({ salonName, tagline, heroCtaLabel, heroCtaUrl });
+  await upsertSettings({
+    salonName,
+    tagline,
+    heroCtaLabel,
+    heroCtaUrl,
+    servicesSectionTitle,
+    servicesSectionSub,
+    pricingSectionTitle,
+    pricingSectionSub,
+    contactSectionTitle,
+    contactSectionSub,
+  });
   revalidatePath("/admin/settings");
   revalidatePath("/");
   redirect("/admin/settings?saved=1");

@@ -58,10 +58,24 @@ export default async function HomePage() {
         imageCutawaySrc={aboutData.imageCutawaySrc}
         imageCutawayAlt={aboutData.imageCutawayAlt}
       />
-      <Services services={servicesData} />
-      <Pricing categories={pricingData} />
+      <Services
+        services={servicesData}
+        sectionTitle={settingsData?.servicesSectionTitle ?? undefined}
+        sectionDescription={settingsData?.servicesSectionSub ?? undefined}
+      />
+      <Pricing
+        categories={pricingData}
+        sectionTitle={settingsData?.pricingSectionTitle ?? undefined}
+        sectionDescription={settingsData?.pricingSectionSub ?? undefined}
+      />
       <GalleryPreview items={galleryData} />
-      <Contact contact={contactData.contact} openingHours={contactData.openingHours} instagramUrl={heroData.instagramUrl} />
+      <Contact
+        contact={contactData.contact}
+        openingHours={contactData.openingHours}
+        instagramUrl={heroData.instagramUrl}
+        sectionTitle={settingsData?.contactSectionTitle ?? undefined}
+        sectionDescription={settingsData?.contactSectionSub ?? undefined}
+      />
     </SiteShell>
   );
 }

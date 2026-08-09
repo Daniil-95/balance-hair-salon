@@ -1,7 +1,85 @@
 import { prisma } from "@/lib/prisma";
 
-export function getSettings() {
-  return prisma.siteSettings.findFirst();
+type SectionTitleFields = {
+  servicesSectionTitle: string | null;
+  servicesSectionSub: string | null;
+  pricingSectionTitle: string | null;
+  pricingSectionSub: string | null;
+  contactSectionTitle: string | null;
+  contactSectionSub: string | null;
+};
+
+async function readSectionTitleFields(): Promise<SectionTitleFields> {
+  try {
+    const rows = await prisma.$queryRaw<Array<SectionTitleFields>>`
+      SELECT
+        "servicesSectionTitle",
+        "servicesSectionSub",
+        "pricingSectionTitle",
+        "pricingSectionSub",
+        "contactSectionTitle",
+        "contactSectionSub"
+      FROM "SiteSettings"
+      ORDER BY "createdAt" ASC
+      LIMIT 1
+    `;
+
+    if (rows.length > 0) {
+      return rows[0];
+    }
+  } catch {
+    // If migration/client state is temporarily out of sync, keep settings page usable.
+  }
+
+  return {
+    servicesSectionTitle: null,
+    servicesSectionSub: null,
+    pricingSectionTitle: null,
+    pricingSectionSub: null,
+    contactSectionTitle: null,
+    contactSectionSub: null,
+  };
+}
+
+async function writeSectionTitleFields(id: string, data: {
+  servicesSectionTitle?: string | null;
+  servicesSectionSub?: string | null;
+  pricingSectionTitle?: string | null;
+  pricingSectionSub?: string | null;
+  contactSectionTitle?: string | null;
+  contactSectionSub?: string | null;
+}) {
+  try {
+    await prisma.$executeRaw`
+      UPDATE "SiteSettings"
+      SET
+        "servicesSectionTitle" = ${data.servicesSectionTitle ?? null},
+        "servicesSectionSub" = ${data.servicesSectionSub ?? null},
+        "pricingSectionTitle" = ${data.pricingSectionTitle ?? null},
+        "pricingSectionSub" = ${data.pricingSectionSub ?? null},
+        "contactSectionTitle" = ${data.contactSectionTitle ?? null},
+        "contactSectionSub" = ${data.contactSectionSub ?? null}
+      WHERE "id" = ${id}
+    `;
+  } catch {
+    // Keep base settings save flow working even if these columns are not available yet.
+  }
+}
+
+export async function getSettings() {
+  const [settings, sectionFields] = await Promise.all([
+    prisma.siteSettings.findFirst(),
+    readSectionTitleFields(),
+  ]);
+
+  if (!settings) {
+    return null;
+  }
+
+  return {
+    ...settings,
+    ...sectionFields,
+  };
 }
 
 export async function upsertSettings(data: {
@@ -10,11 +88,17 @@ export async function upsertSettings(data: {
   heroCtaLabel?: string | null;
   heroCtaUrl?: string | null;
   logo?: string | null;
+  servicesSectionTitle?: string | null;
+  servicesSectionSub?: string | null;
+  pricingSectionTitle?: string | null;
+  pricingSectionSub?: string | null;
+  contactSectionTitle?: string | null;
+  contactSectionSub?: string | null;
 }) {
   const existing = await prisma.siteSettings.findFirst();
 
   if (existing) {
-    return prisma.siteSettings.update({
+    const updated = await prisma.siteSettings.update({
       where: { id: existing.id },
       data: {
         salonName: data.salonName,
@@ -24,9 +108,12 @@ export async function upsertSettings(data: {
         ...(data.logo ? { logo: data.logo } : {}),
       },
     });
+
+    await writeSectionTitleFields(existing.id, data);
+    return updated;
   }
 
-  return prisma.siteSettings.create({
+  const created = await prisma.siteSettings.create({
     data: {
       salonName: data.salonName,
       tagline: data.tagline,
@@ -35,4 +122,7 @@ export async function upsertSettings(data: {
       logo: data.logo,
     },
   });
+
+  await writeSectionTitleFields(created.id, data);
+  return created;
 }

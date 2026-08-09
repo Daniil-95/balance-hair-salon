@@ -18,9 +18,11 @@ interface PricingCategory {
 
 interface PricingProps {
   categories: PricingCategory[];
+  sectionTitle?: string;
+  sectionDescription?: string;
 }
 
-export function Pricing({ categories }: PricingProps) {
+export function Pricing({ categories, sectionTitle, sectionDescription }: PricingProps) {
   const { ref, isVisible } = useScrollReveal<HTMLElement>();
 
   return (
@@ -29,8 +31,8 @@ export function Pricing({ categories }: PricingProps) {
         <SectionTitle
           className="lux-reveal"
           label="Ceník"
-          title="Ceny služeb na jednom místě."
-          description="Přesná cena závisí na délce, hustotě vlasů a zvoleném výsledku."
+          title={sectionTitle || "Ceny služeb na jednom místě."}
+          description={sectionDescription || "Přesná cena závisí na délce, hustotě vlasů a zvoleném výsledku."}
         />
         <div className={styles.inner}>
           <div className={`${styles.preview} lux-reveal-left`}>

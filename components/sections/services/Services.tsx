@@ -14,6 +14,8 @@ interface ServiceItem {
 
 interface ServicesProps {
   services: ServiceItem[];
+  sectionTitle?: string;
+  sectionDescription?: string;
 }
 
 function normalizeIconKind(icon: string, title: string) {
@@ -95,7 +97,7 @@ function ServiceIcon({ kind }: { kind: string }) {
   }
 }
 
-export function Services({ services }: ServicesProps) {
+export function Services({ services, sectionTitle, sectionDescription }: ServicesProps) {
   const { ref, isVisible } = useScrollReveal<HTMLElement>();
 
   return (
@@ -104,8 +106,8 @@ export function Services({ services }: ServicesProps) {
         <SectionTitle
           className="lux-reveal"
           label="Služby"
-          title="Střih, barvení a péče v jednom místě."
-          description="Vyberte si službu podle svého stylu a potřeb vlasů."
+          title={sectionTitle || "Střih, barvení a péče v jednom místě."}
+          description={sectionDescription || "Vyberte si službu podle svého stylu a potřeb vlasů."}
         />
         <div className={styles.grid}>
           {services.map((service, index) => (

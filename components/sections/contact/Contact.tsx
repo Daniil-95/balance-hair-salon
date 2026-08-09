@@ -22,6 +22,8 @@ interface ContactProps {
   contact: ContactValue | null;
   openingHours: OpeningHourValue[];
   instagramUrl?: string | null;
+  sectionTitle?: string;
+  sectionDescription?: string;
 }
 
 function normalizePhone(phone?: string) {
@@ -42,7 +44,7 @@ function normalizeExternalHref(value?: string | null) {
   return `https://${trimmed}`;
 }
 
-export function Contact({ contact, openingHours, instagramUrl }: ContactProps) {
+export function Contact({ contact, openingHours, instagramUrl, sectionTitle, sectionDescription }: ContactProps) {
   const { ref, isVisible } = useScrollReveal<HTMLElement>();
 
   const address = contact?.address ?? "";
@@ -61,8 +63,8 @@ export function Contact({ contact, openingHours, instagramUrl }: ContactProps) {
         <SectionTitle
           className="lux-reveal"
           label="Kontakt"
-          title="Ozvěte se nám nebo se stavte v salonu."
-          description="Telefon, WhatsApp i mapa na jednom místě."
+          title={sectionTitle || "Ozvěte se nám nebo se stavte v salonu."}
+          description={sectionDescription || "Telefon, WhatsApp i mapa na jednom místě."}
         />
         <div className={styles.topGrid}>
           <article className={`${styles.contactCard} lux-reveal-left`}>

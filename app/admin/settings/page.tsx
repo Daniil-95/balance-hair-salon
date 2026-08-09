@@ -5,6 +5,7 @@ import * as actions from "./actions";
 import styles from "@/components/admin/admin-shell.module.scss";
 
 export const revalidate = 0;
+export const dynamic = "force-dynamic";
 
 export default async function AdminSettingsPage() {
   const settings = await getSettings();
@@ -13,7 +14,7 @@ export default async function AdminSettingsPage() {
     <AdminShell>
       <section className={styles.panel}>
         <h1 className={styles.panelHeading}>Nastavení webu</h1>
-        <p className={styles.panelIntro}>Upravte název salonu, krátký slogan a hlavní tlačítko.</p>
+        <p className={styles.panelIntro}>Upravte název salonu, hlavní CTA a titulky sekcí na homepage.</p>
 
         <div className={styles.card}>
           <form action={actions.saveSettingsAction} className={styles.form}>
@@ -33,6 +34,34 @@ export default async function AdminSettingsPage() {
               <label className={styles.label}>Odkaz hlavního tlačítka</label>
               <input name="heroCtaUrl" className={styles.input} defaultValue={settings?.heroCtaUrl ?? ""} />
             </div>
+
+            <div className={styles.formGroup}>
+              <label className={styles.label}>Služby: titulek sekce</label>
+              <input name="servicesSectionTitle" className={styles.input} defaultValue={settings?.servicesSectionTitle ?? ""} />
+            </div>
+            <div className={styles.formGroup}>
+              <label className={styles.label}>Služby: podtitulek sekce</label>
+              <textarea name="servicesSectionSub" className={styles.textarea} defaultValue={settings?.servicesSectionSub ?? ""} />
+            </div>
+
+            <div className={styles.formGroup}>
+              <label className={styles.label}>Ceník: titulek sekce</label>
+              <input name="pricingSectionTitle" className={styles.input} defaultValue={settings?.pricingSectionTitle ?? ""} />
+            </div>
+            <div className={styles.formGroup}>
+              <label className={styles.label}>Ceník: podtitulek sekce</label>
+              <textarea name="pricingSectionSub" className={styles.textarea} defaultValue={settings?.pricingSectionSub ?? ""} />
+            </div>
+
+            <div className={styles.formGroup}>
+              <label className={styles.label}>Kontakt: titulek sekce</label>
+              <input name="contactSectionTitle" className={styles.input} defaultValue={settings?.contactSectionTitle ?? ""} />
+            </div>
+            <div className={styles.formGroup}>
+              <label className={styles.label}>Kontakt: podtitulek sekce</label>
+              <textarea name="contactSectionSub" className={styles.textarea} defaultValue={settings?.contactSectionSub ?? ""} />
+            </div>
+
             <div className={styles.buttonRow}>
               <SubmitButton type="submit" className={styles.button}>
                 Uložit nastavení
