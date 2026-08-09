@@ -30,7 +30,7 @@ Obsah uložený v administraci se promítá do veřejné části webu.
 - TypeScript
 - SCSS Modules
 - Prisma ORM
-- SQLite
+- PostgreSQL (Supabase)
 - JWT autentizace
 - Fancybox + Swiper (galerie)
 
@@ -74,14 +74,16 @@ Po přihlášení jsou dostupné sekce:
 V `.env` jsou potřeba minimálně tyto proměnné:
 
 - `DATABASE_URL`
+- `DIRECT_URL`
 - `JWT_SECRET`
 - `ADMIN_SETUP_KEY`
 - `NEXT_PUBLIC_SITE_URL`
 
-Příklad `DATABASE_URL` pro SQLite:
+Příklad pro Supabase:
 
 ```env
-DATABASE_URL="file:./dev.db"
+DATABASE_URL="postgresql://postgres.<project-ref>:<password>@aws-<region>.pooler.supabase.com:6543/postgres?pgbouncer=true&sslmode=require"
+DIRECT_URL="postgresql://postgres.<project-ref>:<password>@aws-<region>.pooler.supabase.com:5432/postgres?sslmode=require"
 ```
 
 ---
@@ -90,8 +92,8 @@ DATABASE_URL="file:./dev.db"
 
 ```bash
 npm install
-npx prisma migrate dev
-npx prisma generate --no-engine
+npx prisma generate
+npx prisma db push
 npm run dev
 ```
 
@@ -112,5 +114,3 @@ npm run start
 3. Zadejte e-mail, heslo a `ADMIN_SETUP_KEY`.
 
 Po vytvoření prvního admina setup endpoint přirozeně ztrácí význam pro další bootstrap.
-
----
