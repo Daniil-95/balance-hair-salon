@@ -161,6 +161,7 @@ model SiteSettings {
   heroCtaLabel          String?
   heroCtaUrl            String?
   logo                  String?
+  privacyPolicyContent  String?
   servicesSectionTitle  String?
   servicesSectionSub    String?
   pricingSectionTitle   String?

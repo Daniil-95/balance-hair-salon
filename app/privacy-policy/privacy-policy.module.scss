@@ -1,0 +1,75 @@
+.page {
+  padding: 7rem 0 4.5rem;
+}
+
+.backAction {
+  margin-bottom: 1.2rem;
+}
+
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 0.45rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid rgba(202, 162, 106, 0.28);
+  color: #d8ccb3;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.backLink:hover {
+  border-color: rgba(202, 162, 106, 0.5);
+  color: var(--color-gold);
+}
+
+.card {
+  border: 1px solid rgba(202, 162, 106, 0.14);
+  border-radius: 20px;
+  background: linear-gradient(180deg, rgba(17, 15, 12, 0.92), rgba(10, 9, 8, 0.98));
+  padding: 1.5rem;
+}
+
+.label {
+  margin: 0 0 0.55rem;
+  color: var(--color-gold);
+  font-size: 0.75rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 0;
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  line-height: 1.12;
+}
+
+.content {
+  margin-top: 1rem;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.content p {
+  margin: 0;
+  color: #d9d0be;
+  line-height: 1.75;
+  white-space: pre-line;
+}
+
+@media (max-width: 768px) {
+  .page {
+    padding: 5.5rem 0 3.6rem;
+  }
+
+  .card {
+    padding: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .page {
+    padding: 4.8rem 0 3.2rem;
+  }
+}

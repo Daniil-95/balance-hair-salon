@@ -4,31 +4,25 @@
 }
 
 .backAction {
-  margin-bottom: 1.15rem;
+  margin-bottom: 1.2rem;
 }
 
 .backLink {
-  min-height: 42px;
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  padding: 0.7rem 1.15rem;
-  border-radius: 12px;
-  border: 1px solid rgba(198, 169, 107, 0.38);
-  background: rgba(198, 169, 107, 0.08);
-  color: #ece4d3;
-  font-size: 0.84rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
+  min-height: 40px;
+  padding: 0.45rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid rgba(202, 162, 106, 0.28);
+  color: #d8ccb3;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  text-align: center;
-  transition: background var(--transition-base), border-color var(--transition-base), color var(--transition-base);
 }
 
 .backLink:hover {
-  background: rgba(198, 169, 107, 0.16);
-  border-color: rgba(198, 169, 107, 0.56);
-  color: #f3ebdb;
+  border-color: rgba(202, 162, 106, 0.5);
+  color: var(--color-gold);
 }
 
 .hero {

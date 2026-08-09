@@ -3,6 +3,7 @@ import { prisma } from "@/lib/prisma";
 type SectionTitleFields = {
   navigationLogoName: string | null;
   navigationLogoSub: string | null;
+  privacyPolicyContent: string | null;
   servicesSectionTitle: string | null;
   servicesSectionSub: string | null;
   pricingSectionTitle: string | null;
@@ -17,6 +18,7 @@ async function readSectionTitleFields(): Promise<SectionTitleFields> {
       SELECT
         "navigationLogoName",
         "navigationLogoSub",
+        "privacyPolicyContent",
         "servicesSectionTitle",
         "servicesSectionSub",
         "pricingSectionTitle",
@@ -38,6 +40,7 @@ async function readSectionTitleFields(): Promise<SectionTitleFields> {
   return {
     navigationLogoName: null,
     navigationLogoSub: null,
+    privacyPolicyContent: null,
     servicesSectionTitle: null,
     servicesSectionSub: null,
     pricingSectionTitle: null,
@@ -50,6 +53,7 @@ async function readSectionTitleFields(): Promise<SectionTitleFields> {
 async function writeSectionTitleFields(id: string, data: {
   navigationLogoName?: string | null;
   navigationLogoSub?: string | null;
+  privacyPolicyContent?: string | null;
   servicesSectionTitle?: string | null;
   servicesSectionSub?: string | null;
   pricingSectionTitle?: string | null;
@@ -63,6 +67,7 @@ async function writeSectionTitleFields(id: string, data: {
       SET
         "navigationLogoName" = ${data.navigationLogoName ?? null},
         "navigationLogoSub" = ${data.navigationLogoSub ?? null},
+        "privacyPolicyContent" = ${data.privacyPolicyContent ?? null},
         "servicesSectionTitle" = ${data.servicesSectionTitle ?? null},
         "servicesSectionSub" = ${data.servicesSectionSub ?? null},
         "pricingSectionTitle" = ${data.pricingSectionTitle ?? null},
@@ -97,6 +102,7 @@ export async function upsertSettings(data: {
   tagline?: string | null;
   navigationLogoName?: string | null;
   navigationLogoSub?: string | null;
+  privacyPolicyContent?: string | null;
   heroCtaLabel?: string | null;
   heroCtaUrl?: string | null;
   logo?: string | null;

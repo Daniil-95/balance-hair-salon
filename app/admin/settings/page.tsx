@@ -14,7 +14,7 @@ export default async function AdminSettingsPage() {
     <AdminShell>
       <section className={styles.panel}>
         <h1 className={styles.panelHeading}>Nastavení webu</h1>
-        <p className={styles.panelIntro}>Upravte navigaci, patičku a titulky sekcí na homepage.</p>
+        <p className={styles.panelIntro}>Upravte navigaci, patičku, právní texty a titulky sekcí na homepage.</p>
 
         <div className={styles.card}>
           <form action={actions.saveSettingsAction} className={`${styles.form} ${styles.settingsCompactForm}`}>
@@ -106,6 +106,23 @@ export default async function AdminSettingsPage() {
                       <label className={styles.label}>Slogan v patičce</label>
                       <input name="tagline" className={styles.input} defaultValue={settings?.tagline ?? ""} />
                     </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className={`${styles.subBlock} ${styles.settingsGroup}`}>
+              <h2 className={styles.cardTitle}>Právní texty</h2>
+              <div className={styles.settingsSectionBlocks}>
+                <div className={styles.settingsSectionBlock}>
+                  <h3 className={styles.settingsSectionBlockTitle}>Ochrana osobních údajů</h3>
+                  <div className={styles.formGroup}>
+                    <label className={styles.label}>Obsah stránky</label>
+                    <textarea
+                      name="privacyPolicyContent"
+                      className={`${styles.textarea} ${styles.settingsPolicyTextarea}`}
+                      defaultValue={settings?.privacyPolicyContent ?? ""}
+                    />
                   </div>
                 </div>
               </div>

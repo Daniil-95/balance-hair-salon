@@ -11,6 +11,7 @@ export async function saveSettingsAction(formData: FormData) {
   const tagline = formData.get("tagline")?.toString() || null;
   const navigationLogoName = formData.get("navigationLogoName")?.toString() || null;
   const navigationLogoSub = formData.get("navigationLogoSub")?.toString() || null;
+  const privacyPolicyContent = formData.get("privacyPolicyContent")?.toString() || null;
   const heroCtaLabel = formData.get("heroCtaLabel")?.toString() || null;
   const heroCtaUrl = formData.get("heroCtaUrl")?.toString() || null;
   const servicesSectionTitle = formData.get("servicesSectionTitle")?.toString() || null;
@@ -29,6 +30,7 @@ export async function saveSettingsAction(formData: FormData) {
     tagline,
     navigationLogoName,
     navigationLogoSub,
+    privacyPolicyContent,
     heroCtaLabel,
     heroCtaUrl,
     servicesSectionTitle,
