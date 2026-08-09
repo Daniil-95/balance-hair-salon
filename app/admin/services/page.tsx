@@ -13,7 +13,7 @@ export default async function AdminServicesPage() {
     <AdminShell>
       <section className={styles.panel}>
         <h1 className={styles.panelHeading}>Služby</h1>
-        <p className={styles.panelIntro}>Upravte nabídku služeb, pořadí zobrazení a označení hlavních služeb.</p>
+        <p className={styles.panelIntro}>Upravte nabídku služeb a pořadí jejich zobrazení.</p>
 
         <div className={styles.card}>
           <h2 className={styles.cardTitle}>Vytvořit službu</h2>
@@ -52,10 +52,8 @@ export default async function AdminServicesPage() {
           {services.map((service) => (
             <div key={service.id} className={styles.card}>
               <h2 className={styles.cardTitle}>{service.title}</h2>
-              <div className={styles.cardMeta}>
-                Pořadí: {service.order} · Hlavní služba: {service.featured ? "Ano" : "Ne"}
-              </div>
-              <form action={actions.updateServiceAction} className={styles.form}>
+              <div className={styles.cardMeta}>Pořadí: {service.order}</div>
+              <form id={`update-service-${service.id}`} action={actions.updateServiceAction} className={styles.form}>
                 <input type="hidden" name="id" value={service.id} />
                 <div className={styles.formGroup}>
                   <label className={styles.label}>Název</label>
@@ -73,20 +71,11 @@ export default async function AdminServicesPage() {
                   <label className={styles.label}>Pořadí</label>
                   <input name="order" className={styles.input} type="number" defaultValue={service.order} />
                 </div>
-                <div className={styles.buttonRow}>
-                  <button type="submit" className={styles.button}>
-                    Uložit
-                  </button>
-                </div>
               </form>
               <div className={styles.buttonRow}>
-                <form action={actions.toggleServiceFeaturedAction} className={styles.inlineForm}>
-                  <input type="hidden" name="id" value={service.id} />
-                  <input type="hidden" name="featured" value={service.featured ? "false" : "true"} />
-                  <button type="submit" className={styles.buttonSecondary}>
-                    {service.featured ? "Odebrat z hlavních" : "Označit jako hlavní"}
-                  </button>
-                </form>
+                <button type="submit" form={`update-service-${service.id}`} className={styles.button}>
+                  Uložit
+                </button>
                 <ConfirmForm
                   action={actions.deleteServiceAction}
                   method="post"

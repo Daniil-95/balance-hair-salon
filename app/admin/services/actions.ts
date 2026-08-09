@@ -2,7 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { requireAdminSession } from "@/lib/auth";
-import { createService, deleteService, toggleServiceFeatured, updateService } from "@/lib/services";
+import { createService, deleteService, updateService } from "@/lib/services";
 
 export async function createServiceAction(formData: FormData) {
   await requireAdminSession();
@@ -45,19 +45,6 @@ export async function deleteServiceAction(formData: FormData) {
   }
 
   await deleteService(id);
-  revalidatePath("/admin/services");
-  revalidatePath("/");
-}
-
-export async function toggleServiceFeaturedAction(formData: FormData) {
-  await requireAdminSession();
-  const id = formData.get("id")?.toString();
-  const featured = formData.get("featured")?.toString() === "true";
-  if (!id) {
-    return;
-  }
-
-  await toggleServiceFeatured(id, featured);
   revalidatePath("/admin/services");
   revalidatePath("/");
 }

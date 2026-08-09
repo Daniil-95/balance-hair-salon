@@ -30,7 +30,3 @@ export function updateService(data: { id: string; title: string; description: st
 export function deleteService(id: string) {
   return prisma.service.delete({ where: { id } });
 }
-
-export function toggleServiceFeatured(id: string, featured: boolean) {
-  return prisma.service.update({ where: { id }, data: { featured } });
-}
