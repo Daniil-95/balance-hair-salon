@@ -33,10 +33,6 @@ export default async function AdminHeroPage() {
                   <label className={styles.label}>Podtitulek</label>
                   <input name="subheadline" className={styles.input} defaultValue={heroView.subheadline} required />
                 </div>
-                <div className={`${styles.formGroup} ${styles.heroWideField}`}>
-                  <label className={styles.label}>Text prostředního štítku (otevírací doba)</label>
-                  <input name="openingHoursLabel" className={styles.input} defaultValue={heroView.openingHoursLabel} required />
-                </div>
               </div>
 
               <div className={`${styles.subBlock} ${styles.heroSubBlock}`}>
@@ -49,24 +45,6 @@ export default async function AdminHeroPage() {
                   <div className={styles.formGroup}>
                     <label className={styles.label}>Odkaz tlačítka</label>
                     <input name="ctaUrl" className={styles.input} defaultValue={heroView.ctaUrl} required />
-                  </div>
-                </div>
-              </div>
-
-              <div className={`${styles.subBlock} ${styles.heroSubBlock}`}>
-                <h2 className={styles.cardTitle}>Řádek pod tlačítky</h2>
-                <div className={styles.heroTopGrid}>
-                  <div className={styles.formGroup}>
-                    <label className={styles.label}>Levý text</label>
-                    <input name="metaRowLeftLabel" className={styles.input} defaultValue={heroView.metaRowLeftLabel ?? ""} />
-                  </div>
-                  <div className={styles.formGroup}>
-                    <label className={styles.label}>Střední text</label>
-                    <input name="metaRowCenterLabel" className={styles.input} defaultValue={heroView.metaRowCenterLabel ?? heroView.openingHoursLabel ?? ""} />
-                  </div>
-                  <div className={`${styles.formGroup} ${styles.heroWideField}`}>
-                    <label className={styles.label}>Pravý text</label>
-                    <input name="metaRowRightLabel" className={styles.input} defaultValue={heroView.metaRowRightLabel ?? ""} />
                   </div>
                 </div>
               </div>
@@ -89,6 +67,24 @@ export default async function AdminHeroPage() {
                   <div className={styles.formGroup}>
                     <label className={styles.label}>Odkaz Instagram</label>
                     <input name="instagramUrl" className={styles.input} defaultValue={heroView.instagramUrl ?? ""} />
+                  </div>
+                </div>
+              </div>
+
+              <div className={`${styles.subBlock} ${styles.heroSubBlock}`}>
+                <h2 className={styles.cardTitle}>Řádek pod tlačítky</h2>
+                <div className={styles.heroTopGrid}>
+                  <div className={styles.formGroup}>
+                    <label className={styles.label}>Levý text</label>
+                    <input name="metaRowLeftLabel" className={styles.input} defaultValue={heroView.metaRowLeftLabel ?? ""} />
+                  </div>
+                  <div className={styles.formGroup}>
+                    <label className={styles.label}>Střední text</label>
+                    <input name="metaRowCenterLabel" className={styles.input} defaultValue={heroView.metaRowCenterLabel ?? heroView.openingHoursLabel ?? ""} />
+                  </div>
+                  <div className={`${styles.formGroup} ${styles.heroWideField}`}>
+                    <label className={styles.label}>Pravý text</label>
+                    <input name="metaRowRightLabel" className={styles.input} defaultValue={heroView.metaRowRightLabel ?? ""} />
                   </div>
                 </div>
               </div>

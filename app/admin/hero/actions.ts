@@ -5,7 +5,7 @@ import { redirect } from "next/navigation";
 import fs from "fs";
 import path from "path";
 import { requireAdminSession } from "@/lib/auth";
-import { upsertHero } from "@/lib/hero";
+import { getHeroMeta, upsertHero } from "@/lib/hero";
 
 const uploadsDir = path.join(process.cwd(), "public", "uploads");
 
@@ -31,6 +31,7 @@ function revalidateHeroViews() {
 
 export async function saveHeroAction(formData: FormData) {
   await requireAdminSession();
+  const currentMeta = await getHeroMeta();
 
   const headline = formData.get("headline")?.toString() ?? "";
   const subheadline = formData.get("subheadline")?.toString() ?? "";
@@ -42,13 +43,13 @@ export async function saveHeroAction(formData: FormData) {
   const whatsappUrl = formData.get("whatsappUrl")?.toString() ?? "";
   const instagramLabel = formData.get("instagramLabel")?.toString() ?? "";
   const instagramUrl = formData.get("instagramUrl")?.toString() ?? "";
-  const openingHoursLabel = formData.get("openingHoursLabel")?.toString() ?? "";
+  const openingHoursLabel = currentMeta.openingHoursLabel ?? "";
   const metaRowLeftLabel = formData.get("metaRowLeftLabel")?.toString() ?? "";
   const metaRowCenterLabel = formData.get("metaRowCenterLabel")?.toString() ?? "";
   const metaRowRightLabel = formData.get("metaRowRightLabel")?.toString() ?? "";
   const imageFile = formData.get("image") as File | null;
 
-  if (!headline || !subheadline || !ctaLabel || !ctaUrl || !overline || !imageAlt || !whatsappLabel || !instagramLabel || !openingHoursLabel) {
+  if (!headline || !subheadline || !ctaLabel || !ctaUrl || !overline || !imageAlt || !whatsappLabel || !instagramLabel) {
     return;
   }
 

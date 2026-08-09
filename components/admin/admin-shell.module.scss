@@ -280,6 +280,75 @@
   width: 100%;
 }
 
+.aboutWorkspace {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  align-items: start;
+}
+
+.aboutCompactForm {
+  gap: 0.85rem;
+}
+
+.aboutTopGrid {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.aboutWideField {
+  grid-column: 1 / -1;
+}
+
+.aboutSubBlock {
+  margin-top: 0;
+  padding: 0.85rem;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.aboutSubBlock .formGroup,
+.aboutTopGrid .formGroup {
+  gap: 0.3rem;
+}
+
+.aboutSubBlock .label,
+.aboutTopGrid .label {
+  font-size: 0.88rem;
+}
+
+.aboutSubBlock .input,
+.aboutSubBlock .textarea,
+.aboutTopGrid .input,
+.aboutTopGrid .textarea {
+  min-height: 38px;
+  padding: 0.55rem 0.65rem;
+}
+
+.aboutSubBlock .textarea,
+.aboutTopGrid .textarea {
+  min-height: 92px;
+}
+
+.aboutPreviewCard {
+  position: sticky;
+  top: 1rem;
+  gap: 0.75rem;
+  padding: 1rem;
+}
+
+.aboutPreviewGrid {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.aboutPreviewCard .mediaPreview {
+  margin-bottom: 0;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
 .servicesWorkspace {
   display: grid;
   gap: 1rem;
@@ -608,7 +677,13 @@
 .contactHoursGrid {
   display: grid;
   gap: 0.75rem;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+@media (max-width: 1180px) {
+  .contactHoursGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 .contactDayCard {
@@ -1010,6 +1085,10 @@
     grid-template-columns: 1fr;
   }
 
+  .aboutWorkspace {
+    grid-template-columns: 1fr;
+  }
+
   .pricingAdminGrid {
     grid-template-columns: 1fr;
   }
@@ -1039,11 +1118,16 @@
 
   .heroTopGrid,
   .heroSocialGrid,
-  .settingsGrid {
+  .settingsGrid,
+  .aboutTopGrid {
     grid-template-columns: 1fr;
   }
 
   .heroPreviewCard {
+    position: static;
+  }
+
+  .aboutPreviewCard {
     position: static;
   }
 
