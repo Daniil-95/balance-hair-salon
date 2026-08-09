@@ -33,12 +33,20 @@
 }
 
 .serviceCard {
+  --reveal-delay: 0ms;
   padding: 1rem;
   border-radius: 16px;
   border: 1px solid rgba(198, 169, 107, 0.14);
   background: #141414;
   display: grid;
   gap: 0.75rem;
+  opacity: 0;
+  transform: translate3d(0, 16px, 0);
+}
+
+:global(.scroll-reveal-section.is-visible) .serviceCard {
+  animation: pricingCardIn 700ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: var(--reveal-delay);
 }
 
 .serviceCard h3 {
@@ -141,6 +149,21 @@
   background: transparent;
   color: #c6a96b;
   transform: translateY(-1px);
+}
+
+@keyframes pricingCardIn {
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .serviceCard {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
 }
 
 @media (max-width: 768px) {

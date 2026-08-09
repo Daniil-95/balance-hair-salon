@@ -1,3 +1,7 @@
+"use client";
+
+import { SectionTitle } from "@/components/ui/section-title";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 import styles from "./contact.module.scss";
 
 interface ContactValue {
@@ -39,6 +43,8 @@ function normalizeExternalHref(value?: string | null) {
 }
 
 export function Contact({ contact, openingHours, instagramUrl }: ContactProps) {
+  const { ref, isVisible } = useScrollReveal<HTMLElement>();
+
   const address = contact?.address ?? "";
   const phone = contact?.phone ?? "";
   const whatsapp = contact?.whatsapp ?? "";
@@ -50,10 +56,16 @@ export function Contact({ contact, openingHours, instagramUrl }: ContactProps) {
   const instagramHref = normalizeExternalHref(instagramUrl);
 
   return (
-    <section id="contact" className={styles.contact}>
+    <section id="contact" ref={ref} className={`${styles.contact} scroll-reveal-section ${isVisible ? "is-visible" : ""}`}>
       <div className="container">
+        <SectionTitle
+          className="lux-reveal"
+          label="Kontakt"
+          title="Ozvěte se nám nebo se stavte v salonu."
+          description="Telefon, WhatsApp i mapa na jednom místě."
+        />
         <div className={styles.topGrid}>
-          <article className={styles.contactCard}>
+          <article className={`${styles.contactCard} lux-reveal-left`}>
             <span className={styles.overline}>Kontakt</span>
             <h2 className={styles.sectionTitle}>Zastavte se u nás nebo nám napište.</h2>
             <p className={styles.lead}>Salon Balance najdete v Cenkově. Pro rychlý kontakt využijte telefon nebo WhatsApp, pro novinky sledujte Instagram.</p>
@@ -125,7 +137,7 @@ export function Contact({ contact, openingHours, instagramUrl }: ContactProps) {
             </ul>
           </article>
 
-          <article className={styles.mapCard}>
+          <article className={`${styles.mapCard} lux-reveal lux-delay-1`}>
             <div className={styles.mapHeader}>
               <p className={styles.cardTitle}>Kde nás najdete</p>
               <strong className={styles.mapAddress}>{address}</strong>
@@ -146,7 +158,7 @@ export function Contact({ contact, openingHours, instagramUrl }: ContactProps) {
             </div>
           </article>
 
-          <article className={styles.hoursCard}>
+          <article className={`${styles.hoursCard} lux-reveal-right lux-delay-2`}>
             <div className={styles.hoursHeader}>
               <p className={styles.cardTitle}>Otvírací doba</p>
             </div>

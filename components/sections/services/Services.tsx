@@ -1,5 +1,8 @@
+"use client";
+
 import type { CSSProperties } from "react";
 import { SectionTitle } from "@/components/ui/section-title";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 import styles from "./services.module.scss";
 
 interface ServiceItem {
@@ -93,17 +96,20 @@ function ServiceIcon({ kind }: { kind: string }) {
 }
 
 export function Services({ services }: ServicesProps) {
+  const { ref, isVisible } = useScrollReveal<HTMLElement>();
+
   return (
-    <section id="services" className={styles.services}>
+    <section id="services" ref={ref} className={`${styles.services} scroll-reveal-section ${isVisible ? "is-visible" : ""}`}>
       <div className="container">
         <SectionTitle
-          label="Naše služby"
-          title="Kadeřnické služby, které působí přirozeně a precizně."
-          description="Vyberte si z našich specializovaných služeb pro střih, barvení, styling a regeneraci vlasů."
+          className="lux-reveal"
+          label="Služby"
+          title="Střih, barvení a péče v jednom místě."
+          description="Vyberte si službu podle svého stylu a potřeb vlasů."
         />
         <div className={styles.grid}>
           {services.map((service, index) => (
-            <article key={service.id} className={styles.card} style={{ "--card-delay": `${index * 70}ms` } as CSSProperties}>
+            <article key={service.id} className={`${styles.card} lux-glow-hover`} style={{ "--card-delay": `${index * 70}ms` } as CSSProperties}>
               <span className={styles.icon}>
                 <ServiceIcon kind={normalizeIconKind(service.icon, service.title)} />
               </span>

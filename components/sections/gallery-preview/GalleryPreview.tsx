@@ -2,11 +2,12 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { Fancybox } from "@fancyapps/ui";
 import { Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { SectionTitle } from "@/components/ui/section-title";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 import styles from "./gallery-preview.module.scss";
 
 import "swiper/css";
@@ -25,10 +26,10 @@ interface GalleryPreviewProps {
 }
 
 export function GalleryPreview({ items }: GalleryPreviewProps) {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const { ref: sectionRef, isVisible } = useScrollReveal<HTMLElement>();
 
   useEffect(() => {
-    const container = containerRef.current;
+    const container = sectionRef.current;
 
     if (!container) {
       return;
@@ -44,16 +45,17 @@ export function GalleryPreview({ items }: GalleryPreviewProps) {
       Fancybox.unbind(container);
       Fancybox.close();
     };
-  }, []);
+  }, [sectionRef]);
 
   return (
-    <section id="gallery" className={styles.gallery} ref={containerRef}>
+    <section id="gallery" className={`${styles.gallery} scroll-reveal-section ${isVisible ? "is-visible" : ""}`} ref={sectionRef}>
       <div className="container">
         <SectionTitle
+          className="lux-reveal"
           label="Galerie"
           title="Galerie, která zachycuje atmosféru salonu Balance."
         />
-        <div className={styles.carousel}>
+        <div className={`${styles.carousel} lux-reveal lux-delay-1`}>
           <Swiper
             modules={[Autoplay]}
             loop
@@ -84,7 +86,7 @@ export function GalleryPreview({ items }: GalleryPreviewProps) {
               <SwiperSlide key={item.title} className={styles.slide}>
                 <a
                   href={item.src}
-                  className={styles.previewCard}
+                  className={`${styles.previewCard} lux-glow-hover`}
                   data-fancybox="gallery-preview"
                   data-caption={`${item.title} - ${item.description}`}
                   aria-label={item.title}
@@ -104,7 +106,7 @@ export function GalleryPreview({ items }: GalleryPreviewProps) {
             ))}
           </Swiper>
         </div>
-        <div className={styles.actions}>
+        <div className={`${styles.actions} lux-reveal lux-delay-2`}>
           <Link href="/gallery" className={styles.button}>
             Zobrazit celou galerii
           </Link>

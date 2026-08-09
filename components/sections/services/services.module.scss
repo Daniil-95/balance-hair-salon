@@ -22,9 +22,12 @@
   text-align: center;
   opacity: 0;
   transform: translateY(14px);
+  transition: transform var(--transition-base), border-color var(--transition-base), background var(--transition-base);
+}
+
+:global(.scroll-reveal-section.is-visible) .card {
   animation: revealCard 560ms ease forwards;
   animation-delay: var(--card-delay);
-  transition: transform var(--transition-base), border-color var(--transition-base), background var(--transition-base);
 }
 
 .icon {
@@ -69,6 +72,14 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    opacity: 1;
+    transform: none;
+    animation: none;
   }
 }
 

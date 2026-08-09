@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 import styles from "./about.module.scss";
 
 interface AboutProps {
@@ -20,20 +23,21 @@ export function About({
   imageCutawaySrc,
   imageCutawayAlt
 }: AboutProps) {
+  const { ref, isVisible } = useScrollReveal<HTMLElement>();
   const [firstParagraph = "", secondParagraph = ""] = paragraphs;
 
   return (
-    <section id="about" className={styles.about}>
+    <section id="about" ref={ref} className={`${styles.about} scroll-reveal-section ${isVisible ? "is-visible" : ""}`}>
       <div className="container">
         <div className={styles.grid}>
-          <div className={styles.content}>
+          <div className={`${styles.content} lux-reveal-left`}>
             <span className={styles.overline}>{overline}</span>
             <h2>{title}</h2>
             <p>{firstParagraph}</p>
             <p>{secondParagraph}</p>
           </div>
-          <div className={styles.imageWrapper}>
-            <div className={styles.imageMain}>
+          <div className={`${styles.imageWrapper} lux-reveal-right lux-delay-1`}>
+            <div className={`${styles.imageMain} lux-glow-hover`}>
               {imageMainSrc ? (
                 <Image
                   src={imageMainSrc}
@@ -45,7 +49,7 @@ export function About({
                 />
               ) : null}
             </div>
-            <div className={styles.imageCutaway}>
+            <div className={`${styles.imageCutaway} lux-glow-hover`}>
               {imageCutawaySrc ? (
                 <Image
                   src={imageCutawaySrc}

@@ -1,4 +1,9 @@
+"use client";
+
 import Link from "next/link";
+import type { CSSProperties } from "react";
+import { SectionTitle } from "@/components/ui/section-title";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 import styles from "./pricing.module.scss";
 
 interface PricingItem {
@@ -16,15 +21,23 @@ interface PricingProps {
 }
 
 export function Pricing({ categories }: PricingProps) {
+  const { ref, isVisible } = useScrollReveal<HTMLElement>();
+
   return (
-    <section id="pricing" className={styles.pricing}>
+    <section id="pricing" ref={ref} className={`${styles.pricing} scroll-reveal-section ${isVisible ? "is-visible" : ""}`}>
       <div className="container">
+        <SectionTitle
+          className="lux-reveal"
+          label="Ceník"
+          title="Ceny služeb na jednom místě."
+          description="Přesná cena závisí na délce, hustotě vlasů a zvoleném výsledku."
+        />
         <div className={styles.inner}>
-          <div className={styles.preview}>
+          <div className={`${styles.preview} lux-reveal-left`}>
             <p className={styles.previewLabel}>Přehled služeb</p>
             <div className={styles.serviceGrid}>
-              {categories.map((column) => (
-                <article key={column.title} className={styles.serviceCard}>
+              {categories.map((column, index) => (
+                <article key={column.title} className={`${styles.serviceCard} lux-glow-hover`} style={{ "--reveal-delay": `${120 + index * 90}ms` } as CSSProperties}>
                   <h3>{column.title}</h3>
                   <ul>
                     {column.items.map((item) => (
@@ -39,7 +52,7 @@ export function Pricing({ categories }: PricingProps) {
               ))}
             </div>
           </div>
-          <aside className={styles.ctaBlock}>
+          <aside className={`${styles.ctaBlock} lux-reveal-right lux-delay-2`}>
             <p className={styles.ctaLabel}>Ceník</p>
             <h2 className={styles.ctaTitle}>Kompletní ceník si můžete zobrazit ve větším náhledu.</h2>
             <p className={styles.ctaText}>Pro přesnou cenu doporučujeme rezervaci termínu nebo rychlý kontakt přes telefon či WhatsApp.</p>
