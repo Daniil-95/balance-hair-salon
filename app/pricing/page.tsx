@@ -10,6 +10,12 @@ export default async function PricingPage() {
     <SiteShell>
       <section className={styles.pricingPage}>
         <div className="container">
+          <div className={styles.backAction}>
+            <Link href="/" className={styles.backLink}>
+              Zpět na hlavní stránku
+            </Link>
+          </div>
+
           <header className={styles.header}>
             <p className={styles.label}>Ceník</p>
             <h1 className={styles.title}>Kompletní přehled služeb a cen</h1>
@@ -31,12 +37,6 @@ export default async function PricingPage() {
                 </ul>
               </article>
             ))}
-          </div>
-
-          <div className={styles.footerAction}>
-            <Link href="/#contact" className={styles.bookButton}>
-              Rezervovat termín
-            </Link>
           </div>
         </div>
       </section>

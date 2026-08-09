@@ -3,6 +3,34 @@
   padding: 8.5rem 0 5.5rem;
 }
 
+.backAction {
+  margin-bottom: 1.15rem;
+}
+
+.backLink {
+  min-height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.7rem 1.15rem;
+  border-radius: 12px;
+  border: 1px solid rgba(198, 169, 107, 0.38);
+  background: rgba(198, 169, 107, 0.08);
+  color: #ece4d3;
+  font-size: 0.84rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-align: center;
+  transition: background var(--transition-base), border-color var(--transition-base), color var(--transition-base);
+}
+
+.backLink:hover {
+  background: rgba(198, 169, 107, 0.16);
+  border-color: rgba(198, 169, 107, 0.56);
+  color: #f3ebdb;
+}
+
 .header {
   display: grid;
   gap: 0.85rem;
@@ -91,35 +119,6 @@
   font-weight: 600;
 }
 
-.footerAction {
-  margin-top: 1.3rem;
-  display: flex;
-  justify-content: flex-end;
-}
-
-.bookButton {
-  min-height: 48px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.95rem 1.5rem;
-  border-radius: 16px;
-  border: 1px solid #c6a96b;
-  background: #c6a96b;
-  color: #111;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  text-align: center;
-  transition: background var(--transition-base), color var(--transition-base), transform var(--transition-base);
-}
-
-.bookButton:hover {
-  background: transparent;
-  color: #c6a96b;
-  transform: translateY(-1px);
-}
-
 @media (max-width: 900px) {
   .pricingPage {
     padding: 7.75rem 0 4.5rem;
@@ -127,10 +126,6 @@
 
   .grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .footerAction {
-    justify-content: flex-start;
   }
 }
 
@@ -141,9 +136,5 @@
 
   .grid {
     grid-template-columns: 1fr;
-  }
-
-  .bookButton {
-    width: 100%;
   }
 }

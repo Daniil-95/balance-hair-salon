@@ -3,6 +3,34 @@
   background: #0b0b0b;
 }
 
+.backAction {
+  margin-bottom: 1.15rem;
+}
+
+.backLink {
+  min-height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.7rem 1.15rem;
+  border-radius: 12px;
+  border: 1px solid rgba(198, 169, 107, 0.38);
+  background: rgba(198, 169, 107, 0.08);
+  color: #ece4d3;
+  font-size: 0.84rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-align: center;
+  transition: background var(--transition-base), border-color var(--transition-base), color var(--transition-base);
+}
+
+.backLink:hover {
+  background: rgba(198, 169, 107, 0.16);
+  border-color: rgba(198, 169, 107, 0.56);
+  color: #f3ebdb;
+}
+
 .hero {
   margin-bottom: 2rem;
   text-align: left;
@@ -95,6 +123,10 @@
     padding: 7.5rem 0 4.5rem;
   }
 
+  .backAction {
+    margin-bottom: 1rem;
+  }
+
   .hero {
     margin-bottom: 1.6rem;
   }
@@ -111,6 +143,10 @@
 @media (max-width: 480px) {
   .galleryPage {
     padding: 7rem 0 3.5rem;
+  }
+
+  .backLink {
+    width: 100%;
   }
 
   .hero {

@@ -1,6 +1,7 @@
 ﻿"use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useRef } from "react";
 import { Fancybox } from "@fancyapps/ui";
 import styles from "./gallery.module.scss";
@@ -44,6 +45,12 @@ export function Gallery({ items }: GalleryProps) {
   return (
     <div className={styles.galleryPage} ref={containerRef}>
       <div className="container">
+        <div className={styles.backAction}>
+          <Link href="/" className={styles.backLink}>
+            Zpět na hlavní stránku
+          </Link>
+        </div>
+
         <section className={styles.hero}>
           <p className={styles.overline}>Galerie</p>
           <h1 className={styles.heroTitle}>Naše práce v detailu</h1>
