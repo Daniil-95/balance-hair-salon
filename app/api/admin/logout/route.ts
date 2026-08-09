@@ -1,13 +1,12 @@
 import { NextResponse } from "next/server";
-
-const COOKIE_NAME = "balance_token";
+import { AUTH_COOKIE_OPTIONS, TOKEN_NAME } from "@/lib/auth";
 
 export async function POST() {
   const response = NextResponse.json({ success: true });
   response.cookies.set({
-    name: COOKIE_NAME,
+    name: TOKEN_NAME,
     value: "",
-    path: "/",
+    ...AUTH_COOKIE_OPTIONS,
     maxAge: 0
   });
 

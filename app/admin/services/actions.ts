@@ -1,9 +1,11 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { requireAdminSession } from "@/lib/auth";
 import { createService, deleteService, toggleServiceFeatured, updateService } from "@/lib/services";
 
 export async function createServiceAction(formData: FormData) {
+  requireAdminSession();
   const title = formData.get("title")?.toString() ?? "";
   const description = formData.get("description")?.toString() ?? "";
   const icon = formData.get("icon")?.toString() ?? "";
@@ -15,9 +17,11 @@ export async function createServiceAction(formData: FormData) {
 
   await createService({ title, description, icon, order });
   revalidatePath("/admin/services");
+  revalidatePath("/");
 }
 
 export async function updateServiceAction(formData: FormData) {
+  requireAdminSession();
   const id = formData.get("id")?.toString();
   const title = formData.get("title")?.toString() ?? "";
   const description = formData.get("description")?.toString() ?? "";
@@ -30,9 +34,11 @@ export async function updateServiceAction(formData: FormData) {
 
   await updateService({ id, title, description, icon, order });
   revalidatePath("/admin/services");
+  revalidatePath("/");
 }
 
 export async function deleteServiceAction(formData: FormData) {
+  requireAdminSession();
   const id = formData.get("id")?.toString();
   if (!id) {
     return;
@@ -40,9 +46,11 @@ export async function deleteServiceAction(formData: FormData) {
 
   await deleteService(id);
   revalidatePath("/admin/services");
+  revalidatePath("/");
 }
 
 export async function toggleServiceFeaturedAction(formData: FormData) {
+  requireAdminSession();
   const id = formData.get("id")?.toString();
   const featured = formData.get("featured")?.toString() === "true";
   if (!id) {
@@ -51,4 +59,5 @@ export async function toggleServiceFeaturedAction(formData: FormData) {
 
   await toggleServiceFeatured(id, featured);
   revalidatePath("/admin/services");
+  revalidatePath("/");
 }

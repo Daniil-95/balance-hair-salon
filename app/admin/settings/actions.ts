@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache";
 import fs from "fs";
 import path from "path";
+import { requireAdminSession } from "@/lib/auth";
 import { upsertSettings } from "@/lib/settings";
 
 const uploadsDir = path.join(process.cwd(), "public", "uploads");
@@ -23,6 +24,7 @@ async function saveUpload(file: File) {
 }
 
 export async function saveSettingsAction(formData: FormData) {
+  requireAdminSession();
   const salonName = formData.get("salonName")?.toString() ?? "";
   const tagline = formData.get("tagline")?.toString() || null;
   const heroCtaLabel = formData.get("heroCtaLabel")?.toString() || null;
@@ -40,4 +42,7 @@ export async function saveSettingsAction(formData: FormData) {
 
   await upsertSettings({ salonName, tagline, heroCtaLabel, heroCtaUrl, logo });
   revalidatePath("/admin/settings");
+  revalidatePath("/");
+  revalidatePath("/gallery");
+  revalidatePath("/pricing");
 }

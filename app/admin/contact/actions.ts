@@ -1,6 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { requireAdminSession } from "@/lib/auth";
 import { upsertContactAndHours } from "@/lib/contact";
 
 function parseBoolean(value: string | string[] | null) {
@@ -8,6 +9,7 @@ function parseBoolean(value: string | string[] | null) {
 }
 
 export async function saveContactAction(formData: FormData) {
+  requireAdminSession();
   const address = formData.get("address")?.toString() ?? "";
   const phone = formData.get("phone")?.toString() ?? "";
   const whatsapp = formData.get("whatsapp")?.toString() ?? "";
@@ -57,4 +59,5 @@ export async function saveContactAction(formData: FormData) {
 
   await upsertContactAndHours({ address, phone, whatsapp, email, mapUrl, hours: normalizedHours });
   revalidatePath("/admin/contact");
+  revalidatePath("/");
 }

@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache";
 import fs from "fs";
 import path from "path";
+import { requireAdminSession } from "@/lib/auth";
 import { createGalleryCategory, createGalleryImage, deleteGalleryImage, updateGalleryImage } from "@/lib/gallery";
 
 const uploadsDir = path.join(process.cwd(), "public", "uploads");
@@ -22,17 +23,25 @@ async function saveUpload(file: File) {
   return filename;
 }
 
+function revalidateGalleryViews() {
+  revalidatePath("/admin/gallery");
+  revalidatePath("/");
+  revalidatePath("/gallery");
+}
+
 export async function createGalleryCategoryAction(formData: FormData) {
+  requireAdminSession();
   const name = formData.get("name")?.toString() ?? "";
   if (!name) {
     return;
   }
 
   await createGalleryCategory(name);
-  revalidatePath("/admin/gallery");
+  revalidateGalleryViews();
 }
 
 export async function updateGalleryCategoryAction(formData: FormData) {
+  requireAdminSession();
   const id = formData.get("id")?.toString();
   const name = formData.get("name")?.toString() ?? "";
   const order = Number(formData.get("order") ?? 0);
@@ -42,20 +51,22 @@ export async function updateGalleryCategoryAction(formData: FormData) {
   }
 
   await updateGalleryCategory({ id, name, order });
-  revalidatePath("/admin/gallery");
+  revalidateGalleryViews();
 }
 
 export async function deleteGalleryCategoryAction(formData: FormData) {
+  requireAdminSession();
   const id = formData.get("id")?.toString();
   if (!id) {
     return;
   }
 
   await deleteGalleryCategory(id);
-  revalidatePath("/admin/gallery");
+  revalidateGalleryViews();
 }
 
 export async function uploadGalleryImageAction(formData: FormData) {
+  requireAdminSession();
   const title = formData.get("title")?.toString() ?? "";
   const alt = formData.get("alt")?.toString() ?? "";
   const categoryId = formData.get("categoryId")?.toString() ?? "";
@@ -68,10 +79,11 @@ export async function uploadGalleryImageAction(formData: FormData) {
 
   const filename = await saveUpload(file);
   await createGalleryImage({ title, alt, filename, categoryId, order });
-  revalidatePath("/admin/gallery");
+  revalidateGalleryViews();
 }
 
 export async function updateGalleryImageAction(formData: FormData) {
+  requireAdminSession();
   const id = formData.get("id")?.toString();
   const title = formData.get("title")?.toString() ?? "";
   const alt = formData.get("alt")?.toString() ?? "";
@@ -83,15 +95,16 @@ export async function updateGalleryImageAction(formData: FormData) {
   }
 
   await updateGalleryImage({ id, title, alt, categoryId, order });
-  revalidatePath("/admin/gallery");
+  revalidateGalleryViews();
 }
 
 export async function deleteGalleryImageAction(formData: FormData) {
+  requireAdminSession();
   const id = formData.get("id")?.toString();
   if (!id) {
     return;
   }
 
   await deleteGalleryImage(id);
-  revalidatePath("/admin/gallery");
+  revalidateGalleryViews();
 }

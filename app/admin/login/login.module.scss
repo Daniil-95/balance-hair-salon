@@ -29,6 +29,33 @@
   line-height: 1.6;
 }
 
+.modeSwitch {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.modeSwitch button {
+  min-height: 42px;
+  border-radius: 0.5rem;
+  border: 1px solid #d1d5db;
+  background: #f9fafb;
+  color: #111827;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.modeSwitch button:hover {
+  border-color: #9ca3af;
+}
+
+.modeActive {
+  border-color: #111827 !important;
+  background: #111827 !important;
+  color: #ffffff !important;
+}
+
 .loginForm {
   display: grid;
   gap: 1rem;

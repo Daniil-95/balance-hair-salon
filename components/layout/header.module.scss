@@ -101,6 +101,32 @@
   transform: scaleX(1);
 }
 
+.adminAccess {
+  min-height: 44px;
+  min-width: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  border: 1px solid rgba(202, 162, 106, 0.32);
+  background: rgba(202, 162, 106, 0.06);
+  color: var(--color-gold);
+  transition: transform var(--transition-base), border-color var(--transition-base), background var(--transition-base), color var(--transition-base);
+}
+
+.adminAccess:hover {
+  transform: translateY(-1px);
+  border-color: rgba(202, 162, 106, 0.58);
+  background: rgba(202, 162, 106, 0.14);
+  color: var(--color-white);
+}
+
+.adminAccessIcon {
+  width: 1rem;
+  height: 1rem;
+  flex: 0 0 auto;
+}
+
 .cta {
   min-height: 44px;
   display: inline-flex;
@@ -152,6 +178,10 @@
   .link {
     flex: 0 0 auto;
     white-space: nowrap;
+  }
+
+  .adminAccess {
+    order: 2;
   }
 }
 

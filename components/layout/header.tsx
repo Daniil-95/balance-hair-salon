@@ -43,6 +43,13 @@ export function Header({ brandName = "Balance", brandSub = "Kadeřnické studio"
           ))}
         </nav>
 
+        <a href="/admin/login" className={styles.adminAccess} aria-label="Přihlásit se do administrace" title="Administrace">
+          <svg className={styles.adminAccessIcon} aria-hidden="true" viewBox="0 0 24 24" fill="none">
+            <path d="M10 3.8h7a1.8 1.8 0 0 1 1.8 1.8v12.8a1.8 1.8 0 0 1-1.8 1.8h-7" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" />
+            <path d="M14 12H4.8M8.2 8.6 4.8 12l3.4 3.4" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </a>
+
         <a href={ctaUrl} target="_blank" rel="noreferrer" className={styles.cta}>
           <svg className={styles.ctaIcon} aria-hidden="true" viewBox="0 0 24 24" fill="none">
             <rect x="4" y="5" width="16" height="15" rx="2" stroke="currentColor" strokeWidth="1.7" />

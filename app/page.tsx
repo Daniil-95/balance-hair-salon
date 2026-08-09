@@ -7,6 +7,8 @@ import { Contact } from "@/components/sections/contact/Contact";
 import { SiteShell } from "@/components/layout/site-shell";
 import { getPublicContact, getPublicGallery, getPublicPricing, getPublicServices, getPublicSettings } from "@/lib/public-content";
 
+export const revalidate = 0;
+
 const fallbackServices = [
   { id: "women", title: "Dámské střihy", description: "Střihy a styling na míru", icon: "women" },
   { id: "men", title: "Pánské střihy", description: "Čistý a přesný tvar", icon: "men" },

@@ -1,5 +1,5 @@
 import { NextResponse, type NextRequest } from "next/server";
-import { verifyToken } from "@/lib/auth";
+import { isAdminPayload, verifyToken } from "@/lib/auth";
 
 const PUBLIC_PATHS = ["/admin/login", "/admin/login/"];
 const COOKIE_NAME = "balance_token";
@@ -21,7 +21,10 @@ export function middleware(request: NextRequest) {
   }
 
   try {
-    verifyToken(token);
+    const payload = verifyToken(token);
+    if (!isAdminPayload(payload)) {
+      return NextResponse.redirect(new URL("/admin/login", request.url));
+    }
     return NextResponse.next();
   } catch {
     return NextResponse.redirect(new URL("/admin/login", request.url));
