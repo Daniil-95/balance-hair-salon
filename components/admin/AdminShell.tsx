@@ -1,6 +1,6 @@
 ﻿"use client";
 
-import type { ReactNode } from "react";
+import { Suspense, type ReactNode } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AdminFlash } from "@/components/admin/AdminFlash";
@@ -61,7 +61,9 @@ export function AdminShell({ children }: AdminShellProps) {
         </form>
       </aside>
       <main className={styles.content}>
-        <AdminFlash />
+        <Suspense fallback={null}>
+          <AdminFlash />
+        </Suspense>
         {children}
       </main>
     </div>
