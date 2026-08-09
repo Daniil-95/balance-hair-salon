@@ -30,6 +30,7 @@ export function Contact({ contact, openingHours }: ContactProps) {
   const whatsapp = contact?.whatsapp || "+420603561625";
   const whatsappHref = whatsapp.startsWith("http") ? whatsapp : `https://wa.me/${whatsapp.replace(/\D+/g, "")}`;
   const phoneHref = `tel:${normalizePhone(phone)}`;
+  const mapHref = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
   const mapSrc = contact?.mapUrl || "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2576.347765002316!2d13.989133612351198!3d49.77952477135285!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470b08f1d29a68f1%3A0x221e79fc2817ef0e!2zxIxlbmtvdiA5MywgMjYyIDIzIMSMZW5rb3Y!5e0!3m2!1sru!2scz!4v1786218679639!5m2!1sru!2scz";
 
   return (
@@ -49,7 +50,9 @@ export function Contact({ contact, openingHours }: ContactProps) {
                     <circle cx="12" cy="10.5" r="1.8" stroke="currentColor" strokeWidth="1.7" />
                   </svg>
                 </span>
-                <span className={styles.itemContent}>{address}</span>
+                <a className={styles.itemContent} href={mapHref} target="_blank" rel="noreferrer">
+                  {address}
+                </a>
               </li>
               <li>
                 <span className={styles.itemIcon} aria-hidden="true">
@@ -85,41 +88,38 @@ export function Contact({ contact, openingHours }: ContactProps) {
             </ul>
           </article>
 
-          <div className={styles.rightColumn}>
-            <article className={styles.mapCard}>
-              <div className={styles.mapHeader}>
-                <p className={styles.cardTitle}>Kde nás najdete</p>
-                <strong className={styles.mapAddress}>{address}</strong>
-              </div>
-              <div className={styles.mapFrame}>
-                <iframe
-                  src={mapSrc}
-                  width="600"
-                  height="450"
-                  style={{ border: 0 }}
-                  allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="strict-origin-when-cross-origin"
-                  title="Mapa salonu Balance"
-                />
-              </div>
-            </article>
+          <article className={styles.mapCard}>
+            <div className={styles.mapHeader}>
+              <p className={styles.cardTitle}>Kde nás najdete</p>
+              <strong className={styles.mapAddress}>{address}</strong>
+            </div>
+            <div className={styles.mapFrame}>
+              <iframe
+                src={mapSrc}
+                width="600"
+                height="450"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="strict-origin-when-cross-origin"
+                title="Mapa salonu Balance"
+              />
+            </div>
+          </article>
 
-            <article className={styles.hoursCard}>
-              <div className={styles.hoursHeader}>
-                <p className={styles.cardTitle}>Otvírací doba</p>
-                <span className={styles.status}>Otevřeno dle termínů</span>
-              </div>
-              <ul className={styles.hours}>
-                {openingHours.map((hour) => (
-                  <li key={hour.day}>
-                    <span>{hour.day}</span>
-                    <strong>{hour.isClosed ? "zavřeno" : hour.close ? `${hour.open} – ${hour.close}` : hour.open}</strong>
-                  </li>
-                ))}
-              </ul>
-            </article>
-          </div>
+          <article className={styles.hoursCard}>
+            <div className={styles.hoursHeader}>
+              <p className={styles.cardTitle}>Otvírací doba</p>
+            </div>
+            <ul className={styles.hours}>
+              {openingHours.map((hour) => (
+                <li key={hour.day}>
+                  <span>{hour.day}</span>
+                  <strong>{hour.isClosed ? "zavřeno" : hour.close ? `${hour.open} – ${hour.close}` : hour.open}</strong>
+                </li>
+              ))}
+            </ul>
+          </article>
         </div>
       </div>
     </section>
