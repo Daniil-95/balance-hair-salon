@@ -1,6 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 import fs from "fs";
 import path from "path";
 import { requireAdminSession } from "@/lib/auth";
@@ -26,8 +27,6 @@ async function saveUpload(file: File) {
 function revalidateHeroViews() {
   revalidatePath("/admin/hero");
   revalidatePath("/");
-  revalidatePath("/gallery");
-  revalidatePath("/pricing");
 }
 
 export async function saveHeroAction(formData: FormData) {
@@ -80,4 +79,5 @@ export async function saveHeroAction(formData: FormData) {
   });
 
   revalidateHeroViews();
+  redirect("/admin/hero?saved=1");
 }

@@ -3,6 +3,7 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { AdminFlash } from "@/components/admin/AdminFlash";
 import styles from "./admin-shell.module.scss";
 
 interface AdminShellProps {
@@ -59,7 +60,10 @@ export function AdminShell({ children }: AdminShellProps) {
           </button>
         </form>
       </aside>
-      <main className={styles.content}>{children}</main>
+      <main className={styles.content}>
+        <AdminFlash />
+        {children}
+      </main>
     </div>
   );
 }

@@ -1,6 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 import { requireAdminSession } from "@/lib/auth";
 import { upsertSeo } from "@/lib/seo";
 
@@ -35,8 +36,7 @@ export async function saveSeoAction(formData: FormData) {
 
   revalidatePath("/admin/seo");
   revalidatePath("/");
-  revalidatePath("/gallery");
-  revalidatePath("/pricing");
   revalidatePath("/robots.txt");
   revalidatePath("/sitemap.xml");
+  redirect("/admin/seo?saved=1");
 }

@@ -1,6 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 import { requireAdminSession } from "@/lib/auth";
 import { upsertContactAndHours } from "@/lib/contact";
 
@@ -60,4 +61,5 @@ export async function saveContactAction(formData: FormData) {
   await upsertContactAndHours({ address, phone, whatsapp, email, mapUrl, hours: normalizedHours });
   revalidatePath("/admin/contact");
   revalidatePath("/");
+  redirect("/admin/contact?saved=1");
 }

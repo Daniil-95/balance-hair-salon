@@ -1,6 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 import fs from "fs";
 import path from "path";
 import { requireAdminSession } from "@/lib/auth";
@@ -70,4 +71,5 @@ export async function saveAboutAction(formData: FormData) {
   });
 
   revalidateAboutViews();
+  redirect("/admin/about?saved=1");
 }

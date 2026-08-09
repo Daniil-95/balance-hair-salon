@@ -1,6 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 import { requireAdminSession } from "@/lib/auth";
 import { upsertSettings } from "@/lib/settings";
 
@@ -18,6 +19,5 @@ export async function saveSettingsAction(formData: FormData) {
   await upsertSettings({ salonName, tagline, heroCtaLabel, heroCtaUrl });
   revalidatePath("/admin/settings");
   revalidatePath("/");
-  revalidatePath("/gallery");
-  revalidatePath("/pricing");
+  redirect("/admin/settings?saved=1");
 }
