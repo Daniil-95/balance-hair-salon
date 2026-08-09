@@ -41,6 +41,8 @@
   font-size: 1.15rem;
   font-weight: 800;
   letter-spacing: 0;
+  color: #ffffff;
+  text-decoration: none;
 }
 
 .brandSub {
@@ -1028,87 +1030,175 @@
   }
 }
 
+/* ─── Mobile-only nav elements (hidden on desktop) ─────────────── */
+.mobileBar {
+  display: none;
+}
+
+.mobileBrand {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+}
+
+.menuToggle {
+  display: none;
+  position: relative;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 0.5rem;
+  color: #ffffff;
+  font: inherit;
+}
+
+.menuLine {
+  display: block;
+  width: 1.1rem;
+  height: 2px;
+  border-radius: 999px;
+  background: currentColor;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: transform 0.2s ease, opacity 0.2s ease, top 0.2s ease;
+}
+
+.menuLine:nth-child(1) { top: 14px; }
+.menuLine:nth-child(2) { top: 21px; }
+.menuLine:nth-child(3) { top: 28px; }
+
+.menuToggleOpen .menuLine:nth-child(1) {
+  top: 21px;
+  transform: translateX(-50%) rotate(45deg);
+}
+
+.menuToggleOpen .menuLine:nth-child(2) {
+  opacity: 0;
+}
+
+.menuToggleOpen .menuLine:nth-child(3) {
+  top: 21px;
+  transform: translateX(-50%) rotate(-45deg);
+}
+
+.menuClose {
+  display: none;
+}
+
+.overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 65;
+  background: rgba(0, 0, 0, 0.54);
+  opacity: 0;
+  pointer-events: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: opacity 0.22s ease;
+}
+
+.overlayVisible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* placeholder so .navOpen is a valid CSS module class */
+.navOpen {}
+
+/* ─── Responsive ──────────────────────────────────────────────── */
 @media (max-width: 768px) {
-  .adminShell {
-    flex-direction: column;
-  }
-
-  /* Brand + logout on one row; nav links below spanning full width */
-  .nav {
-    width: 100%;
-    flex-basis: auto;
-    display: grid;
-    grid-template-columns: 1fr auto;
-    grid-template-rows: auto auto;
-    row-gap: 0.55rem;
-    column-gap: 0.75rem;
-    padding: 0.75rem 0.85rem 0.65rem;
-  }
-
-  .navHeader {
-    grid-column: 1;
-    grid-row: 1;
-    padding: 0;
-    border: none;
-    background: none;
-    align-self: center;
-  }
-
-  .brand {
-    font-size: 1.05rem;
-  }
-
-  .brandSub {
-    display: none;
-  }
-
-  .navList {
-    grid-column: 1 / -1;
-    grid-row: 2;
+  .mobileBar {
     display: flex;
-    overflow-x: auto;
-    scrollbar-width: none;
-    gap: 0.3rem;
-    padding: 0.3rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 60;
+    height: 56px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1rem;
+    background: #111827;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.28);
   }
 
-  .navList::-webkit-scrollbar {
-    display: none;
+  .menuToggle {
+    min-height: 44px;
+    min-width: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
   }
 
-  .navLink {
-    flex: 0 0 auto;
-    min-height: 40px;
-    white-space: nowrap;
-    padding: 0.5rem 0.7rem;
+  .overlay {
+    display: block;
+  }
+
+  /* Nav becomes a fixed right-side drawer */
+  .nav {
+    width: min(82vw, 300px);
+    flex: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 70;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    overflow-y: auto;
+    transform: translateX(106%);
+    transition: transform 0.26s ease;
+    pointer-events: none;
+  }
+
+  .navOpen {
+    transform: translateX(0);
+    pointer-events: auto;
+  }
+
+  .menuClose {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
     gap: 0.4rem;
-    font-size: 0.875rem;
+    align-self: flex-end;
+    min-height: 40px;
+    padding: 0.3rem 0.4rem;
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.55);
+    font: inherit;
+    font-size: 0.82rem;
+    cursor: pointer;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .menuClose:hover {
+    color: #ffffff;
   }
 
   .logoutForm {
-    grid-column: 2;
-    grid-row: 1;
-    margin: 0;
-    padding: 0;
-    border: none;
-    align-self: center;
+    margin-top: auto;
+    padding-top: 0.75rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
   }
 
   .logoutButton {
-    width: auto;
-    min-height: 36px;
-    padding: 0.4rem 0.85rem;
-    font-size: 0.8rem;
-    border-color: rgba(255, 255, 255, 0.22);
-    background: rgba(255, 255, 255, 0.07);
+    width: 100%;
   }
 
-  .logoutButton:hover {
-    background: rgba(255, 255, 255, 0.13);
-  }
-
+  /* padding-top offsets the fixed mobile bar */
   .content {
+    width: 100%;
     padding: 1.25rem;
+    padding-top: calc(56px + 1.25rem);
   }
 
   .panel {
@@ -1183,8 +1273,9 @@
 }
 
 @media (max-width: 480px) {
-  .nav {
-    padding: 0.65rem 0.75rem 0.55rem;
+  .content {
+    padding: 1rem;
+    padding-top: calc(56px + 1rem);
   }
 
   .dashboardGrid {
@@ -1213,16 +1304,11 @@
     grid-template-columns: 1fr;
   }
 
-  .content {
-    padding: 1rem;
-  }
-
   .card,
   .subBlock {
     padding: 1rem;
   }
 
-  /* logoutButton stays compact — excluded intentionally */
   .buttonRow,
   .button,
   .buttonSecondary,
