@@ -36,9 +36,7 @@ export const fallbackHero = {
   imageSrc: "/images/image.png",
   imageAlt: "Interiér kadeřnického salonu",
   overline: "Kadeřnické studio",
-  instagramUrl: "https://www.instagram.com/balance.kadernictvi",
   whatsappLabel: "WhatsApp",
-  whatsappUrl: "",
   instagramLabel: "Instagram",
   openingHoursLabel: "Po–Pá 9:00–19:00"
 };
@@ -132,9 +130,9 @@ export async function getPublicHero() {
     imageSrc: normalizeUploadedImage(hero?.image) || fallbackHero.imageSrc,
     imageAlt: heroMeta.imageAlt || fallbackHero.imageAlt,
     overline: heroMeta.overline || fallbackHero.overline,
-    instagramUrl: heroMeta.instagramUrl || fallbackHero.instagramUrl,
+    instagramUrl: heroMeta.instagramUrl || null,
     whatsappLabel: heroMeta.whatsappLabel || fallbackHero.whatsappLabel,
-    whatsappUrl: heroMeta.whatsappUrl || fallbackHero.whatsappUrl,
+    whatsappUrl: heroMeta.whatsappUrl || null,
     instagramLabel: heroMeta.instagramLabel || fallbackHero.instagramLabel,
     openingHoursLabel: heroMeta.openingHoursLabel || fallbackHero.openingHoursLabel
   };
