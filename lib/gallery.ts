@@ -12,6 +12,26 @@ export function getGalleryCategories() {
   return prisma.galleryCategory.findMany({ orderBy: { order: "asc" } });
 }
 
+export async function getOrCreateDefaultGalleryCategoryId() {
+  const existing = await prisma.galleryCategory.findFirst({
+    where: { slug: "default" },
+  });
+
+  if (existing) {
+    return existing.id;
+  }
+
+  const created = await prisma.galleryCategory.create({
+    data: {
+      name: "Galerie",
+      slug: "default",
+      order: 0,
+    },
+  });
+
+  return created.id;
+}
+
 export function getGalleryImages() {
   return prisma.galleryImage.findMany({
     orderBy: { order: "asc" },
@@ -55,6 +75,18 @@ export function createGalleryImage(data: { title: string; alt: string; filename:
   });
 }
 
+export function createGalleryImageSimple(data: { title: string; filename: string; categoryId: string; order: number }) {
+  return prisma.galleryImage.create({
+    data: {
+      title: data.title,
+      alt: data.title,
+      filename: data.filename,
+      categoryId: data.categoryId,
+      order: data.order,
+    },
+  });
+}
+
 export function updateGalleryImage(data: { id: string; title: string; alt: string; categoryId: string; order: number }) {
   return prisma.galleryImage.update({
     where: { id: data.id },
@@ -62,6 +94,17 @@ export function updateGalleryImage(data: { id: string; title: string; alt: strin
       title: data.title,
       alt: data.alt,
       categoryId: data.categoryId,
+      order: data.order,
+    },
+  });
+}
+
+export function updateGalleryImageSimple(data: { id: string; title: string; order: number }) {
+  return prisma.galleryImage.update({
+    where: { id: data.id },
+    data: {
+      title: data.title,
+      alt: data.title,
       order: data.order,
     },
   });

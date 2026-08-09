@@ -4,7 +4,7 @@ import { revalidatePath } from "next/cache";
 import fs from "fs";
 import path from "path";
 import { requireAdminSession } from "@/lib/auth";
-import { createGalleryCategory, createGalleryImage, deleteGalleryImage, updateGalleryImage } from "@/lib/gallery";
+import { createGalleryImageSimple, deleteGalleryImage, getOrCreateDefaultGalleryCategoryId, updateGalleryImageSimple } from "@/lib/gallery";
 
 const uploadsDir = path.join(process.cwd(), "public", "uploads");
 
@@ -29,56 +29,19 @@ function revalidateGalleryViews() {
   revalidatePath("/gallery");
 }
 
-export async function createGalleryCategoryAction(formData: FormData) {
-  await requireAdminSession();
-  const name = formData.get("name")?.toString() ?? "";
-  if (!name) {
-    return;
-  }
-
-  await createGalleryCategory(name);
-  revalidateGalleryViews();
-}
-
-export async function updateGalleryCategoryAction(formData: FormData) {
-  await requireAdminSession();
-  const id = formData.get("id")?.toString();
-  const name = formData.get("name")?.toString() ?? "";
-  const order = Number(formData.get("order") ?? 0);
-
-  if (!id || !name) {
-    return;
-  }
-
-  await updateGalleryCategory({ id, name, order });
-  revalidateGalleryViews();
-}
-
-export async function deleteGalleryCategoryAction(formData: FormData) {
-  await requireAdminSession();
-  const id = formData.get("id")?.toString();
-  if (!id) {
-    return;
-  }
-
-  await deleteGalleryCategory(id);
-  revalidateGalleryViews();
-}
-
 export async function uploadGalleryImageAction(formData: FormData) {
   await requireAdminSession();
   const title = formData.get("title")?.toString() ?? "";
-  const alt = formData.get("alt")?.toString() ?? "";
-  const categoryId = formData.get("categoryId")?.toString() ?? "";
   const order = Number(formData.get("order") ?? 0);
   const file = formData.get("image") as File | null;
 
-  if (!title || !alt || !categoryId || !file) {
+  if (!title || !file) {
     return;
   }
 
+  const categoryId = await getOrCreateDefaultGalleryCategoryId();
   const filename = await saveUpload(file);
-  await createGalleryImage({ title, alt, filename, categoryId, order });
+  await createGalleryImageSimple({ title, filename, categoryId, order });
   revalidateGalleryViews();
 }
 
@@ -86,15 +49,13 @@ export async function updateGalleryImageAction(formData: FormData) {
   await requireAdminSession();
   const id = formData.get("id")?.toString();
   const title = formData.get("title")?.toString() ?? "";
-  const alt = formData.get("alt")?.toString() ?? "";
-  const categoryId = formData.get("categoryId")?.toString() ?? "";
   const order = Number(formData.get("order") ?? 0);
 
-  if (!id || !title || !alt || !categoryId) {
+  if (!id || !title) {
     return;
   }
 
-  await updateGalleryImage({ id, title, alt, categoryId, order });
+  await updateGalleryImageSimple({ id, title, order });
   revalidateGalleryViews();
 }
 

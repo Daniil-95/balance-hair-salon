@@ -23,10 +23,6 @@ export default async function AdminPricingPage() {
               <input name="name" className={styles.input} required />
             </div>
             <div className={styles.formGroup}>
-              <label className={styles.label}>Popis</label>
-              <input name="description" className={styles.input} />
-            </div>
-            <div className={styles.formGroup}>
               <label className={styles.label}>Pořadí</label>
               <input name="order" className={styles.input} type="number" defaultValue={0} />
             </div>
@@ -48,40 +44,35 @@ export default async function AdminPricingPage() {
           {categories.map((category) => (
             <div key={category.id} className={styles.card}>
               <h2 className={styles.cardTitle}>{category.name}</h2>
-              {category.description ? <p className={styles.cardMeta}>{category.description}</p> : null}
 
-              <form action={actions.updatePriceCategoryAction} className={styles.form}>
+              <form id={`update-price-category-${category.id}`} action={actions.updatePriceCategoryAction} className={styles.form}>
                 <input type="hidden" name="id" value={category.id} />
                 <div className={styles.formGroup}>
                   <label className={styles.label}>Název</label>
                   <input name="name" className={styles.input} defaultValue={category.name} required />
                 </div>
                 <div className={styles.formGroup}>
-                  <label className={styles.label}>Popis</label>
-                  <input name="description" className={styles.input} defaultValue={category.description ?? ""} />
-                </div>
-                <div className={styles.formGroup}>
                   <label className={styles.label}>Pořadí</label>
                   <input name="order" className={styles.input} type="number" defaultValue={category.order} />
                 </div>
-                <div className={styles.buttonRow}>
-                  <button type="submit" className={styles.button}>
-                    Uložit kategorii
-                  </button>
-                </div>
               </form>
 
-              <ConfirmForm
-                action={actions.deletePriceCategoryAction}
-                method="post"
-                className={styles.inlineForm}
-                message="Opravdu chcete smazat tuto kategorii? Smažou se i její položky."
-              >
-                <input type="hidden" name="id" value={category.id} />
-                <button type="submit" className={styles.buttonDanger}>
-                  Smazat kategorii
+              <div className={styles.buttonRow}>
+                <button type="submit" form={`update-price-category-${category.id}`} className={styles.button}>
+                  Uložit kategorii
                 </button>
-              </ConfirmForm>
+                <ConfirmForm
+                  action={actions.deletePriceCategoryAction}
+                  method="post"
+                  className={styles.inlineForm}
+                  message="Opravdu chcete smazat tuto kategorii? Smažou se i její položky."
+                >
+                  <input type="hidden" name="id" value={category.id} />
+                  <button type="submit" className={styles.buttonDanger}>
+                    Smazat kategorii
+                  </button>
+                </ConfirmForm>
+              </div>
 
               <div className={styles.subBlock}>
                 <h3 className={styles.cardTitle}>Přidat položku</h3>
@@ -94,10 +85,6 @@ export default async function AdminPricingPage() {
                   <div className={styles.formGroup}>
                     <label className={styles.label}>Cena</label>
                     <input name="price" className={styles.input} required />
-                  </div>
-                  <div className={styles.formGroup}>
-                    <label className={styles.label}>Popis</label>
-                    <input name="description" className={styles.input} />
                   </div>
                   <div className={styles.formGroup}>
                     <label className={styles.label}>Pořadí</label>
@@ -117,8 +104,7 @@ export default async function AdminPricingPage() {
                 <div key={item.id} className={styles.subBlock}>
                   <h3 className={styles.cardTitle}>{item.title}</h3>
                   <div className={styles.cardMeta}>{item.price}</div>
-                  {item.description ? <p className={styles.cardMeta}>{item.description}</p> : null}
-                  <form action={actions.updatePriceItemAction} className={styles.form}>
+                  <form id={`update-price-item-${item.id}`} action={actions.updatePriceItemAction} className={styles.form}>
                     <input type="hidden" name="id" value={item.id} />
                     <div className={styles.formGroup}>
                       <label className={styles.label}>Název</label>
@@ -129,30 +115,26 @@ export default async function AdminPricingPage() {
                       <input name="price" className={styles.input} defaultValue={item.price} required />
                     </div>
                     <div className={styles.formGroup}>
-                      <label className={styles.label}>Popis</label>
-                      <input name="description" className={styles.input} defaultValue={item.description ?? ""} />
-                    </div>
-                    <div className={styles.formGroup}>
                       <label className={styles.label}>Pořadí</label>
                       <input name="order" className={styles.input} type="number" defaultValue={item.order} />
                     </div>
-                    <div className={styles.buttonRow}>
-                      <button type="submit" className={styles.button}>
-                        Uložit položku
-                      </button>
-                    </div>
                   </form>
-                  <ConfirmForm
-                    action={actions.deletePriceItemAction}
-                    method="post"
-                    className={styles.inlineForm}
-                    message="Opravdu chcete smazat tuto položku ceníku?"
-                  >
-                    <input type="hidden" name="id" value={item.id} />
-                    <button type="submit" className={styles.buttonDanger}>
-                      Smazat položku
+                  <div className={`${styles.buttonRow} ${styles.buttonRowSpaced}`}>
+                    <button type="submit" form={`update-price-item-${item.id}`} className={styles.button}>
+                      Uložit položku
                     </button>
-                  </ConfirmForm>
+                    <ConfirmForm
+                      action={actions.deletePriceItemAction}
+                      method="post"
+                      className={styles.inlineForm}
+                      message="Opravdu chcete smazat tuto položku ceníku?"
+                    >
+                      <input type="hidden" name="id" value={item.id} />
+                      <button type="submit" className={styles.buttonDanger}>
+                        Smazat položku
+                      </button>
+                    </ConfirmForm>
+                  </div>
                 </div>
               ))}
             </div>
