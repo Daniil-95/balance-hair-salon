@@ -1,5 +1,6 @@
 ﻿import { AdminShell } from "@/components/admin/AdminShell";
 import { ConfirmForm } from "@/components/admin/ConfirmForm";
+import { SubmitButton } from "@/components/admin/SubmitButton";
 import { getPriceCategories } from "@/lib/prices";
 import * as actions from "./actions";
 import styles from "@/components/admin/admin-shell.module.scss";
@@ -27,9 +28,9 @@ export default async function AdminPricingPage() {
               <input name="order" className={styles.input} type="number" defaultValue={0} />
             </div>
             <div className={styles.buttonRow}>
-              <button type="submit" className={styles.button}>
+              <SubmitButton type="submit" className={styles.button}>
                 Přidat kategorii
-              </button>
+              </SubmitButton>
             </div>
           </form>
         </div>
@@ -58,9 +59,9 @@ export default async function AdminPricingPage() {
               </form>
 
               <div className={styles.buttonRow}>
-                <button type="submit" form={`update-price-category-${category.id}`} className={styles.button}>
+                <SubmitButton type="submit" form={`update-price-category-${category.id}`} className={styles.button}>
                   Uložit kategorii
-                </button>
+                </SubmitButton>
                 <ConfirmForm
                   action={actions.deletePriceCategoryAction}
                   className={styles.inlineForm}
@@ -89,9 +90,9 @@ export default async function AdminPricingPage() {
                     <input name="order" className={styles.input} type="number" defaultValue={0} />
                   </div>
                   <div className={styles.buttonRow}>
-                    <button type="submit" className={styles.button}>
+                    <SubmitButton type="submit" className={styles.button}>
                       Přidat položku
-                    </button>
+                    </SubmitButton>
                   </div>
                 </form>
               </div>
@@ -118,12 +119,11 @@ export default async function AdminPricingPage() {
                     </div>
                   </form>
                   <div className={`${styles.buttonRow} ${styles.buttonRowSpaced}`}>
-                    <button type="submit" form={`update-price-item-${item.id}`} className={styles.button}>
+                    <SubmitButton type="submit" form={`update-price-item-${item.id}`} className={styles.button}>
                       Uložit položku
-                    </button>
+                    </SubmitButton>
                     <ConfirmForm
                       action={actions.deletePriceItemAction}
-                      method="post"
                       className={styles.inlineForm}
                       message="Opravdu chcete smazat tuto položku ceníku?"
                     >

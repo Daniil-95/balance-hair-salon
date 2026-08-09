@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { AdminShell } from "@/components/admin/AdminShell";
+import { SubmitButton } from "@/components/admin/SubmitButton";
 import { getHero } from "@/lib/hero";
 import { getPublicHero } from "@/lib/public-content";
 import * as actions from "./actions";
@@ -67,9 +68,9 @@ export default async function AdminHeroPage() {
               <input name="image" type="file" className={styles.input} accept="image/*" />
             </div>
             <div className={styles.buttonRow}>
-              <button type="submit" className={styles.button}>
+              <SubmitButton type="submit" className={styles.button}>
                 Uložit hero sekci
-              </button>
+              </SubmitButton>
             </div>
           </form>
         </div>

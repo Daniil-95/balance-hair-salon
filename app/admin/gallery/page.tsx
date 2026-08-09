@@ -1,6 +1,7 @@
 ﻿import Image from "next/image";
 import { AdminShell } from "@/components/admin/AdminShell";
 import { ConfirmForm } from "@/components/admin/ConfirmForm";
+import { SubmitButton } from "@/components/admin/SubmitButton";
 import { getGalleryImages } from "@/lib/gallery";
 import * as actions from "./actions";
 import styles from "@/components/admin/admin-shell.module.scss";
@@ -32,9 +33,9 @@ export default async function AdminGalleryPage() {
               <input name="order" className={styles.input} type="number" defaultValue={0} />
             </div>
             <div className={styles.buttonRow}>
-              <button type="submit" className={styles.button}>
+              <SubmitButton type="submit" className={styles.button}>
                 Nahrát fotografii
-              </button>
+              </SubmitButton>
             </div>
           </form>
         </div>
@@ -69,9 +70,9 @@ export default async function AdminGalleryPage() {
                 </div>
               </form>
               <div className={styles.buttonRow}>
-                <button type="submit" form={`update-gallery-image-${image.id}`} className={styles.button}>
+                <SubmitButton type="submit" form={`update-gallery-image-${image.id}`} className={styles.button}>
                   Uložit fotografii
-                </button>
+                </SubmitButton>
                 <ConfirmForm
                   action={actions.deleteGalleryImageAction}
                   className={styles.inlineForm}

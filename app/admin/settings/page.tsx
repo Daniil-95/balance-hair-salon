@@ -1,4 +1,5 @@
 ﻿import { AdminShell } from "@/components/admin/AdminShell";
+import { SubmitButton } from "@/components/admin/SubmitButton";
 import { getSettings } from "@/lib/settings";
 import * as actions from "./actions";
 import styles from "@/components/admin/admin-shell.module.scss";
@@ -33,9 +34,9 @@ export default async function AdminSettingsPage() {
               <input name="heroCtaUrl" className={styles.input} defaultValue={settings?.heroCtaUrl ?? ""} />
             </div>
             <div className={styles.buttonRow}>
-              <button type="submit" className={styles.button}>
+              <SubmitButton type="submit" className={styles.button}>
                 Uložit nastavení
-              </button>
+              </SubmitButton>
             </div>
           </form>
         </div>

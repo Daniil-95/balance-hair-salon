@@ -1,4 +1,5 @@
 ﻿import { AdminShell } from "@/components/admin/AdminShell";
+import { SubmitButton } from "@/components/admin/SubmitButton";
 import { getContactAndHours } from "@/lib/contact";
 import * as actions from "./actions";
 import styles from "@/components/admin/admin-shell.module.scss";
@@ -76,9 +77,9 @@ export default async function AdminContactPage() {
             ))}
 
             <div className={styles.buttonRow}>
-              <button type="submit" className={styles.button}>
+              <SubmitButton type="submit" className={styles.button}>
                 Uložit kontakt
-              </button>
+              </SubmitButton>
             </div>
           </form>
         </div>

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { AdminShell } from "@/components/admin/AdminShell";
+import { SubmitButton } from "@/components/admin/SubmitButton";
 import { getAbout, getAboutMeta } from "@/lib/about";
 import { getPublicAbout } from "@/lib/public-content";
 import * as actions from "./actions";
@@ -51,9 +52,9 @@ export default async function AdminAboutPage() {
               <input name="imageSecondary" type="file" className={styles.input} accept="image/*" />
             </div>
             <div className={styles.buttonRow}>
-              <button type="submit" className={styles.button}>
+              <SubmitButton type="submit" className={styles.button}>
                 Uložit sekci O nás
-              </button>
+              </SubmitButton>
             </div>
           </form>
         </div>

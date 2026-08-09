@@ -1,4 +1,5 @@
 import { AdminShell } from "@/components/admin/AdminShell";
+import { SubmitButton } from "@/components/admin/SubmitButton";
 import { getSeo } from "@/lib/seo";
 import * as actions from "./actions";
 import styles from "@/components/admin/admin-shell.module.scss";
@@ -65,9 +66,9 @@ export default async function AdminSeoPage() {
             </div>
 
             <div className={styles.buttonRow}>
-              <button type="submit" className={styles.button}>
-                Ulozit SEO
-              </button>
+              <SubmitButton type="submit" className={styles.button}>
+                Uložit SEO
+              </SubmitButton>
             </div>
           </form>
         </div>
