@@ -14,34 +14,58 @@ export default async function AdminSettingsPage() {
     <AdminShell>
       <section className={styles.panel}>
         <h1 className={styles.panelHeading}>Nastavení webu</h1>
-        <p className={styles.panelIntro}>Upravte název salonu, hlavní CTA a titulky sekcí na homepage.</p>
+        <p className={styles.panelIntro}>Upravte navigaci, patičku a titulky sekcí na homepage.</p>
 
         <div className={styles.card}>
           <form action={actions.saveSettingsAction} className={`${styles.form} ${styles.settingsCompactForm}`}>
             <div className={`${styles.subBlock} ${styles.settingsGroup}`}>
-              <h2 className={styles.cardTitle}>Základní údaje</h2>
-              <div className={styles.settingsGrid}>
-                <div className={styles.formGroup}>
-                  <label className={styles.label}>Název salonu</label>
-                  <input name="salonName" className={styles.input} defaultValue={settings?.salonName ?? ""} required />
+              <h2 className={styles.cardTitle}>Navigace webu</h2>
+              <div className={styles.settingsSectionBlocks}>
+                <div className={styles.settingsSectionBlock}>
+                  <h3 className={styles.settingsSectionBlockTitle}>Logo webu</h3>
+                  <div className={styles.settingsGrid}>
+                    <div className={styles.formGroup}>
+                      <label className={styles.label}>Název loga v navigaci</label>
+                      <input name="navigationLogoName" className={styles.input} defaultValue={settings?.navigationLogoName ?? settings?.salonName ?? "Balance"} />
+                    </div>
+                    <div className={styles.formGroup}>
+                      <label className={styles.label}>Podpis loga v navigaci</label>
+                      <input name="navigationLogoSub" className={styles.input} defaultValue={settings?.navigationLogoSub ?? settings?.tagline ?? "Kadeřnické studio"} />
+                    </div>
+                  </div>
                 </div>
-                <div className={styles.formGroup}>
-                  <label className={styles.label}>Slogan</label>
-                  <input name="tagline" className={styles.input} defaultValue={settings?.tagline ?? ""} />
+
+                <div className={styles.settingsSectionBlock}>
+                  <h3 className={styles.settingsSectionBlockTitle}>Hlavní tlačítko v navigaci</h3>
+                  <div className={styles.settingsGrid}>
+                    <div className={styles.formGroup}>
+                      <label className={styles.label}>Text hlavního tlačítka</label>
+                      <input name="heroCtaLabel" className={styles.input} defaultValue={settings?.heroCtaLabel ?? ""} />
+                    </div>
+                    <div className={styles.formGroup}>
+                      <label className={styles.label}>Odkaz hlavního tlačítka</label>
+                      <input name="heroCtaUrl" className={styles.input} defaultValue={settings?.heroCtaUrl ?? ""} />
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
 
             <div className={`${styles.subBlock} ${styles.settingsGroup}`}>
-              <h2 className={styles.cardTitle}>Hlavní tlačítko</h2>
-              <div className={styles.settingsGrid}>
-                <div className={styles.formGroup}>
-                  <label className={styles.label}>Text hlavního tlačítka</label>
-                  <input name="heroCtaLabel" className={styles.input} defaultValue={settings?.heroCtaLabel ?? ""} />
-                </div>
-                <div className={styles.formGroup}>
-                  <label className={styles.label}>Odkaz hlavního tlačítka</label>
-                  <input name="heroCtaUrl" className={styles.input} defaultValue={settings?.heroCtaUrl ?? ""} />
+              <h2 className={styles.cardTitle}>Patička webu</h2>
+              <div className={styles.settingsSectionBlocks}>
+                <div className={styles.settingsSectionBlock}>
+                  <h3 className={styles.settingsSectionBlockTitle}>Texty v patičce</h3>
+                  <div className={styles.settingsGrid}>
+                    <div className={styles.formGroup}>
+                      <label className={styles.label}>Název v patičce</label>
+                      <input name="salonName" className={styles.input} defaultValue={settings?.salonName ?? ""} required />
+                    </div>
+                    <div className={styles.formGroup}>
+                      <label className={styles.label}>Slogan v patičce</label>
+                      <input name="tagline" className={styles.input} defaultValue={settings?.tagline ?? ""} />
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

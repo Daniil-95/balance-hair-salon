@@ -22,8 +22,8 @@ export default async function HomePage() {
 
   return (
     <SiteShell
-      headerBrandName={settingsData?.salonName}
-      headerBrandSub={settingsData?.tagline ?? undefined}
+      headerBrandName={settingsData?.navigationLogoName ?? settingsData?.salonName}
+      headerBrandSub={settingsData?.navigationLogoSub ?? settingsData?.tagline ?? undefined}
       headerCtaLabel={settingsData?.heroCtaLabel ?? undefined}
       headerCtaUrl={settingsData?.heroCtaUrl ?? undefined}
       footerBrandName={settingsData?.salonName}

@@ -1,6 +1,8 @@
 import { prisma } from "@/lib/prisma";
 
 type SectionTitleFields = {
+  navigationLogoName: string | null;
+  navigationLogoSub: string | null;
   servicesSectionTitle: string | null;
   servicesSectionSub: string | null;
   pricingSectionTitle: string | null;
@@ -13,6 +15,8 @@ async function readSectionTitleFields(): Promise<SectionTitleFields> {
   try {
     const rows = await prisma.$queryRaw<Array<SectionTitleFields>>`
       SELECT
+        "navigationLogoName",
+        "navigationLogoSub",
         "servicesSectionTitle",
         "servicesSectionSub",
         "pricingSectionTitle",
@@ -32,6 +36,8 @@ async function readSectionTitleFields(): Promise<SectionTitleFields> {
   }
 
   return {
+    navigationLogoName: null,
+    navigationLogoSub: null,
     servicesSectionTitle: null,
     servicesSectionSub: null,
     pricingSectionTitle: null,
@@ -42,6 +48,8 @@ async function readSectionTitleFields(): Promise<SectionTitleFields> {
 }
 
 async function writeSectionTitleFields(id: string, data: {
+  navigationLogoName?: string | null;
+  navigationLogoSub?: string | null;
   servicesSectionTitle?: string | null;
   servicesSectionSub?: string | null;
   pricingSectionTitle?: string | null;
@@ -53,6 +61,8 @@ async function writeSectionTitleFields(id: string, data: {
     await prisma.$executeRaw`
       UPDATE "SiteSettings"
       SET
+        "navigationLogoName" = ${data.navigationLogoName ?? null},
+        "navigationLogoSub" = ${data.navigationLogoSub ?? null},
         "servicesSectionTitle" = ${data.servicesSectionTitle ?? null},
         "servicesSectionSub" = ${data.servicesSectionSub ?? null},
         "pricingSectionTitle" = ${data.pricingSectionTitle ?? null},
@@ -85,6 +95,8 @@ export async function getSettings() {
 export async function upsertSettings(data: {
   salonName: string;
   tagline?: string | null;
+  navigationLogoName?: string | null;
+  navigationLogoSub?: string | null;
   heroCtaLabel?: string | null;
   heroCtaUrl?: string | null;
   logo?: string | null;

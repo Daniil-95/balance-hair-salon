@@ -16,7 +16,7 @@ interface HeaderProps {
 const BRAND_NAME = "Balance";
 const BRAND_SUB = "Kadeřnické studio";
 
-export function Header({ ctaLabel, ctaUrl }: HeaderProps) {
+export function Header({ brandName, brandSub, ctaLabel, ctaUrl }: HeaderProps) {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -34,8 +34,8 @@ export function Header({ ctaLabel, ctaUrl }: HeaderProps) {
     <header className={`${styles.header} ${isVisible ? styles.headerVisible : styles.headerHidden}`}>
       <div className={styles.inner}>
         <a href="#home" className={styles.brand}>
-          <span className={styles.brandName}>{BRAND_NAME}</span>
-          <span className={styles.brandSub}>{BRAND_SUB}</span>
+          <span className={styles.brandName}>{brandName || BRAND_NAME}</span>
+          <span className={styles.brandSub}>{brandSub || BRAND_SUB}</span>
         </a>
 
         <nav className={styles.nav} aria-label="Hlavní navigace">

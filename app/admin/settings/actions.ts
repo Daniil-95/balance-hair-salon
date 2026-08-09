@@ -9,6 +9,8 @@ export async function saveSettingsAction(formData: FormData) {
   await requireAdminSession();
   const salonName = formData.get("salonName")?.toString() ?? "";
   const tagline = formData.get("tagline")?.toString() || null;
+  const navigationLogoName = formData.get("navigationLogoName")?.toString() || null;
+  const navigationLogoSub = formData.get("navigationLogoSub")?.toString() || null;
   const heroCtaLabel = formData.get("heroCtaLabel")?.toString() || null;
   const heroCtaUrl = formData.get("heroCtaUrl")?.toString() || null;
   const servicesSectionTitle = formData.get("servicesSectionTitle")?.toString() || null;
@@ -25,6 +27,8 @@ export async function saveSettingsAction(formData: FormData) {
   await upsertSettings({
     salonName,
     tagline,
+    navigationLogoName,
+    navigationLogoSub,
     heroCtaLabel,
     heroCtaUrl,
     servicesSectionTitle,

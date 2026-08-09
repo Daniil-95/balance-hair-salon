@@ -156,6 +156,8 @@ model SiteSettings {
   id                    String   @id @default(cuid())
   salonName             String
   tagline               String?
+  navigationLogoName    String?
+  navigationLogoSub     String?
   heroCtaLabel          String?
   heroCtaUrl            String?
   logo                  String?
