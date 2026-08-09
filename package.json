@@ -22,11 +22,11 @@
     "framer-motion": "12.23.12",
     "js-cookie": "3.0.5",
     "jsonwebtoken": "9.0.2",
-    "next": "15.3.3",
+    "next": "15.5.21",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "react-hook-form": "7.84.0",
-    "swiper": "11.2.10",
+    "swiper": "12.1.2",
     "zod": "3.24.2"
   },
   "devDependencies": {
