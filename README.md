@@ -2,75 +2,115 @@
 
 Moderní prezentační web pro kadeřnické studio s vlastní administrací obsahu.
 
-Projekt je navržen jako lehké, rychlé a plně kontrolovatelné řešení bez závislosti na externích CMS platformách.
+Projekt je postaven jako lehké a plně kontrolovatelné řešení bez externího CMS.
 
 ---
 
-## 🧩 O projektu
+## O projektu
 
-Web slouží jako kompletní online prezentace salonu a pokrývá všechny klíčové potřeby:
+Web pokrývá klíčové potřeby salonu:
 
-- přehled služeb,
+- úvodní sekce,
+- sekce O nás,
+- služby,
 - ceník,
-- galerie realizací,
-- kontaktní informace a otevírací doba,
+- galerie,
+- kontakt a otevírací doba,
+- stránka Ochrana osobních údajů,
 - interní administrace pro správu obsahu.
 
-Obsah spravovaný v administraci je okamžitě dostupný ve veřejné části aplikace.
+Obsah uložený v administraci se promítá do veřejné části webu.
 
 ---
 
-## ⚙️ Tech Stack
+## Tech Stack
 
-- **Next.js 15 (App Router)**
-- **React 19**
-- **TypeScript**
-- **SCSS Modules**
-- **Prisma ORM**
-- **SQLite**
-- **JWT Authentication**
-- **Fancybox (gallery)**
-
----
-
-## 🚀 Funkcionalita
-
-- responzivní marketingový web,
-- vlastní admin panel (`/admin`),
-- správa:
-  - služeb,
-  - ceníku,
-  - galerie,
-  - kontaktů,
-  - globálního nastavení,
-- upload obrázků,
-- zabezpečená autentizace (JWT),
-- ochrana neveřejných rout,
-- role-based přístup (ADMIN).
+- Next.js 15 (App Router)
+- React 19
+- TypeScript
+- SCSS Modules
+- Prisma ORM
+- SQLite
+- JWT autentizace
+- Fancybox + Swiper (galerie)
 
 ---
 
-## 🔐 Administrace
+## Co je hotové
 
-Pro správné fungování je nutné nastavit environment proměnné:
+- responzivní veřejný web,
+- vlastní admin panel na `/admin`,
+- správa hero, O nás, služeb, ceníku, galerie, kontaktu, SEO a globálních nastavení,
+- správa textů navigace a patičky odděleně,
+- správa title/subtitle pro sekce hlavní stránky,
+- editovatelný obsah stránky Ochrana osobních údajů,
+- upload obrázků přes admin formuláře,
+- ochrana admin rout + ochrana server actions.
+
+---
+
+## Administrace
+
+Admin je dostupný na:
+
+- `/admin/login`
+
+Po přihlášení jsou dostupné sekce:
+
+- Přehled
+- Úvodní sekce
+- O nás
+- Služby
+- Galerie
+- Ceník
+- Kontakt
+- SEO
+- Nastavení
+
+---
+
+## Nastavení prostředí
+
+V `.env` jsou potřeba minimálně tyto proměnné:
 
 - `DATABASE_URL`
 - `JWT_SECRET`
 - `ADMIN_SETUP_KEY`
+- `NEXT_PUBLIC_SITE_URL`
 
-### První vytvoření admina
+Příklad `DATABASE_URL` pro SQLite:
 
-1. Otevřete `/admin/login`
-2. Přepněte na režim vytvoření admina
-3. Zadejte e-mail, heslo a `ADMIN_SETUP_KEY`
-
-Po vytvoření prvního účtu je setup klíč dále nevyužíván.
+```env
+DATABASE_URL="file:./dev.db"
+```
 
 ---
 
-## ▶️ Spuštění projektu
+## Spuštění lokálně
 
 ```bash
 npm install
-npm run prisma:generate
+npx prisma migrate dev
+npx prisma generate --no-engine
 npm run dev
+```
+
+### Další příkazy
+
+```bash
+npm run lint
+npm run build
+npm run start
+```
+
+---
+
+## První vytvoření admin účtu
+
+1. Otevřete `/admin/login`.
+2. Přepněte na režim vytvoření prvního admina.
+3. Zadejte e-mail, heslo a `ADMIN_SETUP_KEY`.
+
+Po vytvoření prvního admina setup endpoint přirozeně ztrácí význam pro další bootstrap.
+
+---
