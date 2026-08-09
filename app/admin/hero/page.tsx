@@ -14,8 +14,8 @@ export default async function AdminHeroPage() {
   return (
     <AdminShell>
       <section className={styles.panel}>
-        <h1 className={styles.panelHeading}>Hero sekce</h1>
-        <p className={styles.panelIntro}>Spravujte všechny texty, odkazy a obrázek, které se zobrazují v úvodní Hero sekci webu.</p>
+        <h1 className={styles.panelHeading}>Úvodní sekce</h1>
+        <p className={styles.panelIntro}>Spravujte hlavní texty, odkazy a obrázek, které se zobrazují v úvodní části webu.</p>
 
         <div className={styles.card}>
           <form action={actions.saveHeroAction} className={styles.form}>
@@ -60,16 +60,16 @@ export default async function AdminHeroPage() {
               <input name="openingHoursLabel" className={styles.input} defaultValue={heroView.openingHoursLabel} required />
             </div>
             <div className={styles.formGroup}>
-              <label className={styles.label}>Alt text obrázku Hero</label>
+              <label className={styles.label}>Alt text úvodního obrázku</label>
               <input name="imageAlt" className={styles.input} defaultValue={heroView.imageAlt} required />
             </div>
             <div className={styles.formGroup}>
-              <label className={styles.label}>Obrázek hero sekce</label>
+              <label className={styles.label}>Obrázek úvodní sekce</label>
               <input name="image" type="file" className={styles.input} accept="image/*" />
             </div>
             <div className={styles.buttonRow}>
               <SubmitButton type="submit" className={styles.button}>
-                Uložit hero sekci
+                Uložit úvodní sekci
               </SubmitButton>
             </div>
           </form>
@@ -80,7 +80,7 @@ export default async function AdminHeroPage() {
             <h2 className={styles.cardTitle}>Aktuální obrázek</h2>
             <Image
               src={`/uploads/${hero.image}`}
-              alt="Hero obrázek"
+              alt="Úvodní obrázek"
               width={320}
               height={180}
               unoptimized

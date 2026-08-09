@@ -196,6 +196,81 @@
   gap: 1rem;
 }
 
+.dashboardGrid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.dashboardCard {
+  min-height: 210px;
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboardCard .cardMeta {
+  flex: 1;
+}
+
+.galleryAdminGrid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.galleryAdminCard {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1rem;
+}
+
+.galleryAdminCard .mediaPreview {
+  margin-bottom: 0;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.galleryAdminCard .form {
+  gap: 0.75rem;
+}
+
+.galleryAdminCard .formGroup {
+  gap: 0.35rem;
+}
+
+.galleryAdminCard .label {
+  font-size: 0.88rem;
+}
+
+.galleryAdminCard .input {
+  min-height: 38px;
+  padding: 0.55rem 0.65rem;
+}
+
+.galleryAdminActions {
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.galleryAdminActions .button,
+.galleryAdminActions .buttonDanger,
+.galleryAdminActions .buttonSecondary {
+  min-height: 38px;
+  padding: 0.55rem 0.7rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.galleryAdminActions .inlineForm {
+  width: 100%;
+}
+
+.galleryAdminActions .buttonDanger {
+  width: 100%;
+}
+
 .form {
   display: grid;
   gap: 1rem;
@@ -374,6 +449,14 @@
   .hoursTimeGrid {
     grid-template-columns: 1fr;
   }
+
+  .dashboardGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .galleryAdminGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 480px) {
@@ -383,6 +466,14 @@
 
   .brandSub {
     display: none;
+  }
+
+  .dashboardGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .galleryAdminGrid {
+    grid-template-columns: 1fr;
   }
 
   .content {

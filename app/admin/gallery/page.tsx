@@ -40,7 +40,7 @@ export default async function AdminGalleryPage() {
           </form>
         </div>
 
-        <div className={styles.previewGrid}>
+        <div className={styles.galleryAdminGrid}>
           {images.length === 0 ? (
             <div className={styles.card}>
               <p className={styles.cardMeta}>Zatím nejsou nahrané žádné fotografie.</p>
@@ -48,16 +48,18 @@ export default async function AdminGalleryPage() {
           ) : null}
 
           {images.map((image) => (
-            <div key={image.id} className={styles.card}>
+            <div key={image.id} className={`${styles.card} ${styles.galleryAdminCard}`}>
               <h2 className={styles.cardTitle}>{image.title}</h2>
-              <Image
-                src={`/uploads/${image.filename}`}
-                alt={image.alt}
-                width={600}
-                height={400}
-                unoptimized
-                className={styles.mediaPreview}
-              />
+              <a href={`/uploads/${image.filename}`} target="_blank" rel="noreferrer">
+                <Image
+                  src={`/uploads/${image.filename}`}
+                  alt={image.alt}
+                  width={600}
+                  height={400}
+                  unoptimized
+                  className={styles.mediaPreview}
+                />
+              </a>
               <form id={`update-gallery-image-${image.id}`} action={actions.updateGalleryImageAction} className={styles.form}>
                 <input type="hidden" name="id" value={image.id} />
                 <div className={styles.formGroup}>
@@ -69,9 +71,9 @@ export default async function AdminGalleryPage() {
                   <input name="order" className={styles.input} type="number" defaultValue={image.order} />
                 </div>
               </form>
-              <div className={styles.buttonRow}>
+              <div className={styles.galleryAdminActions}>
                 <SubmitButton type="submit" form={`update-gallery-image-${image.id}`} className={styles.button}>
-                  Uložit fotografii
+                  Uložit
                 </SubmitButton>
                 <ConfirmForm
                   action={actions.deleteGalleryImageAction}
@@ -80,7 +82,7 @@ export default async function AdminGalleryPage() {
                 >
                   <input type="hidden" name="id" value={image.id} />
                   <button type="submit" className={styles.buttonDanger}>
-                    Smazat fotografii
+                    Smazat
                   </button>
                 </ConfirmForm>
               </div>
