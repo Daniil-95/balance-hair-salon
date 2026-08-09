@@ -1,5 +1,4 @@
-﻿import Image from "next/image";
-import { AdminShell } from "@/components/admin/AdminShell";
+﻿import { AdminShell } from "@/components/admin/AdminShell";
 import { getSettings } from "@/lib/settings";
 import * as actions from "./actions";
 import styles from "@/components/admin/admin-shell.module.scss";
@@ -13,7 +12,7 @@ export default async function AdminSettingsPage() {
     <AdminShell>
       <section className={styles.panel}>
         <h1 className={styles.panelHeading}>Nastavení webu</h1>
-        <p className={styles.panelIntro}>Upravte název salonu, krátký slogan, hlavní tlačítko a logo.</p>
+        <p className={styles.panelIntro}>Upravte název salonu, krátký slogan a hlavní tlačítko.</p>
 
         <div className={styles.card}>
           <form action={actions.saveSettingsAction} className={styles.form}>
@@ -33,10 +32,6 @@ export default async function AdminSettingsPage() {
               <label className={styles.label}>Odkaz hlavního tlačítka</label>
               <input name="heroCtaUrl" className={styles.input} defaultValue={settings?.heroCtaUrl ?? ""} />
             </div>
-            <div className={styles.formGroup}>
-              <label className={styles.label}>Logo</label>
-              <input name="logo" type="file" className={styles.input} accept="image/*" />
-            </div>
             <div className={styles.buttonRow}>
               <button type="submit" className={styles.button}>
                 Uložit nastavení
@@ -44,20 +39,6 @@ export default async function AdminSettingsPage() {
             </div>
           </form>
         </div>
-
-        {settings?.logo ? (
-          <div className={styles.card}>
-            <h2 className={styles.cardTitle}>Aktuální logo</h2>
-            <Image
-              src={`/uploads/${settings.logo}`}
-              alt="Logo salonu"
-              width={220}
-              height={120}
-              unoptimized
-              className={styles.mediaPreview}
-            />
-          </div>
-        ) : null}
       </section>
     </AdminShell>
   );
