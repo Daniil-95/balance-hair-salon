@@ -1,4 +1,5 @@
-@import "./typography";
+@use "./variables" as *;
+@use "./typography";
 
 *,
 *::before,

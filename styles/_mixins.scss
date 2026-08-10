@@ -1,3 +1,5 @@
+@use "sass:list";
+
 @mixin visually-hidden {
   position: absolute;
   width: 1px;
@@ -10,5 +12,5 @@
 }
 
 @mixin transition($properties...) {
-  transition: #{join($properties, ", ")} var(--transition-base);
+  transition: #{list.join($properties, (), $separator: comma)} var(--transition-base);
 }

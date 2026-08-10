@@ -1,3 +1,6 @@
+@use "./variables" as *;
+@use "./breakpoints" as *;
+
 .container {
   width: min(100%, calc(100% - 3rem));
   max-width: $max-content-width;
