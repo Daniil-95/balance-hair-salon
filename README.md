@@ -1,29 +1,33 @@
 # Balance Hair Salon
 
-Moderní prezentační web pro kadeřnické studio s vlastní administrací obsahu.
+Moderní prezentační web pro kadeřnické studio s vlastní administrací a obsahem řízeným z databáze.
 
-Projekt je postaven jako lehké a plně kontrolovatelné řešení bez externího CMS.
+Projekt je postaven bez externího CMS, aby bylo možné mít plnou kontrolu nad architekturou, datovým modelem i editací obsahu.
 
----
+## Hlavní výhody
 
-## O projektu
+- Veřejná prezentační část: úvod, služby, ceník, galerie, kontakt, ochrana osobních údajů.
+- Interní administrace na `/admin` pro správu obsahu.
+- JWT autentizace, ochrana admin rout a autorizace server actions.
+- Prisma + PostgreSQL (připraveno pro Supabase).
+- Nahrávání obrázků (Vercel Blob + kompatibilita se staršími lokálními cestami).
+- Dynamické SEO spravované přímo z administrace.
 
-Web pokrývá klíčové potřeby salonu:
+## Rozsah administrace
 
-- úvodní sekce,
-- sekce O nás,
-- služby,
-- ceník,
-- galerie,
-- kontakt a otevírací doba,
-- stránka Ochrana osobních údajů,
-- interní administrace pro správu obsahu.
+Po přihlášení (`/admin/login`) lze spravovat:
 
-Obsah uložený v administraci se promítá do veřejné části webu.
+- Přehled
+- Úvodní sekce
+- O nás
+- Služby
+- Ceník
+- Galerie
+- Kontakt
+- SEO
+- Nastavení
 
----
-
-## Tech Stack
+## Technologie
 
 - Next.js 15 (App Router)
 - React 19
@@ -31,97 +35,42 @@ Obsah uložený v administraci se promítá do veřejné části webu.
 - SCSS Modules
 - Prisma ORM
 - PostgreSQL (Supabase)
-- JWT autentizace
-- Fancybox + Swiper (galerie)
+- JWT (autentizace přes cookies)
+- Fancybox + Swiper
+- Zod validace
 
----
-
-## Co je hotové
-
-- responzivní veřejný web,
-- vlastní admin panel na `/admin`,
-- správa hero, O nás, služeb, ceníku, galerie, kontaktu, SEO a globálních nastavení,
-- správa textů navigace a patičky odděleně,
-- správa title/subtitle pro sekce hlavní stránky,
-- editovatelný obsah stránky Ochrana osobních údajů,
-- upload obrázků přes admin formuláře,
-- ochrana admin rout + ochrana server actions.
-
----
-
-## Administrace
-
-Admin je dostupný na:
-
-- `/admin/login`
-
-Po přihlášení jsou dostupné sekce:
-
-- Přehled
-- Úvodní sekce
-- O nás
-- Služby
-- Galerie
-- Ceník
-- Kontakt
-- SEO
-- Nastavení
-
----
-
-## Nastavení prostředí
-
-Projekt používá Supabase PostgreSQL v lokálním vývoji i v produkci (Vercel).
-
-Povinné proměnné:
-
-- `DATABASE_URL`
-- `DIRECT_URL`
-- `JWT_SECRET`
-- `ADMIN_SETUP_KEY`
-- `NEXT_PUBLIC_SITE_URL`
-
-Volitelná proměnná pro obrázky:
-
-- `NEXT_PUBLIC_UPLOADS_BASE_URL`
-
-Příklad pro Supabase:
-
-```env
-DATABASE_URL="postgresql://postgres.<project-ref>:<password>@aws-<region>.pooler.supabase.com:6543/postgres?pgbouncer=true&sslmode=require"
-DIRECT_URL="postgresql://postgres.<project-ref>:<password>@db.<project-ref>.supabase.co:5432/postgres?sslmode=require"
-```
-
-Poznámka:
-
-- `DATABASE_URL` musí být pooler URL (port `6543`, `pgbouncer=true`),
-- `DIRECT_URL` musí být direct URL (port `5432`).
-
----
-
-## Spuštění lokálně
+## Rychlý start
 
 ```bash
 npm install
-npx prisma generate
-npx prisma db push
+npm run prisma:generate
+npm run db:push
 npm run dev
 ```
 
-### Další příkazy
+Aplikace poběží lokálně na `http://localhost:3000`.
+
+
+## Skripty
 
 ```bash
-npm run lint
-npm run build
-npm run start
+npm run dev              # prisma generate + next dev
+npm run build            # prisma generate + next build
+npm run start            # next start
+npm run lint             # eslint
+npm run format           # prettier --write .
+npm run prisma:generate  # prisma generate
+npm run db:push          # prisma db push
+npm run db:seed          # prisma db seed
+npm run db:reset         # prisma migrate reset
+npm run prisma:migrate   # prisma migrate dev --name init
+npm run prisma:pull      # prisma db pull
 ```
 
----
+## Proč je tento projekt zajímavý
 
-## První vytvoření admin účtu
+Projekt ukazuje kompletní vlastnictví reálného webového produktu pro podnikání:
 
-1. Otevřete `/admin/login`.
-2. Přepněte na režim vytvoření prvního admina.
-3. Zadejte e-mail, heslo a `ADMIN_SETUP_KEY`.
-
-Po vytvoření prvního admina setup endpoint přirozeně ztrácí význam pro další bootstrap.
+- vlastní architektonická rozhodnutí (bez externího CMS),
+- kompletní implementaci (UI, autentizace, databáze, administrační workflow),
+- produkčně orientované řešení (validace, chráněné akce, stack připravený na nasazení).
