@@ -31,8 +31,11 @@ function resolveUploadPath(path: string) {
 
 function normalizeUploadedImage(image?: string | null) {
   if (!image) return null;
-  const path = image.startsWith("/") ? image : `/uploads/${image}`;
-  return resolveUploadPath(path);
+  // Full URL stored by Vercel Blob — use as-is
+  if (image.startsWith("http://") || image.startsWith("https://")) return image;
+  // Legacy: bare filename or path
+  const filePath = image.startsWith("/") ? image : `/uploads/${image}`;
+  return resolveUploadPath(filePath);
 }
 
 export async function getPublicServices() {

@@ -115,7 +115,7 @@ export default async function AdminHeroPage() {
             <div className={`${styles.card} ${styles.heroPreviewCard}`}>
               <h2 className={styles.cardTitle}>Aktuální obrázek</h2>
               <Image
-                src={`/uploads/${hero.image}`}
+                src={hero.image.startsWith("http") ? hero.image : `/uploads/${hero.image}`}
                 alt="Úvodní obrázek"
                 width={640}
                 height={400}

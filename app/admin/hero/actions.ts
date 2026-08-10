@@ -2,27 +2,9 @@
 
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import fs from "fs";
-import path from "path";
 import { requireAdminSession } from "@/lib/auth";
 import { getHeroMeta, upsertHero } from "@/lib/hero";
-
-const uploadsDir = path.join(process.cwd(), "public", "uploads");
-
-function ensureUploadsDir() {
-  if (!fs.existsSync(uploadsDir)) {
-    fs.mkdirSync(uploadsDir, { recursive: true });
-  }
-}
-
-async function saveUpload(file: File) {
-  ensureUploadsDir();
-  const filename = `${Date.now()}-${file.name}`;
-  const buffer = Buffer.from(await file.arrayBuffer());
-  const filePath = path.join(uploadsDir, filename);
-  await fs.promises.writeFile(filePath, buffer);
-  return filename;
-}
+import { uploadToBlob } from "@/lib/upload";
 
 function revalidateHeroViews() {
   revalidatePath("/admin/hero");
@@ -56,7 +38,7 @@ export async function saveHeroAction(formData: FormData) {
   let image = null;
 
   if (imageFile && imageFile.size > 0) {
-    image = await saveUpload(imageFile);
+    image = await uploadToBlob(imageFile);
   }
 
   await upsertHero({

@@ -26,6 +26,7 @@
     "@fancyapps/ui": "^6.1.14",
     "@prisma/client": "5.11.0",
     "@types/node": "20.17.0",
+    "@vercel/blob": "^2.7.0",
     "axios": "1.18.0",
     "bcryptjs": "2.4.3",
     "framer-motion": "12.23.12",

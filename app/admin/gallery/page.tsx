@@ -50,9 +50,9 @@ export default async function AdminGalleryPage() {
           {images.map((image) => (
             <div key={image.id} className={`${styles.card} ${styles.galleryAdminCard}`}>
               <h2 className={styles.cardTitle}>{image.title}</h2>
-              <a href={`/uploads/${image.filename}`} target="_blank" rel="noreferrer">
+              <a href={image.filename.startsWith("http") ? image.filename : `/uploads/${image.filename}`} target="_blank" rel="noreferrer">
                 <Image
-                  src={`/uploads/${image.filename}`}
+                  src={image.filename.startsWith("http") ? image.filename : `/uploads/${image.filename}`}
                   alt={image.alt}
                   width={600}
                   height={400}

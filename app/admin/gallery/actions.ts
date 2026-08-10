@@ -1,27 +1,9 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import fs from "fs";
-import path from "path";
 import { requireAdminSession } from "@/lib/auth";
-import { createGalleryImageSimple, deleteGalleryImage, getOrCreateDefaultGalleryCategoryId, updateGalleryImageSimple } from "@/lib/gallery";
-
-const uploadsDir = path.join(process.cwd(), "public", "uploads");
-
-function ensureUploadsDir() {
-  if (!fs.existsSync(uploadsDir)) {
-    fs.mkdirSync(uploadsDir, { recursive: true });
-  }
-}
-
-async function saveUpload(file: File) {
-  ensureUploadsDir();
-  const filename = `${Date.now()}-${file.name}`;
-  const buffer = Buffer.from(await file.arrayBuffer());
-  const filePath = path.join(uploadsDir, filename);
-  await fs.promises.writeFile(filePath, buffer);
-  return filename;
-}
+import { createGalleryImageSimple, deleteGalleryImage, getGalleryImageById, getOrCreateDefaultGalleryCategoryId, updateGalleryImageSimple } from "@/lib/gallery";
+import { deleteBlobByUrl, uploadToBlob } from "@/lib/upload";
 
 function revalidateGalleryViews() {
   revalidatePath("/admin/gallery");
@@ -40,8 +22,8 @@ export async function uploadGalleryImageAction(formData: FormData) {
   }
 
   const categoryId = await getOrCreateDefaultGalleryCategoryId();
-  const filename = await saveUpload(file);
-  await createGalleryImageSimple({ title, filename, categoryId, order });
+  const url = await uploadToBlob(file);
+  await createGalleryImageSimple({ title, filename: url, categoryId, order });
   revalidateGalleryViews();
 }
 
@@ -66,6 +48,12 @@ export async function deleteGalleryImageAction(formData: FormData) {
     return;
   }
 
+  const image = await getGalleryImageById(id);
   await deleteGalleryImage(id);
+
+  if (image?.filename.startsWith("http")) {
+    await deleteBlobByUrl(image.filename).catch(() => {});
+  }
+
   revalidateGalleryViews();
 }

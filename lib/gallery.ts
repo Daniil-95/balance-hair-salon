@@ -113,3 +113,7 @@ export function updateGalleryImageSimple(data: { id: string; title: string; orde
 export function deleteGalleryImage(id: string) {
   return prisma.galleryImage.delete({ where: { id } });
 }
+
+export function getGalleryImageById(id: string) {
+  return prisma.galleryImage.findUnique({ where: { id } });
+}

@@ -2,27 +2,9 @@
 
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import fs from "fs";
-import path from "path";
 import { requireAdminSession } from "@/lib/auth";
 import { getAboutMeta, upsertAbout } from "@/lib/about";
-
-const uploadsDir = path.join(process.cwd(), "public", "uploads");
-
-function ensureUploadsDir() {
-  if (!fs.existsSync(uploadsDir)) {
-    fs.mkdirSync(uploadsDir, { recursive: true });
-  }
-}
-
-async function saveUpload(file: File) {
-  ensureUploadsDir();
-  const filename = `${Date.now()}-${file.name}`;
-  const buffer = Buffer.from(await file.arrayBuffer());
-  const filePath = path.join(uploadsDir, filename);
-  await fs.promises.writeFile(filePath, buffer);
-  return filename;
-}
+import { uploadToBlob } from "@/lib/upload";
 
 function revalidateAboutViews() {
   revalidatePath("/admin/about");
@@ -50,11 +32,11 @@ export async function saveAboutAction(formData: FormData) {
   let secondaryImage = existingMeta.secondaryImage || null;
 
   if (imagePrimaryFile && imagePrimaryFile.size > 0) {
-    image = await saveUpload(imagePrimaryFile);
+    image = await uploadToBlob(imagePrimaryFile);
   }
 
   if (imageSecondaryFile && imageSecondaryFile.size > 0) {
-    secondaryImage = await saveUpload(imageSecondaryFile);
+    secondaryImage = await uploadToBlob(imageSecondaryFile);
   }
 
   await upsertAbout({
