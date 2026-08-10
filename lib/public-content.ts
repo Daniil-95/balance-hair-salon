@@ -62,7 +62,7 @@ export async function getPublicGallery() {
     label: image.category.name,
     description: image.category.name,
     position: index % 2 === 0 ? "center center" : "center top",
-    src: resolveUploadPath(`/uploads/${image.filename}`),
+    src: normalizeUploadedImage(image.filename) ?? "",
     alt: image.alt,
   }));
 }
