@@ -44,7 +44,7 @@ function serializeHighlightsPayload(meta?: AboutMeta | null) {
 }
 
 export function getAbout() {
-  return prisma.about.findFirst();
+  return prisma.about.findFirst({ orderBy: { updatedAt: "desc" } });
 }
 
 export async function getAboutMeta() {
@@ -67,7 +67,7 @@ export async function upsertAbout(data: {
   meta?: AboutMeta;
 }) {
   const highlights = serializeHighlightsPayload(data.meta);
-  const existing = await prisma.about.findFirst();
+  const existing = await prisma.about.findFirst({ orderBy: { updatedAt: "desc" } });
 
   if (existing) {
     return prisma.about.update({

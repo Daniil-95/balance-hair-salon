@@ -6,19 +6,65 @@ import { GalleryPreview } from "@/components/sections/gallery-preview/GalleryPre
 import { Contact } from "@/components/sections/contact/Contact";
 import { SiteShell } from "@/components/layout/site-shell";
 import { getPublicAbout, getPublicContact, getPublicGallery, getPublicHero, getPublicPricing, getPublicServices, getPublicSettings } from "@/lib/public-content";
+import { logPrismaError } from "@/lib/prisma-errors";
 
 export const revalidate = 0;
 
+const fallbackHero = {
+  headline: "Balance Hair Salon",
+  subheadline: "Profesionální péče o vaše vlasy.",
+  ctaLabel: "Objednat se",
+  ctaUrl: "#contact",
+  overline: "Kadeřnické studio",
+  imageSrc: "/images/image.png",
+  imageAlt: "Salon",
+  instagramUrl: null as string | null,
+  instagramLabel: "",
+  whatsappLabel: "",
+  whatsappUrl: null as string | null,
+  openingHoursLabel: "",
+  metaRowLeftLabel: "",
+  metaRowCenterLabel: "",
+  metaRowRightLabel: "",
+};
+
+const fallbackAbout = {
+  overline: "",
+  title: "",
+  paragraphs: [] as string[],
+  imageMainSrc: null as string | null,
+  imageMainAlt: "",
+  imageCutawaySrc: null as string | null,
+  imageCutawayAlt: "",
+};
+
+const fallbackContact = {
+  contact: null,
+  openingHours: [] as Array<{ day: string; open: string; close: string; isClosed: boolean; order: number }>,
+};
+
 export default async function HomePage() {
-  const [heroData, aboutData, servicesData, pricingData, galleryData, contactData, settingsData] = await Promise.all([
-    getPublicHero(),
-    getPublicAbout(),
-    getPublicServices(),
-    getPublicPricing(),
-    getPublicGallery(),
-    getPublicContact(),
-    getPublicSettings(),
-  ]);
+  let heroData = fallbackHero;
+  let aboutData = fallbackAbout;
+  let servicesData: Awaited<ReturnType<typeof getPublicServices>> = [];
+  let pricingData: Awaited<ReturnType<typeof getPublicPricing>> = [];
+  let galleryData: Awaited<ReturnType<typeof getPublicGallery>> = [];
+  let contactData = fallbackContact;
+  let settingsData: Awaited<ReturnType<typeof getPublicSettings>> = null;
+
+  try {
+    [heroData, aboutData, servicesData, pricingData, galleryData, contactData, settingsData] = await Promise.all([
+      getPublicHero(),
+      getPublicAbout(),
+      getPublicServices(),
+      getPublicPricing(),
+      getPublicGallery(),
+      getPublicContact(),
+      getPublicSettings(),
+    ]);
+  } catch (error) {
+    logPrismaError(error, "GET /");
+  }
 
   return (
     <SiteShell

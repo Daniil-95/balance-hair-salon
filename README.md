@@ -71,7 +71,7 @@ Po přihlášení jsou dostupné sekce:
 
 ## Nastavení prostředí
 
-Projekt používá oddělené profily pro vývoj a produkci.
+Projekt používá Supabase PostgreSQL v lokálním vývoji i v produkci (Vercel).
 
 Povinné proměnné:
 
@@ -85,34 +85,17 @@ Volitelná proměnná pro obrázky:
 
 - `NEXT_PUBLIC_UPLOADS_BASE_URL`
 
-### Doporučené rozdělení
-
-1. `/.env` nebo `/.env.production`:
-	hodnoty pro produkční databázi a produkční URL.
-2. `/.env.development.local`:
-	lokální přepisy pouze pro vývoj (soubor je ignorovaný v Gitu).
-
-Minimální lokální přepis:
-
-```env
-NEXT_PUBLIC_SITE_URL="http://localhost:3000"
-```
-
-Pokud lokálně používáte vzdálenou DB (např. produkční) a v `public/uploads` chybí soubory,
-nastavte i:
-
-```env
-NEXT_PUBLIC_UPLOADS_BASE_URL="https://your-production-domain.com"
-```
-
-Pak se veřejné obrázky budou načítat z tohoto hostu.
-
 Příklad pro Supabase:
 
 ```env
 DATABASE_URL="postgresql://postgres.<project-ref>:<password>@aws-<region>.pooler.supabase.com:6543/postgres?pgbouncer=true&sslmode=require"
-DIRECT_URL="postgresql://postgres.<project-ref>:<password>@aws-<region>.pooler.supabase.com:5432/postgres?sslmode=require"
+DIRECT_URL="postgresql://postgres.<project-ref>:<password>@db.<project-ref>.supabase.co:5432/postgres?sslmode=require"
 ```
+
+Poznámka:
+
+- `DATABASE_URL` musí být pooler URL (port `6543`, `pgbouncer=true`),
+- `DIRECT_URL` musí být direct URL (port `5432`).
 
 ---
 

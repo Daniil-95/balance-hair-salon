@@ -49,7 +49,7 @@ function serializeHeroBackgroundPayload(meta?: HeroMeta | null) {
 }
 
 export function getHero() {
-  return prisma.hero.findFirst();
+  return prisma.hero.findFirst({ orderBy: { updatedAt: "desc" } });
 }
 
 export async function getHeroMeta() {
@@ -67,7 +67,7 @@ export async function upsertHero(data: {
   meta?: HeroMeta;
 }) {
   const background = serializeHeroBackgroundPayload(data.meta);
-  const existing = await prisma.hero.findFirst();
+  const existing = await prisma.hero.findFirst({ orderBy: { updatedAt: "desc" } });
 
   if (existing) {
     return prisma.hero.update({

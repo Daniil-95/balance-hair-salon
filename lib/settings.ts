@@ -26,7 +26,7 @@ async function readSectionTitleFields(): Promise<SectionTitleFields> {
         "contactSectionTitle",
         "contactSectionSub"
       FROM "SiteSettings"
-      ORDER BY "createdAt" ASC
+      ORDER BY "updatedAt" DESC
       LIMIT 1
     `;
 
@@ -83,7 +83,7 @@ async function writeSectionTitleFields(id: string, data: {
 
 export async function getSettings() {
   const [settings, sectionFields] = await Promise.all([
-    prisma.siteSettings.findFirst(),
+    prisma.siteSettings.findFirst({ orderBy: { updatedAt: "desc" } }),
     readSectionTitleFields(),
   ]);
 
@@ -113,7 +113,7 @@ export async function upsertSettings(data: {
   contactSectionTitle?: string | null;
   contactSectionSub?: string | null;
 }) {
-  const existing = await prisma.siteSettings.findFirst();
+  const existing = await prisma.siteSettings.findFirst({ orderBy: { updatedAt: "desc" } });
 
   if (existing) {
     const updated = await prisma.siteSettings.update({

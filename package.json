@@ -7,23 +7,20 @@
     "seed": "tsx prisma/seed.ts"
   },
   "scripts": {
-    "dev": "npm run prisma:generate:dev && next dev",
-    "build": "npm run prisma:generate:prod && next build",
+    "dev": "npm run prisma:generate && next dev",
+    "build": "npm run prisma:generate && next build",
     "start": "next start",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "seed:default": "node scripts/seed-default-content.mjs",
-    "db:push": "npm run db:push:dev",
+    "db:push": "prisma db push",
     "db:seed": "prisma db seed",
-    "db:reset": "npm run db:reset:dev",
+    "db:reset": "prisma migrate reset",
+    "db:restore:devdb": "node scripts/restore-devdb-to-postgres.mjs",
+    "db:dedupe": "node scripts/dedupe-content.mjs",
     "format": "prettier --write .",
-    "prisma:generate": "npm run prisma:generate:dev",
-    "prisma:generate:dev": "prisma generate --schema=prisma/schema.dev.prisma",
-    "prisma:generate:prod": "dotenv -e .env.production -- prisma generate --schema=prisma/schema.prod.prisma",
-    "db:push:dev": "prisma db push --schema=prisma/schema.dev.prisma",
-    "db:push:prod": "dotenv -e .env.production -- prisma db push --schema=prisma/schema.prod.prisma",
-    "db:reset:dev": "prisma migrate reset --schema=prisma/schema.dev.prisma",
-    "prisma:migrate": "prisma migrate dev --name init --schema=prisma/schema.dev.prisma",
-    "prepare": "npm run prisma:generate:dev"
+    "prisma:generate": "prisma generate",
+    "prisma:pull": "prisma db pull",
+    "prisma:migrate": "prisma migrate dev --name init"
   },
   "dependencies": {
     "@fancyapps/ui": "^6.1.14",
@@ -48,7 +45,6 @@
     "@types/react-dom": "19.1.0",
     "@typescript-eslint/eslint-plugin": "7.10.0",
     "@typescript-eslint/parser": "7.10.0",
-    "dotenv-cli": "^11.0.0",
     "eslint": "8.57.0",
     "eslint-config-next": "15.3.3",
     "eslint-config-prettier": "9.1.0",
@@ -57,6 +53,7 @@
     "prettier": "3.6.2",
     "prisma": "5.11.0",
     "sass": "1.85.0",
+     "sql.js": "^1.13.0",
     "tsx": "^4.23.12",
     "typescript": "5.8.2"
   }

@@ -68,11 +68,11 @@ function createFallbackMetadata(): Metadata {
 }
 
 export function getSeo() {
-  return prisma.seo.findFirst();
+  return prisma.seo.findFirst({ orderBy: { updatedAt: "desc" } });
 }
 
 export async function upsertSeo(data: SeoInput) {
-  const existing = await prisma.seo.findFirst();
+  const existing = await prisma.seo.findFirst({ orderBy: { updatedAt: "desc" } });
 
   if (existing) {
     return prisma.seo.update({

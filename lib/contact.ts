@@ -1,7 +1,7 @@
 import { prisma } from "@/lib/prisma";
 
 export async function getContactAndHours() {
-  const contact = await prisma.contact.findFirst();
+  const contact = await prisma.contact.findFirst({ orderBy: { updatedAt: "desc" } });
   const openingHours = await prisma.openingHour.findMany({ orderBy: { order: "asc" } });
 
   return { contact, openingHours };
@@ -16,7 +16,7 @@ export async function upsertContactAndHours(data: {
   hours: Array<{ day: string; open: string; close: string; isClosed: boolean; order: number }>;
 }) {
   await prisma.$transaction(async (tx) => {
-    const existing = await tx.contact.findFirst();
+    const existing = await tx.contact.findFirst({ orderBy: { updatedAt: "desc" } });
 
     if (existing) {
       await tx.contact.update({

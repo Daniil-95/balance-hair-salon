@@ -1,0 +1,174 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  name      String?
+  role      String   @default("USER")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Hero {
+  id          String   @id @default(cuid())
+  headline    String
+  subheadline String
+  ctaLabel    String
+  ctaUrl      String
+  background  String?
+  image       String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model About {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  image       String?
+  highlights  String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Service {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  icon        String
+  order       Int      @default(0)
+  featured    Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model PriceCategory {
+  id          String      @id @default(cuid())
+  name        String
+  description String?
+  order       Int         @default(0)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  items       PriceItem[]
+}
+
+model PriceItem {
+  id          String        @id @default(cuid())
+  categoryId  String
+  title       String
+  price       String
+  description String?
+  order       Int           @default(0)
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  category    PriceCategory @relation(fields: [categoryId], references: [id])
+}
+
+model GalleryCategory {
+  id        String         @id @default(cuid())
+  name      String
+  slug      String         @unique
+  order     Int            @default(0)
+  createdAt DateTime       @default(now())
+  updatedAt DateTime       @updatedAt
+  images    GalleryImage[]
+}
+
+model GalleryImage {
+  id         String          @id @default(cuid())
+  title      String
+  alt        String
+  filename   String
+  categoryId String
+  order      Int             @default(0)
+  createdAt  DateTime        @default(now())
+  updatedAt  DateTime        @updatedAt
+  category   GalleryCategory @relation(fields: [categoryId], references: [id])
+}
+
+model Review {
+  id        String   @id @default(cuid())
+  author    String
+  rating    Int      @default(5)
+  message   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model SocialLink {
+  id        String   @id @default(cuid())
+  platform  String
+  url       String
+  icon      String
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Contact {
+  id        String   @id @default(cuid())
+  address   String
+  phone     String
+  whatsapp  String
+  email     String
+  mapUrl    String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model OpeningHour {
+  id        String   @id @default(cuid())
+  day       String
+  open      String
+  close     String
+  isClosed  Boolean  @default(false)
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Seo {
+  id            String   @id @default(cuid())
+  title         String
+  description   String
+  keywords      String
+  canonicalUrl  String
+  ogTitle       String?
+  ogDescription String?
+  ogImage       String?
+  robots        String?  @default("index")
+  viewport      String?
+  author        String?
+  twitterCard   String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model SiteSettings {
+  id                   String   @id @default(cuid())
+  salonName            String
+  tagline              String?
+  navigationLogoName   String?
+  navigationLogoSub    String?
+  heroCtaLabel         String?
+  heroCtaUrl           String?
+  logo                 String?
+  privacyPolicyContent String?
+  servicesSectionTitle String?
+  servicesSectionSub   String?
+  pricingSectionTitle  String?
+  pricingSectionSub    String?
+  contactSectionTitle  String?
+  contactSectionSub    String?
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+}
