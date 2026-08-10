@@ -3,7 +3,7 @@ import { About } from "@/components/sections/about/About";
 import { Services } from "@/components/sections/services/Services";
 import { Pricing } from "@/components/sections/pricing/Pricing";
 import { GalleryPreview } from "@/components/sections/gallery-preview/GalleryPreview";
-import { Contact } from "@/components/sections/contact/Contact";
+import { Contact as ContactSection } from "@/components/sections/contact/Contact";
 import { SiteShell } from "@/components/layout/site-shell";
 import { getPublicAbout, getPublicContact, getPublicGallery, getPublicHero, getPublicPricing, getPublicServices, getPublicSettings } from "@/lib/public-content";
 import { logPrismaError } from "@/lib/prisma-errors";
@@ -38,9 +38,25 @@ const fallbackAbout = {
   imageCutawayAlt: "",
 };
 
-const fallbackContact = {
+type Contact = {
+  id: string;
+  address: string;
+  phone: string;
+  whatsapp: string;
+  email: string;
+  mapUrl: string | null;
+  createdAt: Date;
+  updatedAt: Date;
+};
+
+type ContactData = {
+  contact: Contact | null;
+  openingHours: Awaited<ReturnType<typeof getPublicContact>>["openingHours"];
+};
+
+const fallbackContact: ContactData = {
   contact: null,
-  openingHours: [] as Array<{ day: string; open: string; close: string; isClosed: boolean; order: number }>,
+  openingHours: [],
 };
 
 export default async function HomePage() {
@@ -49,7 +65,7 @@ export default async function HomePage() {
   let servicesData: Awaited<ReturnType<typeof getPublicServices>> = [];
   let pricingData: Awaited<ReturnType<typeof getPublicPricing>> = [];
   let galleryData: Awaited<ReturnType<typeof getPublicGallery>> = [];
-  let contactData = fallbackContact;
+  let contactData: ContactData = fallbackContact;
   let settingsData: Awaited<ReturnType<typeof getPublicSettings>> = null;
 
   try {
@@ -115,7 +131,7 @@ export default async function HomePage() {
         sectionDescription={settingsData?.pricingSectionSub ?? undefined}
       />
       <GalleryPreview items={galleryData} />
-      <Contact
+      <ContactSection
         contact={contactData.contact}
         openingHours={contactData.openingHours}
         instagramUrl={heroData.instagramUrl}
