@@ -47,7 +47,15 @@ export default async function AdminContactPage() {
               </div>
               <div className={`${styles.formGroup} ${styles.contactMapField}`}>
                 <label className={styles.label}>Odkaz na mapu</label>
-                <input name="mapUrl" className={styles.input} defaultValue={contact?.mapUrl ?? ""} />
+                <input
+                  name="mapUrl"
+                  className={styles.input}
+                  defaultValue={contact?.mapUrl ?? ""}
+                  placeholder="https://www.google.com/maps?q=Cenkov+93&output=embed"
+                />
+                <p className={styles.cardMeta}>
+                  Vložte Google Maps odkaz. Běžný odkaz se při uložení automaticky převede na formát pro vloženou mapu.
+                </p>
               </div>
             </div>
 

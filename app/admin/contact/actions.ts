@@ -9,13 +9,48 @@ function parseBoolean(value: string | string[] | null) {
   return value === "true";
 }
 
+function normalizeMapEmbedUrl(value?: string | null) {
+  if (!value) {
+    return null;
+  }
+
+  const trimmed = value.trim();
+  if (!trimmed) {
+    return null;
+  }
+
+  const withProtocol = trimmed.startsWith("http://") || trimmed.startsWith("https://") ? trimmed : `https://${trimmed}`;
+
+  try {
+    const url = new URL(withProtocol);
+    const host = url.hostname.toLowerCase();
+
+    if (!host.includes("google.")) {
+      return withProtocol;
+    }
+
+    if (url.pathname.includes("/maps/embed") || url.searchParams.get("output") === "embed") {
+      return withProtocol;
+    }
+
+    const query = url.searchParams.get("q") || url.searchParams.get("query");
+    if (query && query.trim()) {
+      return `https://www.google.com/maps?q=${encodeURIComponent(query.trim())}&output=embed`;
+    }
+
+    return withProtocol;
+  } catch {
+    return null;
+  }
+}
+
 export async function saveContactAction(formData: FormData) {
   await requireAdminSession();
   const address = formData.get("address")?.toString() ?? "";
   const phone = formData.get("phone")?.toString() ?? "";
   const whatsapp = formData.get("whatsapp")?.toString() ?? "";
   const email = formData.get("email")?.toString() ?? "";
-  const mapUrl = formData.get("mapUrl")?.toString() || null;
+  const mapUrl = normalizeMapEmbedUrl(formData.get("mapUrl")?.toString() || null);
 
   if (!address || !phone || !whatsapp || !email) {
     return;

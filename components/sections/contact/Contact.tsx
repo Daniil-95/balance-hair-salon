@@ -44,6 +44,44 @@ function normalizeExternalHref(value?: string | null) {
   return `https://${trimmed}`;
 }
 
+function normalizeMapEmbedSrc(mapUrl?: string | null, address?: string) {
+  const fallbackQuery = address?.trim() ? `https://www.google.com/maps?q=${encodeURIComponent(address.trim())}&output=embed` : null;
+
+  if (!mapUrl) {
+    return fallbackQuery;
+  }
+
+  const raw = mapUrl.trim();
+  if (!raw) {
+    return fallbackQuery;
+  }
+
+  const withProtocol = raw.startsWith("http://") || raw.startsWith("https://") ? raw : `https://${raw}`;
+
+  try {
+    const url = new URL(withProtocol);
+    const host = url.hostname.toLowerCase();
+
+    if (!host.includes("google.")) {
+      return withProtocol;
+    }
+
+    const query = url.searchParams.get("q") || url.searchParams.get("query") || address || "";
+
+    if (url.pathname.includes("/maps/embed") || url.searchParams.get("output") === "embed") {
+      return withProtocol;
+    }
+
+    if (query.trim()) {
+      return `https://www.google.com/maps?q=${encodeURIComponent(query.trim())}&output=embed`;
+    }
+
+    return fallbackQuery;
+  } catch {
+    return fallbackQuery;
+  }
+}
+
 export function Contact({ contact, openingHours, instagramUrl, sectionTitle, sectionDescription }: ContactProps) {
   const { ref, isVisible } = useScrollReveal<HTMLElement>();
 
@@ -54,7 +92,7 @@ export function Contact({ contact, openingHours, instagramUrl, sectionTitle, sec
   const phoneNormalized = normalizePhone(phone);
   const phoneHref = phoneNormalized ? `tel:${phoneNormalized}` : null;
   const mapHref = address ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}` : null;
-  const mapSrc = contact?.mapUrl ?? null;
+  const mapSrc = normalizeMapEmbedSrc(contact?.mapUrl, address);
   const instagramHref = normalizeExternalHref(instagramUrl);
 
   return (
