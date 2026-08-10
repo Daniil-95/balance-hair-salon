@@ -83,6 +83,7 @@ export function Hero({
           alt={heroImageAlt}
           fill
           priority
+          unoptimized
           sizes="100vw"
           className={styles.backgroundImage}
           style={{ objectFit: "cover", objectPosition: "center center" }}

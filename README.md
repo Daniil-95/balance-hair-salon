@@ -71,13 +71,41 @@ Po přihlášení jsou dostupné sekce:
 
 ## Nastavení prostředí
 
-V `.env` jsou potřeba minimálně tyto proměnné:
+Projekt používá oddělené profily pro vývoj a produkci.
+
+Povinné proměnné:
 
 - `DATABASE_URL`
 - `DIRECT_URL`
 - `JWT_SECRET`
 - `ADMIN_SETUP_KEY`
 - `NEXT_PUBLIC_SITE_URL`
+
+Volitelná proměnná pro obrázky:
+
+- `NEXT_PUBLIC_UPLOADS_BASE_URL`
+
+### Doporučené rozdělení
+
+1. `/.env` nebo `/.env.production`:
+	hodnoty pro produkční databázi a produkční URL.
+2. `/.env.development.local`:
+	lokální přepisy pouze pro vývoj (soubor je ignorovaný v Gitu).
+
+Minimální lokální přepis:
+
+```env
+NEXT_PUBLIC_SITE_URL="http://localhost:3000"
+```
+
+Pokud lokálně používáte vzdálenou DB (např. produkční) a v `public/uploads` chybí soubory,
+nastavte i:
+
+```env
+NEXT_PUBLIC_UPLOADS_BASE_URL="https://your-production-domain.com"
+```
+
+Pak se veřejné obrázky budou načítat z tohoto hostu.
 
 Příklad pro Supabase:
 

@@ -43,6 +43,7 @@ export function About({
                   src={imageMainSrc}
                   alt={imageMainAlt}
                   fill
+                  unoptimized
                   sizes="(max-width: 768px) 100vw, 50vw"
                   className={styles.imageFill}
                   style={{ objectFit: "cover", objectPosition: "center left" }}
@@ -55,6 +56,7 @@ export function About({
                   src={imageCutawaySrc}
                   alt={imageCutawayAlt}
                   fill
+                  unoptimized
                   sizes="(max-width: 768px) 100vw, 50vw"
                   className={styles.imageFill}
                   style={{ objectFit: "cover", objectPosition: "right center" }}

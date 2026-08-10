@@ -7,6 +7,7 @@ import { getServices } from "@/lib/services";
 import { getSettings } from "@/lib/settings";
 
 const HERO_DEFAULT_IMAGE_SRC = "/images/image.png";
+const uploadsBaseUrl = process.env.NEXT_PUBLIC_UPLOADS_BASE_URL?.trim();
 
 function splitParagraphs(value?: string | null) {
   if (!value) return [];
@@ -16,9 +17,22 @@ function splitParagraphs(value?: string | null) {
     .filter(Boolean);
 }
 
+function resolveUploadPath(path: string) {
+  if (!uploadsBaseUrl) {
+    return path;
+  }
+
+  try {
+    return new URL(path, uploadsBaseUrl.endsWith("/") ? uploadsBaseUrl : `${uploadsBaseUrl}/`).toString();
+  } catch {
+    return path;
+  }
+}
+
 function normalizeUploadedImage(image?: string | null) {
   if (!image) return null;
-  return image.startsWith("/") ? image : `/uploads/${image}`;
+  const path = image.startsWith("/") ? image : `/uploads/${image}`;
+  return resolveUploadPath(path);
 }
 
 export async function getPublicServices() {
@@ -45,7 +59,7 @@ export async function getPublicGallery() {
     label: image.category.name,
     description: image.category.name,
     position: index % 2 === 0 ? "center center" : "center top",
-    src: `/uploads/${image.filename}`,
+    src: resolveUploadPath(`/uploads/${image.filename}`),
     alt: image.alt,
   }));
 }

@@ -96,6 +96,7 @@ export function GalleryPreview({ items }: GalleryPreviewProps) {
                       src={item.src}
                       alt={item.alt}
                       fill
+                      unoptimized
                       sizes="(max-width: 639px) 88vw, (max-width: 959px) 46vw, (max-width: 1279px) 30vw, 23vw"
                       className={styles.previewFill}
                       style={{ objectFit: "cover", objectPosition: item.position }}

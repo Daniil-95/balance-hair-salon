@@ -71,6 +71,7 @@ export function Gallery({ items }: GalleryProps) {
                   src={image.src}
                   alt={image.alt}
                   fill
+                  unoptimized
                   sizes="(max-width: 767px) 100vw, (max-width: 1199px) 50vw, 33vw"
                   className={styles.mediaImage}
                   style={{ objectFit: "cover", objectPosition: image.position }}

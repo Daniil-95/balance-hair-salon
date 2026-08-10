@@ -20,6 +20,7 @@ const DEFAULT_TITLE = "Balance Hair Salon Praha";
 const DEFAULT_DESCRIPTION = "Kadeřnické služby, barvení, styling a péče o vlasy v salonu Balance.";
 const DEFAULT_CANONICAL_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://balance-hair-salon.example.com";
 const DEFAULT_OG_IMAGE = "/images/image.png";
+const DEFAULT_FAVICON_PATH = "/favicon.ico";
 
 function normalizeRobots(value?: string | null) {
   return value === "noindex" ? "noindex" : "index";
@@ -43,7 +44,9 @@ function createFallbackMetadata(): Metadata {
     description: DEFAULT_DESCRIPTION,
     metadataBase: new URL(DEFAULT_CANONICAL_URL),
     icons: {
-      icon: "/favicon.ico",
+      icon: [{ url: DEFAULT_FAVICON_PATH, type: "image/x-icon" }],
+      shortcut: DEFAULT_FAVICON_PATH,
+      apple: DEFAULT_FAVICON_PATH,
     },
     alternates: {
       canonical: DEFAULT_CANONICAL_URL,
