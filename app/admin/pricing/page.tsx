@@ -133,7 +133,11 @@ export default async function AdminPricingPage({
                 {isEditCategoryOpen ? (
                   <div className={`${styles.subBlock} ${styles.pricingSubBlock}`}>
                     <h3 className={styles.cardTitle}>Upravit kategorii</h3>
-                    <form action={actions.updatePriceCategoryAction} className={`${styles.form} ${styles.pricingCompactForm}`}>
+                    <form
+                      id={`update-price-category-${selectedCategory.id}`}
+                      action={actions.updatePriceCategoryAction}
+                      className={`${styles.form} ${styles.pricingCompactForm}`}
+                    >
                       <input type="hidden" name="id" value={selectedCategory.id} />
                       <div className={styles.pricingInlineFields}>
                         <div className={styles.formGroup}>
@@ -145,22 +149,26 @@ export default async function AdminPricingPage({
                           <input name="order" className={styles.input} type="number" defaultValue={selectedCategory.order} />
                         </div>
                       </div>
-                      <div className={styles.pricingAdminActions}>
-                        <SubmitButton type="submit" className={styles.button}>
-                          Uložit
-                        </SubmitButton>
-                        <ConfirmForm
-                          action={actions.deletePriceCategoryAction}
-                          className={styles.inlineForm}
-                          message="Opravdu chcete smazat tuto kategorii? Smažou se i její položky."
-                        >
-                          <input type="hidden" name="id" value={selectedCategory.id} />
-                          <button type="submit" className={styles.buttonDanger}>
-                            Smazat
-                          </button>
-                        </ConfirmForm>
-                      </div>
                     </form>
+                    <div className={styles.pricingAdminActions}>
+                      <SubmitButton
+                        type="submit"
+                        form={`update-price-category-${selectedCategory.id}`}
+                        className={styles.button}
+                      >
+                        Uložit
+                      </SubmitButton>
+                      <ConfirmForm
+                        action={actions.deletePriceCategoryAction}
+                        className={styles.inlineForm}
+                        message="Opravdu chcete smazat tuto kategorii? Smažou se i její položky."
+                      >
+                        <input type="hidden" name="id" value={selectedCategory.id} />
+                        <button type="submit" className={styles.buttonDanger}>
+                          Smazat
+                        </button>
+                      </ConfirmForm>
+                    </div>
                   </div>
                 ) : null}
 

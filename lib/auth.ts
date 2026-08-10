@@ -1,5 +1,6 @@
 import jwt from "jsonwebtoken";
 import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
 const JWT_SECRET = process.env.JWT_SECRET ?? "change-me-in-production";
 export const TOKEN_NAME = "balance_token";
@@ -46,7 +47,7 @@ export async function getSessionPayload() {
 export async function requireAdminSession() {
   const payload = await getSessionPayload();
   if (!isAdminPayload(payload)) {
-    throw new Error("Unauthorized");
+    redirect("/admin/login?unauthorized=1");
   }
 
   return payload;
