@@ -2,6 +2,7 @@
 import { AdminShell } from "@/components/admin/AdminShell";
 import { ConfirmForm } from "@/components/admin/ConfirmForm";
 import { SubmitButton } from "@/components/admin/SubmitButton";
+import { requireAdminSession } from "@/lib/auth";
 import { getGalleryImages } from "@/lib/gallery";
 import * as actions from "./actions";
 import styles from "@/components/admin/admin-shell.module.scss";
@@ -9,6 +10,8 @@ import styles from "@/components/admin/admin-shell.module.scss";
 export const revalidate = 0;
 
 export default async function AdminGalleryPage() {
+  await requireAdminSession();
+
   const images = await getGalleryImages();
 
   return (

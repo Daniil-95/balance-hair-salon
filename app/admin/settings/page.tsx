@@ -1,5 +1,6 @@
 ﻿import { AdminShell } from "@/components/admin/AdminShell";
 import { SubmitButton } from "@/components/admin/SubmitButton";
+import { requireAdminSession } from "@/lib/auth";
 import { getSettings } from "@/lib/settings";
 import * as actions from "./actions";
 import styles from "@/components/admin/admin-shell.module.scss";
@@ -8,6 +9,8 @@ export const revalidate = 0;
 export const dynamic = "force-dynamic";
 
 export default async function AdminSettingsPage() {
+  await requireAdminSession();
+
   const settings = await getSettings();
 
   return (

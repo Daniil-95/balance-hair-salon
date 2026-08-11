@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { AdminShell } from "@/components/admin/AdminShell";
 import { SubmitButton } from "@/components/admin/SubmitButton";
+import { requireAdminSession } from "@/lib/auth";
 import { getHero } from "@/lib/hero";
 import { getPublicHero } from "@/lib/public-content";
 import * as actions from "./actions";
@@ -9,6 +10,8 @@ import styles from "@/components/admin/admin-shell.module.scss";
 export const revalidate = 0;
 
 export default async function AdminHeroPage() {
+  await requireAdminSession();
+
   const [hero, heroView] = await Promise.all([getHero(), getPublicHero()]);
 
   return (

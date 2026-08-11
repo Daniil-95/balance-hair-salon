@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { AdminShell } from "@/components/admin/AdminShell";
 import { SubmitButton } from "@/components/admin/SubmitButton";
+import { requireAdminSession } from "@/lib/auth";
 import { getAbout, getAboutMeta } from "@/lib/about";
 import { getPublicAbout } from "@/lib/public-content";
 import * as actions from "./actions";
@@ -9,6 +10,8 @@ import styles from "@/components/admin/admin-shell.module.scss";
 export const revalidate = 0;
 
 export default async function AdminAboutPage() {
+  await requireAdminSession();
+
   const [about, aboutMeta, aboutView] = await Promise.all([getAbout(), getAboutMeta(), getPublicAbout()]);
 
   return (

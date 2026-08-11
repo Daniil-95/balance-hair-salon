@@ -1,5 +1,6 @@
 ﻿import { AdminShell } from "@/components/admin/AdminShell";
 import Link from "next/link";
+import { requireAdminSession } from "@/lib/auth";
 import styles from "@/components/admin/admin-shell.module.scss";
 
 const quickSections = [
@@ -45,7 +46,9 @@ const quickSections = [
   },
 ];
 
-export default function AdminDashboardPage() {
+export default async function AdminDashboardPage() {
+  await requireAdminSession();
+
   return (
     <AdminShell>
       <section className={styles.panel}>

@@ -1,6 +1,7 @@
 ﻿import { AdminShell } from "@/components/admin/AdminShell";
 import { ConfirmForm } from "@/components/admin/ConfirmForm";
 import { SubmitButton } from "@/components/admin/SubmitButton";
+import { requireAdminSession } from "@/lib/auth";
 import { getPriceCategories } from "@/lib/prices";
 import Link from "next/link";
 import { Fragment } from "react";
@@ -52,6 +53,8 @@ export default async function AdminPricingPage({
 }: {
   searchParams?: Promise<PricingSearchParams>;
 }) {
+  await requireAdminSession();
+
   const categories = await getPriceCategories();
   const resolvedSearchParams = searchParams ? await searchParams : undefined;
   const categoryId = getSingleParam(resolvedSearchParams?.category);

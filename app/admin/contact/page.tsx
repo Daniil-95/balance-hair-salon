@@ -1,5 +1,6 @@
 ﻿import { AdminShell } from "@/components/admin/AdminShell";
 import { SubmitButton } from "@/components/admin/SubmitButton";
+import { requireAdminSession } from "@/lib/auth";
 import { getContactAndHours } from "@/lib/contact";
 import * as actions from "./actions";
 import styles from "@/components/admin/admin-shell.module.scss";
@@ -17,6 +18,8 @@ const defaultOpeningHours = [
 ];
 
 export default async function AdminContactPage() {
+  await requireAdminSession();
+
   const { contact, openingHours } = await getContactAndHours();
   const hours = openingHours.length > 0 ? openingHours : defaultOpeningHours;
 

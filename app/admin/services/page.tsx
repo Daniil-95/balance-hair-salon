@@ -1,6 +1,7 @@
 ﻿import { AdminShell } from "@/components/admin/AdminShell";
 import { ConfirmForm } from "@/components/admin/ConfirmForm";
 import { SubmitButton } from "@/components/admin/SubmitButton";
+import { requireAdminSession } from "@/lib/auth";
 import { getServices } from "@/lib/services";
 import * as actions from "./actions";
 import styles from "@/components/admin/admin-shell.module.scss";
@@ -8,6 +9,8 @@ import styles from "@/components/admin/admin-shell.module.scss";
 export const revalidate = 0;
 
 export default async function AdminServicesPage() {
+  await requireAdminSession();
+
   const services = await getServices();
 
   return (

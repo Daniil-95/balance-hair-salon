@@ -1,5 +1,6 @@
 import { AdminShell } from "@/components/admin/AdminShell";
 import { SubmitButton } from "@/components/admin/SubmitButton";
+import { requireAdminSession } from "@/lib/auth";
 import { getSeo } from "@/lib/seo";
 import * as actions from "./actions";
 import styles from "@/components/admin/admin-shell.module.scss";
@@ -7,6 +8,8 @@ import styles from "@/components/admin/admin-shell.module.scss";
 export const revalidate = 0;
 
 export default async function AdminSeoPage() {
+  await requireAdminSession();
+
   const seo = await getSeo();
 
   return (
