@@ -18,11 +18,6 @@ export async function POST(request: Request) {
       return NextResponse.json({ message: "Neplatný setup klíč." }, { status: 403 });
     }
 
-    const existingAdmin = await prisma.user.findFirst({ where: { role: "ADMIN" } });
-    if (existingAdmin) {
-      return NextResponse.json({ message: "Admin účet už existuje. Přihlaste se standardně." }, { status: 409 });
-    }
-
     const existingUser = await prisma.user.findUnique({ where: { email } });
     if (existingUser) {
       return NextResponse.json({ message: "Uživatel s tímto e-mailem už existuje." }, { status: 409 });

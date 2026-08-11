@@ -57,10 +57,10 @@ export default function AdminLoginPage() {
   return (
     <div className={styles.loginPage}>
       <div className={styles.loginCard}>
-        <h1>{mode === "setup" ? "Prvotní nastavení administrace" : "Přihlášení do administrace"}</h1>
+        <h1>{mode === "setup" ? "Vytvoření administrátora" : "Přihlášení do administrace"}</h1>
         <p>
           {mode === "setup"
-            ? "Vytvořte prvního administrátora pomocí setup klíče. Po vytvoření už používejte běžné přihlášení."
+            ? "Vytvořte nového administrátora pomocí setup klíče. Po vytvoření už používejte běžné přihlášení."
             : "Přihlaste se pro úpravu služeb, galerie, ceníku a nastavení webu."}
         </p>
 
