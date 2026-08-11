@@ -3,7 +3,7 @@ import { SiteShell } from "@/components/layout/site-shell";
 import { getPublicSettings } from "@/lib/public-content";
 import styles from "./privacy-policy.module.scss";
 
-export const revalidate = 0;
+export const revalidate = 300;
 
 const defaultPolicy = `Správce osobních údajů:
 Salon Balance

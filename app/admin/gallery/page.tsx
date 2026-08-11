@@ -56,7 +56,8 @@ export default async function AdminGalleryPage() {
                   alt={image.alt}
                   width={600}
                   height={400}
-                  unoptimized
+                  quality={65}
+                  decoding="async"
                   className={styles.mediaPreview}
                 />
               </a>

@@ -3,7 +3,23 @@ import { prisma } from "@/lib/prisma";
 export function getPriceCategories() {
   return prisma.priceCategory.findMany({
     orderBy: { order: "asc" },
-    include: { items: { orderBy: { order: "asc" } } },
+    select: {
+      id: true,
+      name: true,
+      description: true,
+      order: true,
+      items: {
+        orderBy: { order: "asc" },
+        select: {
+          id: true,
+          categoryId: true,
+          title: true,
+          price: true,
+          description: true,
+          order: true,
+        },
+      },
+    },
   });
 }
 

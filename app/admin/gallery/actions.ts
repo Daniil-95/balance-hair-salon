@@ -3,7 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { requireAdminSession } from "@/lib/auth";
 import { createGalleryImageSimple, deleteGalleryImage, getGalleryImageById, getOrCreateDefaultGalleryCategoryId, updateGalleryImageSimple } from "@/lib/gallery";
-import { deleteBlobByUrl, uploadToBlob } from "@/lib/upload";
+import { deleteBlobByUrl, uploadToBlob, validateUploadImageFile } from "@/lib/upload";
 
 function revalidateGalleryViews() {
   revalidatePath("/admin/gallery");
@@ -20,6 +20,8 @@ export async function uploadGalleryImageAction(formData: FormData) {
   if (!title || !file) {
     return;
   }
+
+  validateUploadImageFile(file);
 
   const categoryId = await getOrCreateDefaultGalleryCategoryId();
   const url = await uploadToBlob(file);

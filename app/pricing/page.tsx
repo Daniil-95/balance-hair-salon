@@ -3,7 +3,7 @@ import { SiteShell } from "@/components/layout/site-shell";
 import { getPublicPricing } from "@/lib/public-content";
 import styles from "./pricing-page.module.scss";
 
-export const revalidate = 0;
+export const revalidate = 300;
 
 export default async function PricingPage() {
   const categories = await getPublicPricing();

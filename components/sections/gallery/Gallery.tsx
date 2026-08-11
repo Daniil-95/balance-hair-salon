@@ -3,7 +3,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
-import { Fancybox } from "@fancyapps/ui";
 import styles from "./gallery.module.scss";
 
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
@@ -30,15 +29,30 @@ export function Gallery({ items }: GalleryProps) {
       return;
     }
 
-    Fancybox.bind(container, '[data-fancybox="gallery-page"]', {
-      Carousel: {
-        infinite: true
+    let cleanup: (() => void) | undefined;
+    let isCancelled = false;
+
+    void (async () => {
+      const { Fancybox } = await import("@fancyapps/ui");
+      if (isCancelled) {
+        return;
       }
-    });
+
+      Fancybox.bind(container, '[data-fancybox="gallery-page"]', {
+        Carousel: {
+          infinite: true
+        }
+      });
+
+      cleanup = () => {
+        Fancybox.unbind(container);
+        Fancybox.close();
+      };
+    })();
 
     return () => {
-      Fancybox.unbind(container);
-      Fancybox.close();
+      isCancelled = true;
+      cleanup?.();
     };
   }, []);
 
@@ -71,7 +85,6 @@ export function Gallery({ items }: GalleryProps) {
                   src={image.src}
                   alt={image.alt}
                   fill
-                  unoptimized
                   sizes="(max-width: 767px) 100vw, (max-width: 1199px) 50vw, 33vw"
                   className={styles.mediaImage}
                   style={{ objectFit: "cover", objectPosition: image.position }}

@@ -2,7 +2,13 @@ import jwt from "jsonwebtoken";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
-const JWT_SECRET = process.env.JWT_SECRET ?? "change-me-in-production";
+const jwtSecretFromEnv = process.env.JWT_SECRET;
+
+if (!jwtSecretFromEnv && process.env.NODE_ENV === "production") {
+  throw new Error("JWT_SECRET must be set in production.");
+}
+
+const JWT_SECRET = jwtSecretFromEnv ?? "change-me-in-development";
 export const TOKEN_NAME = "balance_token";
 
 export const AUTH_COOKIE_OPTIONS = {

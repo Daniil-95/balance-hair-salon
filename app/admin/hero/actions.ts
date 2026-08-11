@@ -4,7 +4,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { requireAdminSession } from "@/lib/auth";
 import { getHeroMeta, upsertHero } from "@/lib/hero";
-import { uploadToBlob } from "@/lib/upload";
+import { uploadToBlob, validateUploadImageFile } from "@/lib/upload";
 
 function revalidateHeroViews() {
   revalidatePath("/admin/hero");
@@ -38,6 +38,7 @@ export async function saveHeroAction(formData: FormData) {
   let image = null;
 
   if (imageFile && imageFile.size > 0) {
+    validateUploadImageFile(imageFile);
     image = await uploadToBlob(imageFile);
   }
 

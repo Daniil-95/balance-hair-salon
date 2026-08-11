@@ -119,7 +119,8 @@ export default async function AdminHeroPage() {
                 alt="Úvodní obrázek"
                 width={640}
                 height={400}
-                unoptimized
+                quality={65}
+                decoding="async"
                 className={styles.mediaPreview}
               />
             </div>

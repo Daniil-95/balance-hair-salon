@@ -156,9 +156,11 @@ export async function getSeoMetadata(): Promise<Metadata> {
 
 export async function getSeoJsonLd() {
   try {
-    const seo = await getSeo();
-    const { contact, openingHours } = await getContactAndHours();
-    const settings = await getSettings();
+    const [seo, { contact, openingHours }, settings] = await Promise.all([
+      getSeo(),
+      getContactAndHours(),
+      getSettings(),
+    ]);
 
     const salonName = settings?.salonName?.trim() || DEFAULT_SITE_NAME;
     const address = contact?.address?.trim() || "Praha 1, Česká republika";

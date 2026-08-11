@@ -5,9 +5,11 @@ import { getHero, getHeroMeta } from "@/lib/hero";
 import { getPriceCategories } from "@/lib/prices";
 import { getServices } from "@/lib/services";
 import { getSettings } from "@/lib/settings";
+import { cache } from "react";
 
 const HERO_DEFAULT_IMAGE_SRC = "/images/image.png";
 const uploadsBaseUrl = process.env.NEXT_PUBLIC_UPLOADS_BASE_URL?.trim();
+const getCachedSettings = cache(async () => getSettings());
 
 function splitParagraphs(value?: string | null) {
   if (!value) return [];
@@ -77,12 +79,13 @@ export async function getPublicContact() {
 }
 
 export async function getPublicSettings() {
-  const settings = await getSettings();
+  const settings = await getCachedSettings();
   return settings;
 }
 
 export async function getPublicHero() {
-  const [hero, settings, heroMeta] = await Promise.all([getHero(), getSettings(), getHeroMeta()]);
+  const [hero, settings] = await Promise.all([getHero(), getCachedSettings()]);
+  const heroMeta = await getHeroMeta(hero);
 
   return {
     headline: hero?.headline || settings?.salonName || "",
@@ -104,7 +107,8 @@ export async function getPublicHero() {
 }
 
 export async function getPublicAbout() {
-  const [about, aboutMeta] = await Promise.all([getAbout(), getAboutMeta()]);
+  const about = await getAbout();
+  const aboutMeta = await getAboutMeta(about);
 
   return {
     overline: aboutMeta.overline || "",

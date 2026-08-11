@@ -1,7 +1,17 @@
 import { prisma } from "@/lib/prisma";
 
 export function getServices() {
-  return prisma.service.findMany({ orderBy: { order: "asc" } });
+  return prisma.service.findMany({
+    orderBy: { order: "asc" },
+    select: {
+      id: true,
+      title: true,
+      description: true,
+      icon: true,
+      order: true,
+      featured: true,
+    },
+  });
 }
 
 export function createService(data: { title: string; description: string; icon: string; order: number }) {

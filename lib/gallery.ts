@@ -35,7 +35,22 @@ export async function getOrCreateDefaultGalleryCategoryId() {
 export function getGalleryImages() {
   return prisma.galleryImage.findMany({
     orderBy: { order: "asc" },
-    include: { category: true },
+    select: {
+      id: true,
+      title: true,
+      alt: true,
+      filename: true,
+      categoryId: true,
+      order: true,
+      category: {
+        select: {
+          id: true,
+          name: true,
+          slug: true,
+          order: true,
+        },
+      },
+    },
   });
 }
 

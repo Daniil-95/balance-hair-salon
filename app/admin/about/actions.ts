@@ -4,7 +4,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { requireAdminSession } from "@/lib/auth";
 import { getAboutMeta, upsertAbout } from "@/lib/about";
-import { uploadToBlob } from "@/lib/upload";
+import { uploadToBlob, validateUploadImageFile } from "@/lib/upload";
 
 function revalidateAboutViews() {
   revalidatePath("/admin/about");
@@ -32,10 +32,12 @@ export async function saveAboutAction(formData: FormData) {
   let secondaryImage = existingMeta.secondaryImage || null;
 
   if (imagePrimaryFile && imagePrimaryFile.size > 0) {
+    validateUploadImageFile(imagePrimaryFile);
     image = await uploadToBlob(imagePrimaryFile);
   }
 
   if (imageSecondaryFile && imageSecondaryFile.size > 0) {
+    validateUploadImageFile(imageSecondaryFile);
     secondaryImage = await uploadToBlob(imageSecondaryFile);
   }
 

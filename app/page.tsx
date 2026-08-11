@@ -8,7 +8,7 @@ import { SiteShell } from "@/components/layout/site-shell";
 import { getPublicAbout, getPublicContact, getPublicGallery, getPublicHero, getPublicPricing, getPublicServices, getPublicSettings } from "@/lib/public-content";
 import { logPrismaError } from "@/lib/prisma-errors";
 
-export const revalidate = 0;
+export const revalidate = 300;
 
 const fallbackHero = {
   headline: "Balance Hair Salon",
@@ -38,21 +38,7 @@ const fallbackAbout = {
   imageCutawayAlt: "",
 };
 
-type Contact = {
-  id: string;
-  address: string;
-  phone: string;
-  whatsapp: string;
-  email: string;
-  mapUrl: string | null;
-  createdAt: Date;
-  updatedAt: Date;
-};
-
-type ContactData = {
-  contact: Contact | null;
-  openingHours: Awaited<ReturnType<typeof getPublicContact>>["openingHours"];
-};
+type ContactData = Awaited<ReturnType<typeof getPublicContact>>;
 
 const fallbackContact: ContactData = {
   contact: null,

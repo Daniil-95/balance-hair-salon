@@ -1,4 +1,5 @@
 import { prisma } from "@/lib/prisma";
+import type { About } from "@prisma/client";
 
 export interface AboutMeta {
   overline?: string;
@@ -47,8 +48,8 @@ export function getAbout() {
   return prisma.about.findFirst({ orderBy: { updatedAt: "desc" } });
 }
 
-export async function getAboutMeta() {
-  const about = await getAbout();
+export async function getAboutMeta(aboutInput?: About | null) {
+  const about = aboutInput ?? await getAbout();
   const payload = parseHighlightsPayload(about?.highlights);
 
   if (payload) {

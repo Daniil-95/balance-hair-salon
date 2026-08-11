@@ -1,4 +1,5 @@
 import { prisma } from "@/lib/prisma";
+import type { Hero } from "@prisma/client";
 
 export interface HeroMeta {
   overline?: string;
@@ -52,8 +53,8 @@ export function getHero() {
   return prisma.hero.findFirst({ orderBy: { updatedAt: "desc" } });
 }
 
-export async function getHeroMeta() {
-  const hero = await getHero();
+export async function getHeroMeta(heroInput?: Hero | null) {
+  const hero = heroInput ?? await getHero();
   const payload = parseHeroBackgroundPayload(hero?.background);
   return payload?.meta ?? {};
 }

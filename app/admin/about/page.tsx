@@ -82,7 +82,8 @@ export default async function AdminAboutPage() {
                     alt={aboutView.imageMainAlt || "O nas hlavni foto"}
                     width={320}
                     height={180}
-                    unoptimized
+                    quality={65}
+                    decoding="async"
                     className={styles.mediaPreview}
                   />
                 ) : null}
@@ -92,7 +93,8 @@ export default async function AdminAboutPage() {
                     alt={aboutView.imageCutawayAlt || "O nas druhe foto"}
                     width={320}
                     height={180}
-                    unoptimized
+                    quality={65}
+                    decoding="async"
                     className={styles.mediaPreview}
                   />
                 ) : null}

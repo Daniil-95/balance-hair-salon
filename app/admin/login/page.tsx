@@ -21,20 +21,25 @@ export default function AdminLoginPage() {
     const endpoint = mode === "setup" ? "/api/admin/setup" : "/api/admin/login";
     const payload = mode === "setup" ? { email, password, setupKey } : { email, password };
 
-    const response = await fetch(endpoint, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload)
-    });
+    try {
+      const response = await fetch(endpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
 
-    if (response.ok) {
-      router.push("/admin");
-      return;
+      if (response.ok) {
+        router.push("/admin");
+        return;
+      }
+
+      const result = await response.json().catch(() => null);
+      setError(result?.message ?? "Neplatné přihlašovací údaje.");
+    } catch {
+      setError("Přihlášení se nepodařilo. Zkuste to prosím znovu.");
+    } finally {
+      setIsSubmitting(false);
     }
-
-    const result = await response.json();
-    setError(result?.message ?? "Neplatné přihlašovací údaje.");
-    setIsSubmitting(false);
   }
 
   return (

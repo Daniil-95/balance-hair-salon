@@ -3,7 +3,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect } from "react";
-import { Fancybox } from "@fancyapps/ui";
 import { Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { SectionTitle } from "@/components/ui/section-title";
@@ -35,15 +34,30 @@ export function GalleryPreview({ items }: GalleryPreviewProps) {
       return;
     }
 
-    Fancybox.bind(container, '[data-fancybox="gallery-preview"]', {
-      Carousel: {
-        infinite: true
+    let cleanup: (() => void) | undefined;
+    let isCancelled = false;
+
+    void (async () => {
+      const { Fancybox } = await import("@fancyapps/ui");
+      if (isCancelled) {
+        return;
       }
-    });
+
+      Fancybox.bind(container, '[data-fancybox="gallery-preview"]', {
+        Carousel: {
+          infinite: true
+        }
+      });
+
+      cleanup = () => {
+        Fancybox.unbind(container);
+        Fancybox.close();
+      };
+    })();
 
     return () => {
-      Fancybox.unbind(container);
-      Fancybox.close();
+      isCancelled = true;
+      cleanup?.();
     };
   }, [sectionRef]);
 
@@ -82,8 +96,8 @@ export function GalleryPreview({ items }: GalleryPreviewProps) {
               }
             }}
           >
-            {items.map((item) => (
-              <SwiperSlide key={item.title} className={styles.slide}>
+            {items.map((item, index) => (
+              <SwiperSlide key={`${item.src}-${index}`} className={styles.slide}>
                 <a
                   href={item.src}
                   className={`${styles.previewCard} lux-glow-hover`}
@@ -96,7 +110,6 @@ export function GalleryPreview({ items }: GalleryPreviewProps) {
                       src={item.src}
                       alt={item.alt}
                       fill
-                      unoptimized
                       sizes="(max-width: 639px) 88vw, (max-width: 959px) 46vw, (max-width: 1279px) 30vw, 23vw"
                       className={styles.previewFill}
                       style={{ objectFit: "cover", objectPosition: item.position }}

@@ -1,8 +1,32 @@
 import { prisma } from "@/lib/prisma";
 
 export async function getContactAndHours() {
-  const contact = await prisma.contact.findFirst({ orderBy: { updatedAt: "desc" } });
-  const openingHours = await prisma.openingHour.findMany({ orderBy: { order: "asc" } });
+  const [contact, openingHours] = await Promise.all([
+    prisma.contact.findFirst({
+      orderBy: { updatedAt: "desc" },
+      select: {
+        id: true,
+        address: true,
+        phone: true,
+        whatsapp: true,
+        email: true,
+        mapUrl: true,
+        createdAt: true,
+        updatedAt: true,
+      },
+    }),
+    prisma.openingHour.findMany({
+      orderBy: { order: "asc" },
+      select: {
+        id: true,
+        day: true,
+        open: true,
+        close: true,
+        isClosed: true,
+        order: true,
+      },
+    }),
+  ]);
 
   return { contact, openingHours };
 }

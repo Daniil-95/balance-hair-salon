@@ -2,7 +2,7 @@
 import { SiteShell } from "@/components/layout/site-shell";
 import { getPublicGallery } from "@/lib/public-content";
 
-export const revalidate = 0;
+export const revalidate = 300;
 
 export default async function GalleryPage() {
   const galleryItems = await getPublicGallery();

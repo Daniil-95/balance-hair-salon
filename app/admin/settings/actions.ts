@@ -42,5 +42,6 @@ export async function saveSettingsAction(formData: FormData) {
   });
   revalidatePath("/admin/settings");
   revalidatePath("/");
+  revalidatePath("/privacy-policy");
   redirect("/admin/settings?saved=1");
 }

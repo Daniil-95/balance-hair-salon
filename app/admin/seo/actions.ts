@@ -36,6 +36,9 @@ export async function saveSeoAction(formData: FormData) {
 
   revalidatePath("/admin/seo");
   revalidatePath("/");
+  revalidatePath("/gallery");
+  revalidatePath("/pricing");
+  revalidatePath("/privacy-policy");
   revalidatePath("/robots.txt");
   revalidatePath("/sitemap.xml");
   redirect("/admin/seo?saved=1");
