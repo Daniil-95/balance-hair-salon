@@ -1,6 +1,6 @@
 ﻿"use client";
 
-import { useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import styles from "./login.module.scss";
 
@@ -10,8 +10,20 @@ export default function AdminLoginPage() {
   const [password, setPassword] = useState("");
   const [setupKey, setSetupKey] = useState("");
   const [error, setError] = useState<string | null>(null);
+  const [infoMessage, setInfoMessage] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const router = useRouter();
+
+  useEffect(() => {
+    if (typeof window === "undefined") {
+      return;
+    }
+
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("loggedout") === "1") {
+      setInfoMessage("Byli jste odhlaseni ze systemu.");
+    }
+  }, []);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -76,6 +88,7 @@ export default function AdminLoginPage() {
         </div>
 
         <form onSubmit={handleSubmit} className={styles.loginForm}>
+          {infoMessage ? <p className={styles.infoText}>{infoMessage}</p> : null}
           <label>
             E-mail
             <input
