@@ -41,10 +41,6 @@ export default async function AdminContactPage() {
                 <label className={styles.label}>WhatsApp</label>
                 <input name="whatsapp" className={styles.input} defaultValue={contact?.whatsapp ?? ""} required />
               </div>
-              <div className={styles.formGroup}>
-                <label className={styles.label}>E-mail</label>
-                <input name="email" className={styles.input} defaultValue={contact?.email ?? ""} required />
-              </div>
               <div className={`${styles.formGroup} ${styles.contactMapField}`}>
                 <label className={styles.label}>Odkaz na mapu</label>
                 <input
@@ -53,9 +49,6 @@ export default async function AdminContactPage() {
                   defaultValue={contact?.mapUrl ?? ""}
                   placeholder="https://www.google.com/maps?q=Cenkov+93&output=embed"
                 />
-                <p className={styles.cardMeta}>
-                  Vložte Google Maps odkaz. Běžný odkaz se při uložení automaticky převede na formát pro vloženou mapu.
-                </p>
               </div>
             </div>
 

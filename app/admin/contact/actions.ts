@@ -3,7 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { requireAdminSession } from "@/lib/auth";
-import { upsertContactAndHours } from "@/lib/contact";
+import { getContactAndHours, upsertContactAndHours } from "@/lib/contact";
 
 function parseBoolean(value: string | string[] | null) {
   return value === "true";
@@ -49,12 +49,13 @@ export async function saveContactAction(formData: FormData) {
   const address = formData.get("address")?.toString() ?? "";
   const phone = formData.get("phone")?.toString() ?? "";
   const whatsapp = formData.get("whatsapp")?.toString() ?? "";
-  const email = formData.get("email")?.toString() ?? "";
   const mapUrl = normalizeMapEmbedUrl(formData.get("mapUrl")?.toString() || null);
 
-  if (!address || !phone || !whatsapp || !email) {
+  if (!address || !phone || !whatsapp) {
     return;
   }
+
+  const { contact: existingContact } = await getContactAndHours();
 
   const hours: Array<{ day: string; open: string; close: string; isClosed: boolean; order: number }> = [];
 
@@ -93,7 +94,14 @@ export async function saveContactAction(formData: FormData) {
     order: index,
   }));
 
-  await upsertContactAndHours({ address, phone, whatsapp, email, mapUrl, hours: normalizedHours });
+  await upsertContactAndHours({
+    address,
+    phone,
+    whatsapp,
+    email: existingContact?.email ?? null,
+    mapUrl,
+    hours: normalizedHours,
+  });
   revalidatePath("/admin/contact");
   revalidatePath("/");
   redirect("/admin/contact?saved=1");

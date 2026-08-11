@@ -35,10 +35,12 @@ export async function upsertContactAndHours(data: {
   address: string;
   phone: string;
   whatsapp: string;
-  email: string;
+  email?: string | null;
   mapUrl?: string | null;
   hours: Array<{ day: string; open: string; close: string; isClosed: boolean; order: number }>;
 }) {
+  const email = data.email ?? "";
+
   await prisma.$transaction(async (tx) => {
     const existing = await tx.contact.findFirst({ orderBy: { updatedAt: "desc" } });
 
@@ -49,7 +51,7 @@ export async function upsertContactAndHours(data: {
           address: data.address,
           phone: data.phone,
           whatsapp: data.whatsapp,
-          email: data.email,
+          email,
           mapUrl: data.mapUrl,
         },
       });
@@ -59,7 +61,7 @@ export async function upsertContactAndHours(data: {
           address: data.address,
           phone: data.phone,
           whatsapp: data.whatsapp,
-          email: data.email,
+          email,
           mapUrl: data.mapUrl,
         },
       });
