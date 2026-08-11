@@ -105,6 +105,10 @@
   .previewImage {
     min-height: 16rem;
   }
+
+  .previewFill {
+    object-position: center center !important;
+  }
 }
 
 @media (max-width: 480px) {
@@ -114,6 +118,10 @@
 
   .previewImage {
     min-height: 14rem;
+  }
+
+  .previewFill {
+    object-position: center center !important;
   }
 
   .button {

@@ -132,6 +132,10 @@
   .media {
     min-height: 18rem;
   }
+
+  .mediaImage {
+    object-position: center center !important;
+  }
 }
 
 @media (max-width: 480px) {
@@ -153,5 +157,9 @@
 
   .media {
     min-height: 16rem;
+  }
+
+  .mediaImage {
+    object-position: center center !important;
   }
 }
