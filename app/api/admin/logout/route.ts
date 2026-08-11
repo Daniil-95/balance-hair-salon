@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server";
 import { AUTH_COOKIE_OPTIONS, TOKEN_NAME } from "@/lib/auth";
 
-export async function POST() {
-  const response = NextResponse.json({ success: true });
+export async function POST(request: Request) {
+  const response = NextResponse.redirect(new URL("/admin/login", request.url), 303);
   response.cookies.set({
     name: TOKEN_NAME,
     value: "",
