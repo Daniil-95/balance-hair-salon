@@ -2,13 +2,16 @@ import jwt from "jsonwebtoken";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
-const jwtSecretFromEnv = process.env.JWT_SECRET;
+function getJwtSecret() {
+  const jwtSecretFromEnv = process.env.JWT_SECRET;
 
-if (!jwtSecretFromEnv && process.env.NODE_ENV === "production") {
-  throw new Error("JWT_SECRET must be set in production.");
+  if (!jwtSecretFromEnv && process.env.NODE_ENV === "production") {
+    throw new Error("JWT_SECRET must be set in production.");
+  }
+
+  return jwtSecretFromEnv ?? "change-me-in-development";
 }
 
-const JWT_SECRET = jwtSecretFromEnv ?? "change-me-in-development";
 export const TOKEN_NAME = "balance_token";
 
 export const AUTH_COOKIE_OPTIONS = {
@@ -20,11 +23,11 @@ export const AUTH_COOKIE_OPTIONS = {
 };
 
 export function signToken(payload: Record<string, unknown>) {
-  return jwt.sign(payload, JWT_SECRET, { expiresIn: "7d" });
+  return jwt.sign(payload, getJwtSecret(), { expiresIn: "7d" });
 }
 
 export function verifyToken(token: string) {
-  return jwt.verify(token, JWT_SECRET) as Record<string, unknown>;
+  return jwt.verify(token, getJwtSecret()) as Record<string, unknown>;
 }
 
 export function isAdminPayload(payload: Record<string, unknown> | null | undefined) {
