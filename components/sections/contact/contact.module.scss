@@ -217,6 +217,8 @@
 
   .sectionTitle {
     font-size: 1.8rem;
+    max-width: 16ch;
+    text-wrap: balance;
   }
 
   .contactCard,
@@ -234,9 +236,14 @@
   }
 
   .hours li {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 0.2rem;
+    align-items: baseline;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 0.75rem;
+  }
+
+  .hours strong {
+    text-align: right;
   }
 
   .mapFrame,
