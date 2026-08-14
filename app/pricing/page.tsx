@@ -1,15 +1,22 @@
 import Link from "next/link";
 import { SiteShell } from "@/components/layout/site-shell";
-import { getPublicPricing } from "@/lib/public-content";
+import { getPublicPricing, getPublicSettings } from "@/lib/public-content";
 import styles from "./pricing-page.module.scss";
 
 export const revalidate = 300;
 
 export default async function PricingPage() {
-  const categories = await getPublicPricing();
+  const [categories, settings] = await Promise.all([getPublicPricing(), getPublicSettings()]);
 
   return (
-    <SiteShell>
+    <SiteShell
+      headerBrandName={settings?.navigationLogoName ?? settings?.salonName}
+      headerBrandSub={settings?.navigationLogoSub ?? settings?.tagline ?? undefined}
+      headerCtaLabel={settings?.heroCtaLabel ?? undefined}
+      headerCtaUrl={settings?.heroCtaUrl ?? undefined}
+      footerBrandName={settings?.salonName}
+      footerNote={settings?.tagline ?? undefined}
+    >
       <section className={styles.pricingPage}>
         <div className="container">
           <div className={styles.backAction}>

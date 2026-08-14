@@ -165,7 +165,7 @@ export function Header({ brandName, brandSub, ctaLabel, ctaUrl }: HeaderProps) {
             <path d="M7 3.5V7M17 3.5V7M4 9H20" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" />
             <path d="M8 12.5H11M13 12.5H16M8 16H11" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" />
           </svg>
-          {ctaLabel || ""}
+          {ctaLabel || "Objednat"}
         </a>
       </div>
     </header>

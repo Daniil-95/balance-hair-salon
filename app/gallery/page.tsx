@@ -1,14 +1,21 @@
 ﻿import { Gallery } from "@/components/sections/gallery/Gallery";
 import { SiteShell } from "@/components/layout/site-shell";
-import { getPublicGallery } from "@/lib/public-content";
+import { getPublicGallery, getPublicSettings } from "@/lib/public-content";
 
 export const revalidate = 300;
 
 export default async function GalleryPage() {
-  const galleryItems = await getPublicGallery();
+  const [galleryItems, settings] = await Promise.all([getPublicGallery(), getPublicSettings()]);
 
   return (
-    <SiteShell>
+    <SiteShell
+      headerBrandName={settings?.navigationLogoName ?? settings?.salonName}
+      headerBrandSub={settings?.navigationLogoSub ?? settings?.tagline ?? undefined}
+      headerCtaLabel={settings?.heroCtaLabel ?? undefined}
+      headerCtaUrl={settings?.heroCtaUrl ?? undefined}
+      footerBrandName={settings?.salonName}
+      footerNote={settings?.tagline ?? undefined}
+    >
       <Gallery items={galleryItems} />
     </SiteShell>
   );

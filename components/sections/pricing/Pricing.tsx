@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import type { CSSProperties } from "react";
 import { SectionTitle } from "@/components/ui/section-title";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
@@ -52,6 +53,11 @@ export function Pricing({ categories, sectionTitle, sectionDescription }: Pricin
                 </article>
               ))}
             </div>
+          </div>
+          <div className={`${styles.actions} lux-reveal lux-delay-2`}>
+            <Link href="/pricing" className={styles.button}>
+              Zobrazit celý ceník
+            </Link>
           </div>
         </div>
       </div>
