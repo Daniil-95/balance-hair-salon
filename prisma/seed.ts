@@ -39,6 +39,9 @@ async function main() {
         tagline: "Vas styl. Nase pece.",
         heroCtaLabel: "Objednat termin online",
         heroCtaUrl: "https://invia.cz/objednani/",
+        contactCardTitle: "Zastavte se u nás nebo nám napište.",
+        contactCardDescription:
+          "Salon Balance najdete v Cenkově. Pro rychlý kontakt využijte telefon nebo WhatsApp, pro novinky sledujte Instagram.",
       }
     });
   }

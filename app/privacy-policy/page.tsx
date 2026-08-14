@@ -41,8 +41,8 @@ export default async function PrivacyPolicyPage() {
 
   return (
     <SiteShell
-      headerBrandName={settings?.navigationLogoName ?? settings?.salonName}
-      headerBrandSub={settings?.navigationLogoSub ?? settings?.tagline ?? undefined}
+      headerBrandName={settings?.navigationLogoName ?? undefined}
+      headerBrandSub={settings?.navigationLogoSub ?? undefined}
       headerCtaLabel={settings?.heroCtaLabel ?? undefined}
       headerCtaUrl={settings?.heroCtaUrl ?? undefined}
       footerBrandName={settings?.salonName}

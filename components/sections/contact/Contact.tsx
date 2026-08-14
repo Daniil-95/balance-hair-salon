@@ -24,6 +24,8 @@ interface ContactProps {
   instagramUrl?: string | null;
   sectionTitle?: string;
   sectionDescription?: string;
+  cardTitle?: string;
+  cardDescription?: string;
 }
 
 function normalizePhone(phone?: string) {
@@ -82,7 +84,7 @@ function normalizeMapEmbedSrc(mapUrl?: string | null, address?: string) {
   }
 }
 
-export function Contact({ contact, openingHours, instagramUrl, sectionTitle, sectionDescription }: ContactProps) {
+export function Contact({ contact, openingHours, instagramUrl, sectionTitle, sectionDescription, cardTitle, cardDescription }: ContactProps) {
   const { ref, isVisible } = useScrollReveal<HTMLElement>();
 
   const address = contact?.address ?? "";
@@ -107,8 +109,8 @@ export function Contact({ contact, openingHours, instagramUrl, sectionTitle, sec
         <div className={styles.topGrid}>
           <article className={`${styles.contactCard} lux-reveal-left`}>
             <span className={styles.overline}>Kontakt</span>
-            <h2 className={styles.sectionTitle}>Zastavte se u nás nebo nám napište.</h2>
-            <p className={styles.lead}>Salon Balance najdete v Cenkově. Pro rychlý kontakt využijte telefon nebo WhatsApp, pro novinky sledujte Instagram.</p>
+            <h2 className={styles.sectionTitle}>{cardTitle || "Zastavte se u nás nebo nám napište."}</h2>
+            <p className={styles.lead}>{cardDescription || "Salon Balance najdete v Cenkově. Pro rychlý kontakt využijte telefon nebo WhatsApp, pro novinky sledujte Instagram."}</p>
 
             <ul className={styles.contactList}>
               <li>

@@ -169,6 +169,8 @@ model SiteSettings {
   pricingSectionSub    String?
   contactSectionTitle  String?
   contactSectionSub    String?
+  contactCardTitle     String?
+  contactCardDescription String?
   createdAt            DateTime @default(now())
   updatedAt            DateTime @updatedAt
 }

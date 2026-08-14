@@ -70,8 +70,8 @@ export default async function HomePage() {
 
   return (
     <SiteShell
-      headerBrandName={settingsData?.navigationLogoName ?? settingsData?.salonName}
-      headerBrandSub={settingsData?.navigationLogoSub ?? settingsData?.tagline ?? undefined}
+      headerBrandName={settingsData?.navigationLogoName ?? undefined}
+      headerBrandSub={settingsData?.navigationLogoSub ?? undefined}
       headerCtaLabel={settingsData?.heroCtaLabel ?? undefined}
       headerCtaUrl={settingsData?.heroCtaUrl ?? undefined}
       footerBrandName={settingsData?.salonName}
@@ -123,6 +123,8 @@ export default async function HomePage() {
         instagramUrl={heroData.instagramUrl}
         sectionTitle={settingsData?.contactSectionTitle ?? undefined}
         sectionDescription={settingsData?.contactSectionSub ?? undefined}
+        cardTitle={settingsData?.contactCardTitle ?? undefined}
+        cardDescription={settingsData?.contactCardDescription ?? undefined}
       />
     </SiteShell>
   );

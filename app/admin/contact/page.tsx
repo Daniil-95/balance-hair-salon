@@ -2,6 +2,7 @@
 import { SubmitButton } from "@/components/admin/SubmitButton";
 import { requireAdminSession } from "@/lib/auth";
 import { getContactAndHours } from "@/lib/contact";
+import { getSettings } from "@/lib/settings";
 import * as actions from "./actions";
 import styles from "@/components/admin/admin-shell.module.scss";
 
@@ -21,6 +22,7 @@ export default async function AdminContactPage() {
   await requireAdminSession();
 
   const { contact, openingHours } = await getContactAndHours();
+  const settings = await getSettings();
   const hours = openingHours.length > 0 ? openingHours : defaultOpeningHours;
 
   return (
@@ -51,6 +53,22 @@ export default async function AdminContactPage() {
                   className={styles.input}
                   defaultValue={contact?.mapUrl ?? ""}
                   placeholder="https://www.google.com/maps?q=Cenkov+93&output=embed"
+                />
+              </div>
+            </div>
+
+            <div className={styles.subBlock}>
+              <h2 className={styles.cardTitle}>Text levého kontaktového bloku na hlavní stránce</h2>
+              <div className={styles.formGroup}>
+                <label className={styles.label}>Titulek</label>
+                <input name="contactCardTitle" className={styles.input} defaultValue={settings?.contactCardTitle ?? "Zastavte se u nás nebo nám napište."} />
+              </div>
+              <div className={styles.formGroup}>
+                <label className={styles.label}>Popis</label>
+                <textarea
+                  name="contactCardDescription"
+                  className={styles.textarea}
+                  defaultValue={settings?.contactCardDescription ?? "Salon Balance najdete v Cenkově. Pro rychlý kontakt využijte telefon nebo WhatsApp, pro novinky sledujte Instagram."}
                 />
               </div>
             </div>

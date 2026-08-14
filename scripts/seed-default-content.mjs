@@ -115,7 +115,9 @@ async function seed() {
         pricingSectionTitle: "Ceny sluzeb na jednom miste.",
         pricingSectionSub: "Presna cena zavisi na delce, hustote vlasu a zvolenem vysledku.",
         contactSectionTitle: "Ozte se nam nebo se stavte v salonu.",
-        contactSectionSub: "Telefon, WhatsApp i mapa na jednom miste."
+        contactSectionSub: "Telefon, WhatsApp i mapa na jednom miste.",
+        contactCardTitle: "Zastavte se u nás nebo nám napište.",
+        contactCardDescription: "Salon Balance najdete v Cenkově. Pro rychlý kontakt využijte telefon nebo WhatsApp, pro novinky sledujte Instagram."
       }
     });
   }

@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { requireAdminSession } from "@/lib/auth";
 import { getContactAndHours, upsertContactAndHours } from "@/lib/contact";
+import { getSettings, upsertSettings } from "@/lib/settings";
 
 function parseBoolean(value: string | string[] | null) {
   return value === "true";
@@ -50,10 +51,14 @@ export async function saveContactAction(formData: FormData) {
   const phone = formData.get("phone")?.toString() ?? "";
   const whatsapp = formData.get("whatsapp")?.toString() ?? "";
   const mapUrl = normalizeMapEmbedUrl(formData.get("mapUrl")?.toString() || null);
+  const contactCardTitle = formData.get("contactCardTitle")?.toString() || null;
+  const contactCardDescription = formData.get("contactCardDescription")?.toString() || null;
 
   if (!address || !phone || !whatsapp) {
     return;
   }
+
+  const settings = await getSettings();
 
   const { contact: existingContact } = await getContactAndHours();
 
@@ -102,7 +107,27 @@ export async function saveContactAction(formData: FormData) {
     mapUrl,
     hours: normalizedHours,
   });
+
+  await upsertSettings({
+    salonName: settings?.salonName ?? "Balance",
+    tagline: settings?.tagline ?? null,
+    navigationLogoName: settings?.navigationLogoName ?? null,
+    navigationLogoSub: settings?.navigationLogoSub ?? null,
+    privacyPolicyContent: settings?.privacyPolicyContent ?? null,
+    heroCtaLabel: settings?.heroCtaLabel ?? null,
+    heroCtaUrl: settings?.heroCtaUrl ?? null,
+    logo: settings?.logo ?? null,
+    servicesSectionTitle: settings?.servicesSectionTitle ?? null,
+    servicesSectionSub: settings?.servicesSectionSub ?? null,
+    pricingSectionTitle: settings?.pricingSectionTitle ?? null,
+    pricingSectionSub: settings?.pricingSectionSub ?? null,
+    contactSectionTitle: settings?.contactSectionTitle ?? null,
+    contactSectionSub: settings?.contactSectionSub ?? null,
+    contactCardTitle,
+    contactCardDescription,
+  });
   revalidatePath("/admin/contact");
+  revalidatePath("/admin/settings");
   revalidatePath("/");
   redirect("/admin/contact?saved=1");
 }

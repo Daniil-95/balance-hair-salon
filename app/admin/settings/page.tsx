@@ -13,6 +13,15 @@ export default async function AdminSettingsPage() {
 
   const settings = await getSettings();
 
+  const navigationLogoNameDefault = "Balance";
+  const navigationLogoSubDefault = "Kadeřnické studio";
+  const servicesSectionTitleDefault = "Strih, barveni a pece v jednom miste.";
+  const servicesSectionSubDefault = "Vyberte si sluzbu podle sveho stylu a potreb vlasu.";
+  const pricingSectionTitleDefault = "Ceny sluzeb na jednom miste.";
+  const pricingSectionSubDefault = "Presna cena zavisi na delce, hustote vlasu a zvolenem vysledku.";
+  const contactSectionTitleDefault = "Ozvěte se nám nebo se stavte v salonu.";
+  const contactSectionSubDefault = "Telefon, WhatsApp i mapa na jednom místě.";
+
   return (
     <AdminShell>
       <section className={styles.panel}>
@@ -29,11 +38,11 @@ export default async function AdminSettingsPage() {
                   <div className={styles.settingsGrid}>
                     <div className={styles.formGroup}>
                       <label className={styles.label}>Název loga v navigaci</label>
-                      <input name="navigationLogoName" className={styles.input} defaultValue={settings?.navigationLogoName ?? settings?.salonName ?? "Balance"} />
+                      <input name="navigationLogoName" className={styles.input} defaultValue={settings?.navigationLogoName ?? navigationLogoNameDefault} />
                     </div>
                     <div className={styles.formGroup}>
                       <label className={styles.label}>Podpis loga v navigaci</label>
-                      <input name="navigationLogoSub" className={styles.input} defaultValue={settings?.navigationLogoSub ?? settings?.tagline ?? "Kadeřnické studio"} />
+                      <input name="navigationLogoSub" className={styles.input} defaultValue={settings?.navigationLogoSub ?? navigationLogoSubDefault} />
                     </div>
                   </div>
                 </div>
@@ -61,11 +70,11 @@ export default async function AdminSettingsPage() {
                   <h3 className={styles.settingsSectionBlockTitle}>Služby</h3>
                   <div className={styles.formGroup}>
                     <label className={styles.label}>Titulek sekce</label>
-                    <input name="servicesSectionTitle" className={styles.input} defaultValue={settings?.servicesSectionTitle ?? ""} />
+                    <input name="servicesSectionTitle" className={styles.input} defaultValue={settings?.servicesSectionTitle ?? servicesSectionTitleDefault} />
                   </div>
                   <div className={styles.formGroup}>
                     <label className={styles.label}>Podtitulek sekce</label>
-                    <textarea name="servicesSectionSub" className={styles.textarea} defaultValue={settings?.servicesSectionSub ?? ""} />
+                    <textarea name="servicesSectionSub" className={styles.textarea} defaultValue={settings?.servicesSectionSub ?? servicesSectionSubDefault} />
                   </div>
                 </div>
 
@@ -73,11 +82,11 @@ export default async function AdminSettingsPage() {
                   <h3 className={styles.settingsSectionBlockTitle}>Ceník</h3>
                   <div className={styles.formGroup}>
                     <label className={styles.label}>Titulek sekce</label>
-                    <input name="pricingSectionTitle" className={styles.input} defaultValue={settings?.pricingSectionTitle ?? ""} />
+                    <input name="pricingSectionTitle" className={styles.input} defaultValue={settings?.pricingSectionTitle ?? pricingSectionTitleDefault} />
                   </div>
                   <div className={styles.formGroup}>
                     <label className={styles.label}>Podtitulek sekce</label>
-                    <textarea name="pricingSectionSub" className={styles.textarea} defaultValue={settings?.pricingSectionSub ?? ""} />
+                    <textarea name="pricingSectionSub" className={styles.textarea} defaultValue={settings?.pricingSectionSub ?? pricingSectionSubDefault} />
                   </div>
                 </div>
 
@@ -85,11 +94,11 @@ export default async function AdminSettingsPage() {
                   <h3 className={styles.settingsSectionBlockTitle}>Kontakt</h3>
                   <div className={styles.formGroup}>
                     <label className={styles.label}>Titulek sekce</label>
-                    <input name="contactSectionTitle" className={styles.input} defaultValue={settings?.contactSectionTitle ?? ""} />
+                    <input name="contactSectionTitle" className={styles.input} defaultValue={settings?.contactSectionTitle ?? contactSectionTitleDefault} />
                   </div>
                   <div className={styles.formGroup}>
                     <label className={styles.label}>Podtitulek sekce</label>
-                    <textarea name="contactSectionSub" className={styles.textarea} defaultValue={settings?.contactSectionSub ?? ""} />
+                    <textarea name="contactSectionSub" className={styles.textarea} defaultValue={settings?.contactSectionSub ?? contactSectionSubDefault} />
                   </div>
                 </div>
               </div>
