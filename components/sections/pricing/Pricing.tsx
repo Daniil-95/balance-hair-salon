@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import type { CSSProperties } from "react";
 import { SectionTitle } from "@/components/ui/section-title";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
@@ -54,14 +53,6 @@ export function Pricing({ categories, sectionTitle, sectionDescription }: Pricin
               ))}
             </div>
           </div>
-          <aside className={`${styles.ctaBlock} lux-reveal-right lux-delay-2`}>
-            <p className={styles.ctaLabel}>Ceník</p>
-            <h2 className={styles.ctaTitle}>Kompletní ceník si můžete zobrazit ve větším náhledu.</h2>
-            <p className={styles.ctaText}>Pro přesnou cenu doporučujeme rezervaci termínu nebo rychlý kontakt přes telefon či WhatsApp.</p>
-            <Link href="/pricing" className={styles.ctaButton}>
-              Zobrazit celý ceník
-            </Link>
-          </aside>
         </div>
       </div>
     </section>

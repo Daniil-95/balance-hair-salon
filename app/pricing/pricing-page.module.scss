@@ -98,6 +98,8 @@
 
 .itemLabel {
   flex: 0 1 auto;
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .itemRule {
