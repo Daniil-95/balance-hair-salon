@@ -4,7 +4,8 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { requireAdminSession } from "@/lib/auth";
 import { getContactAndHours, upsertContactAndHours } from "@/lib/contact";
-import { getSettings, upsertSettings } from "@/lib/settings";
+import { getSettings } from "@/lib/settings";
+import { upsertSettings } from "@/lib/settings";
 
 function parseBoolean(value: string | string[] | null) {
   return value === "true";
